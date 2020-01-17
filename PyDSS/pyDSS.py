@@ -104,7 +104,7 @@ class instance(object):
     def create_new_project(self, base_path, project_name, scenario_name):
         logs = os.path.join(base_path, project_name, 'Logs')
         exports = os.path.join(base_path, project_name, 'Exports')
-        dssfiles = os.path.join(base_path, project_name, 'DSSfiles')
+        dssfiles = os.path.join(base_path, project_name, scenario_name)#'DSSfiles'
         scenario = os.path.join(base_path, project_name, 'PyDSS Scenarios', scenario_name)
 
         pathlib.Path(logs).mkdir(parents=True, exist_ok=True)
@@ -135,6 +135,8 @@ class instance(object):
             args["Start Day"],
             args["End Day"],
         )] = (args, results)
+        assert (args["End Day"] < args["Start Day"]),\
+            "Start time: '{}', End Time '{}'".format(args["Start Day"], args["End Day"])
         return results_container
 
 
@@ -150,7 +152,6 @@ class instance(object):
 
         if updated_vis_settings['Simulations']['Run_bokeh_server']:
             bokeh_server_proc = subprocess.Popen(["bokeh", "serve"], stdout=subprocess.PIPE)
-
         SimulationResults = {}
         if isinstance(simulation_file, str):
             args, results = self.__run_scenario(simulation_file,
@@ -174,6 +175,7 @@ class instance(object):
     def update_scenario_settigs(self, Scenario_TOML_file_path):
         path = os.path.dirname(PyDSS.__file__)
         default_sim_settings = self.read_toml_file(os.path.join(path, 'default_simulation_settings.toml'))
+        print(Scenario_TOML_file_path)
         sim_settings = self.read_toml_file(Scenario_TOML_file_path)
         dss_args = {**default_sim_settings, **sim_settings}
         self.__validate_settings(dss_args)
@@ -246,7 +248,7 @@ class instance(object):
 
         assert (os.path.exists(os.path.join(dss_args['Project Path'],
                                             dss_args["Active Project"],
-                                            'DSSfiles',
+                                            dss_args["Active Scenario"],
                                             dss_args['DSS File']))), \
             "Master DSS file '{}' does not exist.".format(dss_args['DSS File'])
         return
@@ -270,6 +272,7 @@ if __name__ == '__main__':
     # a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\freq_scan_qsts.toml',
     #       r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\Freq_scan_qsts_visuals.toml')
 
-    a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Monte_carlo_examples\PyDSS Scenarios\monte_carlo_settings.toml')
+    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Monte_carlo_examples\PyDSS Scenarios\monte_carlo_settings.toml')
+    a.run(r'C:\Users\npanossi\Documents\P1U\solar_none_batteries_none_timeseries\opendss\p1uhs0_1247\PyDSS Scenarios\p1uhs0_1247--p1udt104\PyDSS_settings.toml')
 
     del a

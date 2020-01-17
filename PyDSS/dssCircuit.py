@@ -65,3 +65,21 @@ class dssCircuit:
             print (VarName + ' is an invalid variable name for element ' + self.__Name)
             return None
 
+    # all below added by npanossi
+    def SetParameter(self, Param, Value):
+        self.__dssInstance.utils.run_command(self.__Name + '.' + Param + ' = ' + str(Value))
+        print('dssInstance Circuit ' + Param + ' set to ' + str(Value))
+        return None
+        #self.GetParameter(Param)
+
+    # def GetParameter(self, Param):
+    #         self.__dssInstance.Circuit.SetActiveElement(self.__Class + '.' + self.__Name)
+    #         if self.__dssInstance.Element.Name() == (self.__Class + '.' + self.__Name):
+    #             x = self.__dssInstance.Properties.Value(Param)
+    #             try:
+    #                 return float(x)
+    #             except:
+    #                 return x
+    #         else:
+    #             print('Could not set ' + self.__Class + '.' + self.__Name + ' as active element.')
+    #             return None

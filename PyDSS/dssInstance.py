@@ -83,9 +83,9 @@ class OpenDSS:
             'pyControllers': os.path.join(importPath, kwargs['Active Scenario'], 'pyControllerList'),
             'Export': os.path.join(rootPath, kwargs['Active Project'], 'Exports'),
             'Log': os.path.join(rootPath, kwargs['Active Project'], 'Logs'),
-            'dssFiles': os.path.join(rootPath, kwargs['Active Project'], 'DSSfiles'),
-            'dssFilePath' : os.path.join(rootPath, kwargs['Active Project'], 'DSSfiles', kwargs['DSS File']),
-        }
+            'dssFiles': os.path.join(rootPath, kwargs['Active Project'], kwargs['Active Scenario']),
+            'dssFilePath' : os.path.join(rootPath, kwargs['Active Project'], kwargs['Active Scenario'], kwargs['DSS File']),
+        }#'DSSfiles'
 
         LoggerTag = kwargs['Active Project'] + '_' + kwargs['Active Scenario']
         self.__Logger = pyLogger.getLogger(LoggerTag, self.__dssPath['Log'], LoggerOptions=kwargs)

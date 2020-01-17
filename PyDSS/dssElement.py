@@ -112,6 +112,7 @@ class dssElement:
 
     def SetParameter(self, Param, Value):
         self.__dssInstance.utils.run_command(self.__Class + '.' + self.__Name + '.' + Param + ' = ' + str(Value))
+        print(self.__Class+'.'+self.__Name + '.' + Param + ' set to ' + str(Value))
         return self.GetParameter(Param)
 
 
