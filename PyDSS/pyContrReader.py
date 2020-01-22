@@ -39,6 +39,8 @@ class pySubscriptionReader:
         Subscribe = SubscriptionData['Subscribe']
         assert (Subscribe.dtype == bool), 'The subscribe column can only have boolean values.'
         self.SubscriptionDict = SubscriptionData.T.to_dict()
+        #if 'index' in SubscriptionData:
+        #assert (int(SubscriptionData['index']).dtype == int), 'The index column can only have integer values.'
 
 
 

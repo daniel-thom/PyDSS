@@ -94,13 +94,24 @@ class ResultContainer:
                 if subscriptionData['Data type'].lower() == 'double':
                     value = h.helicsInputGetDouble(subscriptionData['Subscription'])
                 elif subscriptionData['Data type'].lower() == 'vector':
-                    value = h.helicsInputGetVector(subscriptionData['Subscription'])
+                    index = subscriptionData['index']
+                    if isinstance(index, int):
+                        vec = h.helicsInputGetVector(subscriptionData['Subscription'])
+                        print('Subscription vector is: '+str(vec))
+                        value = vec[index]
+                    else:
+                        value = h.helicsInputGetVector(subscriptionData['Subscription'])
+                        value = value[int(index)]
                 elif subscriptionData['Data type'].lower() == 'string':
                     value = h.helicsInputGetString(subscriptionData['Subscription'])
                 elif subscriptionData['Data type'].lower() == 'boolean':
                     value = h.helicsInputGetBoolean(subscriptionData['Subscription'])
                 elif subscriptionData['Data type'].lower() == 'integer':
                     value = h.helicsInputGetInteger(subscriptionData['Subscription'])
+                elif subscriptionData['Data type'].lower() == 'complex':
+                    value = h.helicsInputGetComplex(subscriptionData['Subscription'])
+                    print('Complex subscription value: {}'.format(value))
+                    value = np.absolute(value)
                 dssElement = self.ObjectsByElement[element]
                 dssElement.SetParameter(subscriptionData['Property'], value)
                 self.pyLogger.debug('Value for "{}.{}" changed to "{}"'.format(
@@ -113,12 +124,16 @@ class ResultContainer:
 
     def __registerFederatePublications(self):
         self.__publications = {}
+        for pubentry in self.PublicationList:
+            print('publication {} in list'.format(pubentry))
         for object, property_dict in self.CurrentResults.items():
             objClass = None
             for Class in self.ObjectsByClass:
                 if object in self.ObjectsByClass[Class]:
                     objClass = Class
                     break
+            if objClass == None:
+                objClass = 'Buses'
             for property, type_dict in property_dict.items():
                 if '{} {}'.format(objClass, property) in self.PublicationList:
                     for typeID, type in type_dict.items():
@@ -130,7 +145,8 @@ class ResultContainer:
                             type['type'],
                             type['unit']
                         )
-
+                        self.pyLogger.debug('Global Publication "{}" of type "{}" registered with units "{}"'.format(
+                            name, type['type'], type['unit']))
         return
 
     def __initCurrentResults(self, PptyName):
@@ -226,6 +242,9 @@ class ResultContainer:
                     h.helicsPublicationPublishBoolean(self.__publications[name], ans[filter]['value'])
                 elif isinstance(Values, int) and name in self.__publications:
                     h.helicsPublicationPublishInteger(self.__publications[name], ans[filter]['value'])
+
+                self.pyLogger.debug('Value for "{}" published as "{}"'.format(
+                    name, ans[filter]['value']))                
 
             self.CurrentResults[Element][Property] = ans
         return
