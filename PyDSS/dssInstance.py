@@ -269,7 +269,7 @@ class OpenDSS:
             Elem = ElmCollection.Next()
         return ObjectList
 
-    def RunStep(self, step, updateObjects=None):
+    def RunStep(self, step, updateObjects=None, n_iters=0):
 
         if updateObjects:
             for object, params in updateObjects.items():
@@ -277,9 +277,40 @@ class OpenDSS:
                 self.__Modifier.Edit_Element(cl, name, params)
             pass
 
-        self.__dssSolver.IncStep()
+        reiterate = False
+        max_iters = 0
+        if n_iters == 0:
+            self.__dssSolver.IncStep()
+        # get load from previous timestep
+        last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+        if isinstance(last_load, list) and len(last_load)>0:
+            last_load = last_load[0]
+        # if you are co-simulating, you may need to reiterate to have the full network converge
         if self.__Options['Co-simulation Mode']:
             self.ResultContainer.updateSubscriptions()
+            reiterate = self.ResultContainer.reiterate_flag # this is initially set as a HELICS input
+            if reiterate==True:
+                max_iters = 10
+            else:
+                max_iters = 1
+            self.__dssSolver.reSolve()
+            self.ResultContainer.UpdateResults()
+            # check internally for convergence
+            this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+            if isinstance(this_load, list) and len(this_load)>0:
+                this_load = this_load[0]
+            if this_load==last_load:
+                reiterate = False
+                print('Circuit converged end timestep iterations')
+            last_load = this_load
+            print('reiteration {}, load: {}, flag set to: {}'.format(n_iters, last_load, reiterate))
+
+        #recursively call if reiteration is needed
+        if n_iters<max_iters and reiterate==True:
+            n_iters+=1
+            self.ResultContainer.updateSubscriptions()
+            self.RunStep(step, updateObjects=updateObjects, n_iters=n_iters)
+                
 
         if self.__Options['Disable PyDSS controllers'] == False:
             for priority in range(CONTROLLER_PRIORITIES):

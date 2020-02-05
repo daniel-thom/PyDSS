@@ -36,6 +36,7 @@ class ResultContainer:
 
         self.__publications = {}
         self.__subscriptions = {}
+        self.reiterate_flag = True
 
         self.ExportFolder = os.path.join(self.SystemPaths['Export'], Options['Active Scenario'])
         pathlib.Path(self.ExportFolder).mkdir(parents=True, exist_ok=True)
@@ -67,6 +68,8 @@ class ResultContainer:
                                                 self.__Settings['Helics logging level'])
 
         h.helicsFederateInfoSetFlagOption(fedinfo, h.helics_flag_uninterruptible, True)
+        h.helicsFederateInfoSetFlagOption(fedinfo, h.helics_flag_wait_for_current_time_update, True)
+        h.helicsFederateInfoSetFlagOption(fedinfo, h.helics_flag_only_update_on_change, True)
         self.__PyDSSfederate = h.helicsCreateValueFederate(self.__Settings['Federate name'], fedinfo)
         return
 
@@ -75,7 +78,7 @@ class ResultContainer:
         self.__subscriptions = self.FileReader.SubscriptionDict
 
         for element, subscription in self.__subscriptions.items():
-            assert element in self.ObjectsByElement, '"{}" listed in the subscription file not '.format(element) +\
+            assert (element in self.ObjectsByElement) or (element[:4]=='Flag'), '"{}" listed in the subscription file not '.format(element) +\
                                                      "available in PyDSS's master object dictionary."
             if subscription["Subscribe"] == True:
                 sub = h.helicsFederateRegisterSubscription(self.__PyDSSfederate, subscription["Subscription ID"],
@@ -112,8 +115,17 @@ class ResultContainer:
                     value = h.helicsInputGetComplex(subscriptionData['Subscription'])
                     print('Complex subscription value: {}'.format(value))
                     value = np.absolute(value)
-                dssElement = self.ObjectsByElement[element]
-                dssElement.SetParameter(subscriptionData['Property'], value)
+                if element == 'Flag.reiterate_flag':
+                    if value in ['True', True, 'true'] or value>0:
+                        print('reiterate flag {} converted to True'.format(value))
+                        value = True
+                    else:
+                        print('reiterate flag {} converted to False'.format(value))
+                        value = False
+                    self.reiterate_flag = value
+                else:
+                    dssElement = self.ObjectsByElement[element]
+                    dssElement.SetParameter(subscriptionData['Property'], value)
                 self.pyLogger.debug('Value for "{}.{}" changed to "{}"'.format(
                     element,
                     subscriptionData['Property'],
