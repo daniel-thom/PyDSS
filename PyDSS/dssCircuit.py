@@ -72,14 +72,14 @@ class dssCircuit:
         return None
         #self.GetParameter(Param)
 
-    # def GetParameter(self, Param):
-    #         self.__dssInstance.Circuit.SetActiveElement(self.__Class + '.' + self.__Name)
-    #         if self.__dssInstance.Element.Name() == (self.__Class + '.' + self.__Name):
-    #             x = self.__dssInstance.Properties.Value(Param)
-    #             try:
-    #                 return float(x)
-    #             except:
-    #                 return x
-    #         else:
-    #             print('Could not set ' + self.__Class + '.' + self.__Name + ' as active element.')
-    #             return None
+    def GetParameter(self, Param):
+            self.__dssInstance.Circuit.SetActiveElement(self.__Class + '.' + self.__Name)
+            if self.__dssInstance.Element.Name() == (self.__Class + '.' + self.__Name):
+                x = self.__dssInstance.Properties.Value(Param)
+                try:
+                    return float(x)
+                except:
+                    return x
+            else:
+                print('Could not set ' + self.__Class + '.' + self.__Name + ' as active element.')
+                return None

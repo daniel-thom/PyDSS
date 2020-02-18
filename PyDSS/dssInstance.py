@@ -278,32 +278,36 @@ class OpenDSS:
             pass
 
         reiterate = False
-        max_iters = 0
+        max_iters = 10
         if n_iters == 0:
             self.__dssSolver.IncStep()
         # get load from previous timestep
-        last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-        if isinstance(last_load, list) and len(last_load)>0:
-            last_load = last_load[0]
+        #last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+        last_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0]
+        while isinstance(last_voltage, list):
+            if len(last_voltage)>0:
+                last_voltage = last_voltage[-1]
+            else:
+                last_voltage=0.0
         # if you are co-simulating, you may need to reiterate to have the full network converge
         if self.__Options['Co-simulation Mode']:
             self.ResultContainer.updateSubscriptions()
             reiterate = self.ResultContainer.reiterate_flag # this is initially set as a HELICS input
-            if reiterate==True:
-                max_iters = 10
-            else:
-                max_iters = 1
             self.__dssSolver.reSolve()
             self.ResultContainer.UpdateResults()
             # check internally for convergence
-            this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-            if isinstance(this_load, list) and len(this_load)>0:
-                this_load = this_load[0]
-            if this_load==last_load:
+            this_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0] #get the voltage for the first circuit (which is the top level bus)
+            #this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+            while isinstance(this_voltage, list):
+                if len(this_voltage)>0:
+                    this_voltage = this_voltage[-1]
+                else:
+                    this_voltage = 1.0
+            if np.abs(this_voltage-last_voltage)<0.000000001:
                 reiterate = False
                 print('Circuit converged end timestep iterations')
-            last_load = this_load
-            print('reiteration {}, load: {}, flag set to: {}'.format(n_iters, last_load, reiterate))
+            last_voltage = this_voltage
+            print('reiteration {}, voltage: {}, flag set to: {}'.format(n_iters, last_voltage, reiterate))
 
         #recursively call if reiteration is needed
         if n_iters<max_iters and reiterate==True:
