@@ -11,6 +11,7 @@ import logging
 import shutil
 import math
 import os
+import time
 
 
 class ResultContainer:
@@ -261,13 +262,23 @@ class ResultContainer:
             self.CurrentResults[Element][Property] = ans
         return
 
-    def UpdateResults(self):
-        if self.__Settings['Co-simulation Mode']:
+    def UpdateResults(self, iteration=0):
+        # don't reiterate if you haven't gotten an update yet
+        #updates = []
+        #while len(updates)==0 and iteration>0:
+        #    updates_query = h.helicsCreateQuery('root', 'updates')
+        #    updates = h.helicsQueryExecute(updates_query, self.__PyDSSfederate)
+        #    print('no updates, wait for other feds')
+        #    time.sleep(5)
+        
+        if self.__Settings['Co-simulation Mode'] and iteration==0:
+            self.__dssDolver.IncStep()
             r_seconds = self.__dssDolver.GetTotalSeconds()
             print('Time: ', r_seconds)
             c_seconds = 0
             while c_seconds < r_seconds:
                 c_seconds = h.helicsFederateRequestTime(self.__PyDSSfederate, r_seconds)
+                time.sleep(5)
 
         self.__DateTime.append(self.__dssDolver.GetDateTime())
         self.__Frequency.append(self.__dssDolver.getFrequency())

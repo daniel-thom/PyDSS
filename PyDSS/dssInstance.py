@@ -279,39 +279,48 @@ class OpenDSS:
 
         reiterate = False
         max_iters = 10
-        if n_iters == 0:
-            self.__dssSolver.IncStep()
+        #if n_iters == 0:
+        #    self.__dssSolver.IncStep()
         # get load from previous timestep
-        #last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-        last_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0]
-        while isinstance(last_voltage, list):
-            if len(last_voltage)>0:
-                last_voltage = last_voltage[-1]
+        last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+        # last_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0]
+        # while isinstance(last_load, list):
+        if len(last_load)>0:
+            # if len(last_load)>0:
+            #    last_load = last_load[-1]
+            if isinstance(last_load[-1], list):
+                last_load = sum(last_load[-1])
             else:
-                last_voltage=0.0
+                last_load = last_load[-1]
+        else:
+            last_load=0.0
         # if you are co-simulating, you may need to reiterate to have the full network converge
         if self.__Options['Co-simulation Mode']:
             self.ResultContainer.updateSubscriptions()
             reiterate = self.ResultContainer.reiterate_flag # this is initially set as a HELICS input
             self.__dssSolver.reSolve()
-            self.ResultContainer.UpdateResults()
+            self.ResultContainer.UpdateResults(iteration=n_iters)
             # check internally for convergence
-            this_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0] #get the voltage for the first circuit (which is the top level bus)
-            #this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-            while isinstance(this_voltage, list):
-                if len(this_voltage)>0:
-                    this_voltage = this_voltage[-1]
+            # this_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0] #get the voltage for the first circuit (which is the top level bus)
+            this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+            #while isinstance(this_load, list):
+            if len(this_load)>0:
+                #if len(this_load)>0:
+                #    this_load = this_load[-1]
+                if isinstance(this_load[-1], list):
+                    this_load = sum(this_load[-1])
                 else:
-                    this_voltage = 1.0
-            if np.abs(this_voltage-last_voltage)<0.000000001:
+                    this_load = this_load[-1]
+            else:
+                this_load = 1.0
+            if np.abs(this_load-last_load)<0.000000001:
                 reiterate = False
                 print('Circuit converged end timestep iterations')
-            last_voltage = this_voltage
-            print('reiteration {}, voltage: {}, flag set to: {}'.format(n_iters, last_voltage, reiterate))
-
+            last_load = this_load
+            print('reiteration {}, network_load: {}, flag set to: {}'.format(n_iters, last_load, reiterate))
+        n_iters=n_iters+1
         #recursively call if reiteration is needed
         if n_iters<max_iters and reiterate==True:
-            n_iters+=1
             self.ResultContainer.updateSubscriptions()
             self.RunStep(step, updateObjects=updateObjects, n_iters=n_iters)
                 
@@ -329,7 +338,7 @@ class OpenDSS:
 
             self.__UpdatePlots()
             if self.__Options['Log Results']:
-                self.ResultContainer.UpdateResults()
+                self.ResultContainer.UpdateResults(iteration=n_iters)
             if self.__Options['Return Results']:
                 return self.ResultContainer.CurrentResults
 
@@ -341,7 +350,7 @@ class OpenDSS:
                 self.__dssSolver.reSolve()
                 self.__UpdatePlots()
                 if self.__Options['Log Results']:
-                    self.ResultContainer.UpdateResults()
+                    self.ResultContainer.UpdateResults(iteration=n_iters)
             if self.__Options['Simulation Type'].lower() == 'snapshot':
                 self.__dssSolver.setMode('Snapshot')
             else:
@@ -352,9 +361,17 @@ class OpenDSS:
         startTime = time.time()
         Steps, sTime, eTime = self.__dssSolver.SimulationSteps()
         self.__Logger.info('Running simulation from {} till {}.'.format(sTime, eTime))
+        print('Running simulation from {} till {}.'.format(sTime, eTime))
         self.__Logger.info('Simulation time step {}.'.format(Steps))
-        for step in range(Steps):
+        # for step in range(Steps):
+        current_time = 0
+        end_time = (eTime-sTime).total_seconds()
+        step = 0
+        while current_time < end_time:
+            print('Running simulation step {} at time {}.'.format(step, current_time))
             self.RunStep(step)
+            current_time = self.__dssSolver.GetTotalSeconds()
+            step = step + 1
 
         if self.__Options and self.__Options['Log Results']:
             self.ResultContainer.ExportResults(file_prefix)
