@@ -42,8 +42,12 @@ class SagPlot(PlotAbstract):
 									  BoxZoomTool(), WheelZoomTool(), PanTool()])  # tools=[hover]
 		a = self.BusData['Distance'].max()
 		self.BusPlot = self.__Figure.circle(x='Distance', y='puVoltage', source=self.busDataSource, legend='Nodes')
-		self.lineLB = self.__Figure.line([0, PlotProperties['Dmax']], [Vlb, Vlb], line_width=2)
-		self.lineUB = self.__Figure.line([0, PlotProperties['Dmax']], [Vub, Vub], line_width=2)
+		if PlotProperties['Dmax']:
+			self.lineLB = self.__Figure.line([0, PlotProperties['Dmax']], [Vlb, Vlb], line_width=2)
+			self.lineUB = self.__Figure.line([0, PlotProperties['Dmax']], [Vub, Vub], line_width=2)
+		else:
+			self.lineLB = self.__Figure.line([0, a], [Vlb, Vlb], line_width=2)
+			self.lineUB = self.__Figure.line([0, a], [Vub, Vub], line_width=2)
 		self.Lineplot = self.__Figure.multi_line(self.LineX, self.LineY, legend='Lines', color='green')
 		self.Lineplot1 = self.__Figure.multi_line(self.trX, self.trY, legend='XFMRs', color='red')
 

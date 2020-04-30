@@ -253,26 +253,26 @@ class instance(object):
             "Master DSS file '{}' does not exist.".format(dss_args['DSS File'])
         return
 
-if __name__ == '__main__':
-    a = instance()
-    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\base_case.toml')
-    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\self_consumption.toml')
-    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\volt_var.toml')
-    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\multiple_controllers.toml')
-
-    # a.run([r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\base_case.toml',
-    #        r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\self_consumption.toml',
-    #        r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\volt_var.toml',
-    #        r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\multiple_controllers.toml'],
-    #       r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\automated_comparison.toml')
-
-    # a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Dynamic_visualization_example\PyDSS Scenarios\Dynamic_visuals.toml',
-    #       r'C:\Users\alatif\Desktop\PyDSS\examples\Dynamic_visualization_example\PyDSS Scenarios\user_defined_vis_settings.toml')
-
-    # a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\freq_scan_qsts.toml',
-    #       r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\Freq_scan_qsts_visuals.toml')
-
-    #a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Monte_carlo_examples\PyDSS Scenarios\monte_carlo_settings.toml')
-    a.run(r'C:\Users\npanossi\Documents\P1U\solar_none_batteries_none_timeseries\opendss\p1uhs0_1247\PyDSS Scenarios\p1uhs0_1247--p1udt104\PyDSS_settings.toml')
-
-    del a
+# if __name__ == '__main__':
+#     a = instance()
+#     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\base_case.toml')
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\self_consumption.toml')
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\volt_var.toml')
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\multiple_controllers.toml')
+# #
+# #     a.run([r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\base_case.toml',
+# #            r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\self_consumption.toml',
+# #            r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\volt_var.toml',
+# #            r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\multiple_controllers.toml'],
+# #           r'C:\Users\alatif\Desktop\PyDSS\examples\Custom_controls_example\PyDSS Scenarios\automated_comparison.toml')
+# #
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Dynamic_visualization_example\PyDSS Scenarios\Dynamic_visuals.toml',
+# #           r'C:\Users\alatif\Desktop\PyDSS\examples\Dynamic_visualization_example\PyDSS Scenarios\user_defined_vis_settings.toml')
+# #
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\freq_scan_qsts.toml',
+# #           r'C:\Users\alatif\Desktop\PyDSS\examples\Harmonics_examples\PyDSS Scenarios\Freq_scan_qsts_visuals.toml')
+# #
+# #     a.run(r'C:\Users\alatif\Desktop\PyDSS\examples\Monte_carlo_examples\PyDSS Scenarios\monte_carlo_settings.toml')
+# #     a.run(r'C:\Users\npanossi\Documents\P1U\solar_none_batteries_none_timeseries\opendss\p1uhs0_1247\PyDSS Scenarios\p1uhs0_1247--p1udt104\PyDSS_settings.toml')
+# #
+# #     del a

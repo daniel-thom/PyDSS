@@ -1,0 +1,23 @@
+import click
+import sys
+import os
+
+@click.command()
+@click.option('--pydss_path',
+              default=r'C:\Users\npanossi\Documents\PyDSS',
+              help='number of greetings')
+@click.option('--sim_path',
+              default=r'C:\Users\npanossi\Documents\PyDSS\examples\Dynamic_visualization_example\PyDSS Scenarios',
+              help='number of greetings')
+@click.option('--sim_file',
+              default=r'Dynamic_visuals.toml',
+              help='number of greetings')
+def run_pyDSS(pydss_path, sim_path, sim_file):
+    print(pydss_path, sim_path, sim_file)
+    sys.path.append(pydss_path)
+    sys.path.append(os.path.join(pydss_path, 'PyDSS'))
+    from pyDSS import instance as dssInstance
+    a = dssInstance()
+    a.run(os.path.join(sim_path, sim_file))
+
+run_pyDSS()
