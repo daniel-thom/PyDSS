@@ -271,14 +271,20 @@ class ResultContainer:
         #    print('no updates, wait for other feds')
         #    time.sleep(5)
         
-        if self.__Settings['Co-simulation Mode'] and iteration==0:
-            self.__dssDolver.IncStep()
-            r_seconds = self.__dssDolver.GetTotalSeconds()
-            print('Time: ', r_seconds)
+        if self.__Settings['Co-simulation Mode']:
             c_seconds = 0
-            while c_seconds < r_seconds:
-                c_seconds = h.helicsFederateRequestTime(self.__PyDSSfederate, r_seconds)
-                time.sleep(5)
+            r_seconds = self.__dssDolver.GetTotalSeconds()
+            # iteration_state = h.helics_iteration_result_iterating
+            if iteration == 0:
+                while c_seconds < r_seconds:
+                    c_seconds = h.helicsFederateRequestTime(self.__PyDSSfederate, r_seconds)
+                    # time.sleep(.1)
+                self.__dssDolver.IncStep()
+                r_seconds = self.__dssDolver.GetTotalSeconds()
+                print('Time: ', r_seconds)
+            else:
+                while c_seconds < r_seconds:
+                    c_seconds, iteration_state = h.helicsFederateRequestTimeIterative(self.__PyDSSfederate, r_seconds, h.helics_iteration_request_iterate_if_needed)
 
         self.__DateTime.append(self.__dssDolver.GetDateTime())
         self.__Frequency.append(self.__dssDolver.getFrequency())

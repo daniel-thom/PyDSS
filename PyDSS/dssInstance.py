@@ -269,7 +269,7 @@ class OpenDSS:
             Elem = ElmCollection.Next()
         return ObjectList
 
-    def RunStep(self, step, updateObjects=None, n_iters=0):
+    def RunStep(self, step, updateObjects=None):
 
         if updateObjects:
             for object, params in updateObjects.items():
@@ -277,53 +277,38 @@ class OpenDSS:
                 self.__Modifier.Edit_Element(cl, name, params)
             pass
 
-        reiterate = False
-        max_iters = 10
-        #if n_iters == 0:
-        #    self.__dssSolver.IncStep()
-        # get load from previous timestep
-        last_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-        # last_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0]
-        # while isinstance(last_load, list):
-        if len(last_load)>0:
-            # if len(last_load)>0:
-            #    last_load = last_load[-1]
-            if isinstance(last_load[-1], list):
-                last_load = sum(last_load[-1])
-            else:
-                last_load = last_load[-1]
-        else:
-            last_load=0.0
         # if you are co-simulating, you may need to reiterate to have the full network converge
         if self.__Options['Co-simulation Mode']:
             self.ResultContainer.updateSubscriptions()
-            reiterate = self.ResultContainer.reiterate_flag # this is initially set as a HELICS input
-            self.__dssSolver.reSolve()
-            self.ResultContainer.UpdateResults(iteration=n_iters)
-            # check internally for convergence
-            # this_voltage = next(iter(self.ResultContainer.Buses.items()))[1].GetVariable('puVmagAngle')[0] #get the voltage for the first circuit (which is the top level bus)
-            this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
-            #while isinstance(this_load, list):
-            if len(this_load)>0:
-                #if len(this_load)>0:
-                #    this_load = this_load[-1]
-                if isinstance(this_load[-1], list):
-                    this_load = sum(this_load[-1])
-                else:
-                    this_load = this_load[-1]
+            reiterate = self.ResultContainer.reiterate_flag  # this is initially set as a HELICS input
+            if reiterate:
+                max_iters = 10
             else:
-                this_load = 1.0
-            if np.abs(this_load-last_load)<0.000000001:
-                reiterate = False
-                print('Circuit converged end timestep iterations')
-            last_load = this_load
-            print('reiteration {}, network_load: {}, flag set to: {}'.format(n_iters, last_load, reiterate))
-        n_iters=n_iters+1
-        #recursively call if reiteration is needed
-        if n_iters<max_iters and reiterate==True:
-            self.ResultContainer.updateSubscriptions()
-            self.RunStep(step, updateObjects=updateObjects, n_iters=n_iters)
-                
+                max_iters = 1
+            self.__dssSolver.reSolve()
+            self.ResultContainer.UpdateResults(iteration=0)
+            last_load = 0.0
+            # reiterate until convergence or iteration limit
+            for n_iters in range(1,max_iters):
+                # get updated load measurement
+                self.ResultContainer.updateSubscriptions()
+                this_load = next(iter(self.ResultContainer.Results['Circuits']['TotalPower'].items()))[-1]
+                if len(this_load) > 0:
+                    if isinstance(this_load[-1], list):
+                        this_load = sum(this_load[-1])
+                    else:
+                        this_load = this_load[-1]
+                else:
+                    this_load = 0.0
+                # determine if you need to reiterate
+                if np.abs(this_load-last_load) < 1e-9:
+                    print('Circuit converged end timestep iterations')
+                    break
+                else:
+                    self.__dssSolver.reSolve()
+                    self.ResultContainer.UpdateResults(iteration=n_iters)
+                last_load = this_load
+                print('reiteration {}, network_load: {}'.format(n_iters, last_load))
 
         if self.__Options['Disable PyDSS controllers'] == False:
             for priority in range(CONTROLLER_PRIORITIES):
