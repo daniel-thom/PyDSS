@@ -38,6 +38,7 @@ class ResultContainer:
         self.__publications = {}
         self.__subscriptions = {}
         self.reiterate_flag = True
+        self.broker_address = Options['Helics Broker IP Address']
 
         self.ExportFolder = os.path.join(self.SystemPaths['Export'], Options['Active Scenario'])
         pathlib.Path(self.ExportFolder).mkdir(parents=True, exist_ok=True)
@@ -63,7 +64,10 @@ class ResultContainer:
         fedinfo = h.helicsCreateFederateInfo()
         h.helicsFederateInfoSetCoreName(fedinfo, self.__Settings['Federate name'])
         h.helicsFederateInfoSetCoreTypeFromString(fedinfo, self.__Settings['Core type'])
-        h.helicsFederateInfoSetCoreInitString(fedinfo, "--federates=1")
+        info_string = "--federates=1"
+        if not self.broker_address == "None":
+            info_string = info_string+" --broker_address=tcp://{}".format(self.broker_address)
+        h.helicsFederateInfoSetCoreInitString(fedinfo, info_string)
         h.helicsFederateInfoSetTimeProperty(fedinfo, h.helics_property_time_delta, self.__Settings['Time delta'])
         h.helicsFederateInfoSetIntegerProperty(fedinfo, h.helics_property_int_log_level,
                                                 self.__Settings['Helics logging level'])
