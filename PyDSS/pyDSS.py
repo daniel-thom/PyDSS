@@ -69,6 +69,7 @@ class instance(object):
             'Core type' : {'type': str},
             'Uninterruptible' : {'type': bool, 'Options': [True, False]},
             'Helics logging level' : {'type': int, 'Options': range(0, 10)},
+            'Helics Broker IP Address' : {'type': str},
 
 
             'Logging Level' : {'type': str, 'Options': ["DEBUG", "INFO", "WARNING" , "ERROR"]},
@@ -178,6 +179,7 @@ class instance(object):
         print(Scenario_TOML_file_path)
         sim_settings = self.read_toml_file(Scenario_TOML_file_path)
         dss_args = {**default_sim_settings, **sim_settings}
+        dss_args["Project Path"] = os.path.abspath(os.path.join(os.path.dirname(Scenario_TOML_file_path), dss_args['Project Path']))
         self.__validate_settings(dss_args)
         return dss_args
 
@@ -198,7 +200,7 @@ class instance(object):
             dss.DeleteInstance()
         if generate_visuals:
             result = ResultObject(os.path.join(
-                dss_args['Project Path'],
+                os.path.join(Scenario_TOML_file_path, dss_args['Project Path']),
                 dss_args["Active Project"],
                 'Exports',
                 dss_args['Active Scenario']
