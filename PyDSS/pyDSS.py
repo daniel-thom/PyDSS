@@ -7,6 +7,7 @@ import logging
 
 from PyDSS.exceptions import InvalidConfiguration
 from PyDSS import dssInstance
+from PyDSS.reports import ReportGranularity
 from PyDSS.utils.utils import dump_data, load_data
 
 __author__ = "Aadil Latif"
@@ -124,6 +125,7 @@ class instance(object):
         },
         "Reports": {
             'Format': {'type': str, 'Options': ["csv", "h5"]},
+            'Granularity': {'type': str, 'Options': [x.value for x in ReportGranularity]},
             'Types': {'type': list}
         },
     }

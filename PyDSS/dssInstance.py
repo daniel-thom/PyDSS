@@ -337,7 +337,7 @@ class OpenDSS:
         try:
             self.RunStep(0)
         finally:
-            self.ResultContainer.FlushData()
+            self.ResultContainer.Close()
 
         return self.ResultContainer.max_num_bytes()
 
@@ -383,7 +383,7 @@ class OpenDSS:
             if self._Options and self._Options['Exports']['Log Results']:
                 # This is here to guarantee that DatasetBuffers aren't left
                 # with any data in memory.
-                self.ResultContainer.FlushData()
+                self.ResultContainer.Close()
 
         if self._Options and self._Options['Exports']['Log Results']:
             self.ResultContainer.ExportResults(

@@ -27,7 +27,6 @@ property = "Distance"
 sample_interval = 1
 publish = false
 store_values_type = "moving_average"
-moving_average_store_interval = 5
 window_size = 10
 
 [[Capacitors]]
@@ -102,14 +101,6 @@ store_values_type = "moving_average"
 window_size = 10
 limits = [ 0.0, 20.0]
 limits_filter = "outside"
-
-[[Transformers]]
-property = "Currents"
-sample_interval = 1
-publish = false
-store_values_type = "moving_average"
-moving_average_store_interval = 10
-window_size = 10
 
 [[Transformers]]
 property = "NormalAmps"

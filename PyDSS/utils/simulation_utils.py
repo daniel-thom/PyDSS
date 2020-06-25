@@ -1,6 +1,10 @@
 
+from collections import deque
 import logging
 import math
+
+import numpy as np
+import pandas as pd
 
 from PyDSS.exceptions import InvalidParameter
 from PyDSS.value_storage import ValueContainer, ValueByNumber
@@ -64,3 +68,23 @@ def track_reg_control_tap_number_changes(
     logger.debug("%s changed count from %s to %s count=%s", reg_control.Name,
                  last_value, tap_number, count)
     return tap_number, count
+
+
+class CircularBufferHelper:
+    def __init__(self, prop):
+        self._buf = deque(maxlen=prop.window_size)
+        self._window_size = prop.window_size
+
+    def __len__(self):
+        return len(self._buf)
+
+    def append(self, val):
+        self._buf.append(val)
+
+    def average(self):
+        assert self._buf
+        if isinstance(self._buf[0], list):
+            return pd.DataFrame(self._buf).rolling(self._window_size).mean().values
+        if len(self._buf) < self._window_size:
+            return np.NaN
+        return sum(self._buf) / len(self._buf)

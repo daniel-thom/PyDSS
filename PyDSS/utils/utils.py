@@ -216,3 +216,40 @@ def make_human_readable_size(size, decimals=2):
             break
         size /= 1024.0
     return f"{size:.{decimals}f} {unit}"
+
+
+class UpdateStats:
+    def __init__(self, label):
+        self._label = label
+        self._count = 0
+        self._max = 0.0
+        self._min = None
+        self._avg = 0.0
+        self._total = 0.0
+
+    def get_stats(self):
+        avg = 0 if self._count == 0 else self._total / self._count
+        return {
+            "min": self._min,
+            "max": self._max,
+            "total": self._total,
+            "avg": avg,
+            "count": self._count,
+        }
+
+    def log_stats(self):
+        x = self.get_stats()
+        text = "total={:.3f}s avg={:.3f}ms max={:.3f}ms min={:.3f}ms count={}".format(
+            x["total"], x["avg"] * 1000, x["max"] * 1000, x["min"] * 1000, x["count"]
+        )
+        logger.info("Update metric: %s: %s", self._label, text)
+
+    def update(self, update_time):
+        self._count += 1
+        self._total += update_time
+        if update_time > self._max:
+            self._max = update_time
+        if self._min is None or update_time < self._min:
+            self._min = update_time
+
+

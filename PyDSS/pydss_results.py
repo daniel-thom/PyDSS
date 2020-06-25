@@ -13,7 +13,7 @@ import pandas as pd
 from PyDSS.dataset_buffer import DatasetBuffer
 from PyDSS.element_options import ElementOptions
 from PyDSS.exceptions import InvalidParameter
-from PyDSS.pydss_project import PyDssProject
+from PyDSS.pydss_project import PyDssProject, RUN_SIMULATION_FILENAME
 from PyDSS.reports import Reports, REPORTS, REPORTS_DIR
 from PyDSS.utils.dataframe_utils import read_dataframe, write_dataframe
 from PyDSS.utils.utils import dump_data, load_data
@@ -48,7 +48,11 @@ class PyDssResults:
         """
         options = ElementOptions()
         if project_path is not None:
-            self._project = PyDssProject.load_project(project_path)
+            # TODO: handle old version?
+            self._project = PyDssProject.load_project(
+                project_path,
+                simulation_file=RUN_SIMULATION_FILENAME,
+            )
         elif project is None:
             raise InvalidParameter("project_path or project must be set")
         else:
@@ -214,12 +218,14 @@ class PyDssScenarioResults:
         self._fs_intf = fs_intf
         self._group = self._hdf_store["Exports"][name]
         self._elem_classes = [
-            x for x in self._group.keys() if isinstance(self._group[x], h5py.Group)
+            x for x in self._group if isinstance(self._group[x], h5py.Group)
         ]
         self._elems_by_class = defaultdict(dict)
         self._props_by_class = defaultdict(list)
         self._elem_props = defaultdict(list)
         self._elem_prop_nums = defaultdict(dict)
+        self._summed_elem_props = defaultdict(dict)
+        self._summed_elem_timeseries_props = defaultdict(list)
         self._indices_df = None
         self._add_frequency = frequency
         self._add_mode = mode
@@ -227,10 +233,48 @@ class PyDssScenarioResults:
 
         if self._data_format_version == "1.0.0":
             self._parse_datasets_v_1_0_0()
+        elif self._data_format_version == "1.0.1":
+            self._parse_datasets_v_1_0_1()
         else:
             self._parse_datasets()
 
     def _parse_datasets(self):
+        for elem_class in self._elem_classes:
+            class_group = self._group[elem_class]
+            if "Elements" in class_group:
+                self._elems_by_class[elem_class] = list(class_group["Elements"].keys())
+            else:
+                self._elems_by_class[elem_class] = []
+            self._props_by_class[elem_class] = set()
+            for elem_name in self._elems_by_class[elem_class]:
+                for prop in self._group[elem_class]["Elements"][elem_name]:
+                    dataset = self._group[elem_class]["Elements"][elem_name][prop]
+                    dataset_property_type = get_dataset_property_type(dataset)
+                    if dataset_property_type == DatasetPropertyType.NUMBER:
+                        self._add_elem_prop_num(elem_class, prop, elem_name, dataset)
+                    elif dataset_property_type == DatasetPropertyType.TIMESTAMP:
+                        continue
+                    else:
+                        assert dataset_property_type in (
+                            DatasetPropertyType.ELEMENT_PROPERTY,
+                            DatasetPropertyType.FILTERED,
+                        )
+                        self._props_by_class[elem_class].add(prop)
+                        self._elem_props[elem_name].append(prop)
+            summed_elem_props = self._group[elem_class].get("SummedElementProperties", [])
+            for prop in summed_elem_props:
+                dataset = self._group[elem_class]["SummedElementProperties"][prop]
+                dataset_property_type = get_dataset_property_type(dataset)
+                if dataset_property_type == DatasetPropertyType.NUMBER:
+                    df = DatasetBuffer.to_dataframe(dataset)
+                    assert len(df) == 1
+                    self._summed_elem_props[elem_class][prop] = {
+                        x: df[x].values[0] for x in df.columns
+                    }
+                else:
+                    self._summed_elem_timeseries_props[elem_class].append(prop)
+
+    def _parse_datasets_v_1_0_1(self):
         for elem_class in self._elem_classes:
             class_group = self._group[elem_class]
             self._elems_by_class[elem_class] = list(class_group.keys())
@@ -328,6 +372,7 @@ class PyDssScenarioResults:
             filename = os.path.join(path, "element_property_numbers.json")
             dump_data(data, filename, indent=2)
 
+        # TODO DT: export summed elements
         logger.info("Exported data to %s", path)
 
     def _export_filtered_dataframes(self, elem_class, prop, path, fmt, compress):
@@ -336,7 +381,7 @@ class PyDssScenarioResults:
             filename = os.path.join(path, base + "." + fmt.replace(".", ""))
             write_dataframe(df, filename, compress=compress)
 
-    def get_dataframe(self, element_class, prop, element_name, real_only=False, **kwargs):
+    def get_dataframe(self, element_class, prop, element_name, real_only=False, abs_val=False, **kwargs):
         """Return the dataframe for an element.
 
         Parameters
@@ -346,6 +391,8 @@ class PyDssScenarioResults:
         element_name : str
         real_only : bool
             If dtype of any column is complex, drop the imaginary component.
+        abs_val : bool
+            If dtype of any column is complex, compute its absolute value.
         kwargs : **kwargs
             Filter on options. Option values can be strings or regular expressions.
 
@@ -362,7 +409,10 @@ class PyDssScenarioResults:
         if element_name not in self._elem_props:
             raise InvalidParameter(f"element {element_name} is not stored")
 
-        elem_group = self._group[element_class][element_name]
+        if self._data_format_version == "1.0.2":
+            elem_group = self._group[element_class]["Elements"][element_name]
+        else:
+            elem_group = self._group[element_class][element_name]
         dataset = elem_group[prop]
         df = DatasetBuffer.to_dataframe(dataset)
 
@@ -387,6 +437,78 @@ class PyDssScenarioResults:
             for column in df.columns:
                 if df[column].dtype == np.complex:
                     df[column] = [x.real for x in df[column]]
+        elif abs_val:
+            for column in df.columns:
+                if df[column].dtype == np.complex:
+                    df[column] = [abs(x) for x in df[column]]
+
+        return df
+
+    def get_summed_element_total(self, element_class, prop):
+        """Return the total value for a summed element property.
+
+        Parameters
+        ----------
+        element_class : str
+        prop : str
+
+        Returns
+        -------
+        dict
+
+        Raises
+        ------
+        InvalidParameter
+            Raised if the element class is not stored.
+
+        """
+        if element_class not in self._summed_elem_props:
+            raise InvalidParameter(f"{element_class} is not stored")
+        if prop not in self._summed_elem_props[element_class]:
+            raise InvalidParameter(f"{prop} is not stored")
+
+        return self._summed_elem_props[element_class][prop]
+
+    def get_summed_element_dataframe(self, element_class, prop, real_only=False, abs_val=False):
+        """Return the dataframe for a summed element property.
+
+        Parameters
+        ----------
+        element_class : str
+        prop : str
+        real_only : bool
+            If dtype of any column is complex, drop the imaginary component.
+        abs_val : bool
+            If dtype of any column is complex, compute its absolute value.
+
+        Returns
+        -------
+        pd.DataFrame
+
+        Raises
+        ------
+        InvalidParameter
+            Raised if the element class is not stored.
+
+        """
+        if element_class not in self._summed_elem_timeseries_props:
+            raise InvalidParameter(f"{element_class} is not stored")
+        if prop not in self._summed_elem_timeseries_props[element_class]:
+            raise InvalidParameter(f"{prop} is not stored")
+
+        elem_group = self._group[element_class]["SummedElementProperties"]
+        dataset = elem_group[prop]
+        df = DatasetBuffer.to_dataframe(dataset)
+        self._add_indices_to_dataframe(df)
+
+        if real_only:
+            for column in df.columns:
+                if df[column].dtype == np.complex:
+                    df[column] = [x.real for x in df[column]]
+        elif abs_val:
+            for column in df.columns:
+                if df[column].dtype == np.complex:
+                    df[column] = [abs(x) for x in df[column]]
 
         return df
 
@@ -411,7 +533,7 @@ class PyDssScenarioResults:
             raise InvalidParameter(f"{element_name} is not stored")
         return self._elem_prop_nums[element_class][prop][element_name]
 
-    def get_full_dataframe(self, element_class, prop, real_only=False):
+    def get_full_dataframe(self, element_class, prop, real_only=False, abs_val=False):
         """Return a dataframe containing all data.  The dataframe is copied.
 
         Parameters
@@ -420,6 +542,8 @@ class PyDssScenarioResults:
         prop : str
         real_only : bool
             If dtype of any column is complex, drop the imaginary component.
+        abs_val : bool
+            If dtype of any column is complex, compute its absolute value.
 
         Returns
         -------
@@ -431,7 +555,7 @@ class PyDssScenarioResults:
 
         master_df = None
         length = None
-        for _, df in self.iterate_dataframes(element_class, prop, real_only=real_only):
+        for _, df in self.iterate_dataframes(element_class, prop, real_only=real_only, abs_val=abs_val):
             cur_len = len(df)
             if master_df is None:
                 master_df = df
@@ -463,7 +587,7 @@ class PyDssScenarioResults:
         df = self.get_dataframe(element_class, prop, element_name)
         return ValueStorageBase.get_option_values(df, element_name)
 
-    def iterate_dataframes(self, element_class, prop, real_only=False, **kwargs):
+    def iterate_dataframes(self, element_class, prop, real_only=False, abs_val=False, **kwargs):
         """Returns a generator over the dataframes by element name.
 
         Parameters
@@ -472,6 +596,8 @@ class PyDssScenarioResults:
         prop : str
         real_only : bool
             If dtype of any column is complex, drop the imaginary component.
+        abs_val : bool
+            If dtype of any column is complex, compute its absolute value.
         kwargs : **kwargs
             Filter on options. Option values can be strings or regular expressions.
 
@@ -484,7 +610,7 @@ class PyDssScenarioResults:
         for name in self.list_element_names(element_class):
             if prop in self._elem_props[name]:
                 df = self.get_dataframe(
-                    element_class, prop, name, real_only=real_only, **kwargs
+                    element_class, prop, name, real_only=real_only, abs_val=abs_val, **kwargs
                 )
                 yield name, df
 
@@ -587,6 +713,28 @@ class PyDssScenarioResults:
 
         """
         return self._metadata["element_info_files"]
+
+    def list_summed_element_properties(self, element_class):
+        """Return the properties stored for a class where the values are a sum
+        of all elements.
+
+        Parameters
+        ----------
+        element_class : str
+
+        Returns
+        -------
+        list
+
+        Raises
+        ------
+        InvalidParameter
+            Raised if the element_class is not stored.
+
+        """
+        if element_class not in self._props_by_class:
+            raise InvalidParameter(f"class={element_class} is not stored")
+        return self._summed_elem_props[element_class]
 
     def read_element_info_file(self, filename):
         """Return the contents of file describing an OpenDSS element object.
