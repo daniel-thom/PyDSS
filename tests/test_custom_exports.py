@@ -5,6 +5,7 @@ import re
 import shutil
 import tempfile
 
+import numpy as np
 import pandas as pd
 
 from PyDSS.utils.utils import load_data, dump_data
@@ -32,20 +33,20 @@ def test_custom_exports(cleanup_project):
     # Property stored with a moving average.
     df = scenario.get_dataframe("Buses", "DistanceAvg", "t9")
     assert isinstance(df, pd.DataFrame)
-    assert len(df) == int(96 / 5)
-    for i, row in df.iterrows():
-        assert round(row["t9__DistanceAvg"], 3) == 0.082
-
-    transformers = scenario.list_element_names("Transformers")
-    df = scenario.get_dataframe("Transformers", "CurrentsAvg", transformers[0])
-    assert len(df) < 96
-
-    df = scenario.get_dataframe("Lines", "LoadingPercentAvg", "Line.sl_22")
-    assert len(df) == 2
+    assert len(df) == int(96)
+    #assert len(df) == int(96 / 5)
+    for val in df.iloc[9:, 0]:
+        assert round(val, 3) == 0.082
 
     # Filtered value on custom function.
     df = scenario.get_dataframe("Lines", "LoadingPercent", "Line.sl_22")
     assert len(df) == 17
+
+    df = scenario.get_dataframe("Lines", "LoadingPercentAvg", "Line.sl_22")
+    # This was computed from raw data.
+    assert len(df) == 15
+    # TODO incorrect after more decimal points
+    assert round(df.iloc[:, 0].values[14], 3) == 21.803
 
     # Subset of names. VoltagesMagAng has specific names, CurrentsMagAng has regex
     for name in ("Line.pvl_110", "Line.pvl_111", "Line.pvl_112", "Line.pvl_113"):
@@ -57,7 +58,7 @@ def test_custom_exports(cleanup_project):
     assert "VoltagesMagAng" not in properties
     assert "CurrentsMagAng" not in properties
 
-    # Two types of sums are stored.
+    ## Two types of sums are stored.
     normal_amps_sum = scenario.get_element_property_number("Lines", "NormalAmpsSum", "Line.pvl_110")
     assert normal_amps_sum == 96 * 65.0
     scenario.get_element_property_number("Lines", "CurrentsSum", "Line.pvl_110")
@@ -90,7 +91,7 @@ def test_export_moving_averages(cleanup_project):
     sim_file = SIMULATION_SETTINGS_FILENAME
     circuit = "Circuit.heco19021"
     window_size = 10
-    PyDssProject.run_project( path, simulation_file=sim_file)
+    PyDssProject.run_project(path, simulation_file=sim_file)
 
     # This DataFrame will have values at every time point.
     df1 = _get_dataframe(path, "Circuits", "LineLosses", circuit)
@@ -112,14 +113,13 @@ def test_export_moving_averages(cleanup_project):
 
     # This DataFrame will have moving averages.
     df2 = _get_dataframe(path, "Circuits", "LineLossesAvg", circuit)
-    assert len(df2) == 9
+    assert len(df2) == 96
 
-    df1_index = window_size - 1
-    for df2_index in range(len(df2)):
-        val1 = round(df1_rm.iloc[df1_index, 0], 5)
-        val2 = round(df2.iloc[df2_index, 0], 5)
-        assert val1 == val2
-        df1_index += window_size
+    for val1, val2 in zip(df1_rm.iloc[:, 0].values, df2.iloc[:, 0].values):
+        if np.isnan(val1):
+            assert np.isnan(val2)
+        else:
+            assert round(val2, 5) == round(val1, 5)
 
 
 def _get_dataframe(path, elem_class, prop, name):

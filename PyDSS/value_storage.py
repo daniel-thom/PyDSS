@@ -140,6 +140,16 @@ class ValueStorageBase(abc.ABC):
         """
 
     @abc.abstractmethod
+    def set_name(self, name):
+        """Set the name.
+
+        Parameters
+        ----------
+        name : str
+
+        """
+
+    @abc.abstractmethod
     def set_value(self, value):
         """Set the value.
 
@@ -213,6 +223,10 @@ class ValueByList(ValueStorageBase):
             self._value[i] += other.value[i]
         return self
 
+    def __gt__(self, other):
+        # TODO
+        return sum(self._value) > sum(other.value)
+
     def make_columns(self):
         return [
             self.DELIMITER.join((self._name, f"{x}")) for x in self._labels
@@ -226,14 +240,19 @@ class ValueByList(ValueStorageBase):
         self._prop = prop
 
         # Update the property inside each label.
-        for i, label in self._labels:
+        for i, label in enumerate(self._labels):
             fields = label.split(self.DELIMITER)
             assert len(fields) == 2
             fields[0] = prop
             self._labels[i] = self.DELIMITER.join(fields)
 
+    def set_name(self, name):
+        self._name = name
+
     def set_value(self, value):
         self._value = value
+        if not isinstance(value[0], self._value_type):
+            self._value_type = type(value[0])
 
     @property
     def value(self):
@@ -262,6 +281,9 @@ class ValueByNumber(ValueStorageBase):
         self._value += other.value
         return self
 
+    def __gt__(self, other):
+        return self._value > other.value
+
     @property
     def num_columns(self):
         return 1
@@ -269,8 +291,13 @@ class ValueByNumber(ValueStorageBase):
     def set_element_property(self, prop):
         self._prop = prop
 
+    def set_name(self, name):
+        self._name = name
+
     def set_value(self, value):
         self._value = value
+        if not isinstance(value, self._value_type):
+            self._value_type = type(value)
 
     def make_columns(self):
         return [ValueStorageBase.DELIMITER.join((self._name, self._prop))]
@@ -353,6 +380,10 @@ class ValueByLabel(ValueStorageBase):
             self._value[i] += other.value[i]
         return self
 
+    def __gt__(self, other):
+        # TODO
+        return sum(self._value) > sum(other.value)
+
     @property
     def value(self):
         return self._value
@@ -368,8 +399,13 @@ class ValueByLabel(ValueStorageBase):
     def set_element_property(self, prop):
         self._prop = prop
 
+    def set_name(self, name):
+        self._name = name
+
     def set_value(self, value):
         self._value = value
+        if not isinstance(value[0], self._value_type):
+            self._value_type = type(value[0])
 
     def make_columns(self):
         return [
@@ -392,8 +428,8 @@ class ValueContainer:
         complex: np.complex,
     }
 
-    def __init__(self, value, hdf_store, path, max_size, dataset_property_type, max_chunk_bytes=None,
-                 store_timestamp=False):
+    def __init__(self, value, hdf_store, path, max_size, dataset_property_type,
+                 max_chunk_bytes=None, store_timestamp=False):
         group_name = os.path.dirname(path)
         basename = os.path.basename(path)
         try:

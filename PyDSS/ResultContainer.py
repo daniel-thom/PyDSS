@@ -286,7 +286,7 @@ class ResultContainer:
             self.__ExportResultsByClass(fileprefix)
         self.__ExportEventLog()
 
-    def FlushData(self):
+    def Close(self):
         pass
 
     def max_num_bytes(self):

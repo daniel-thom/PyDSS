@@ -66,6 +66,7 @@ class DatasetBuffer:
             scaleoffset=scaleoffset,
         )
         self._dataset.attrs["columns"] = columns
+        self._dataset.attrs["length"] = 0
         self._dataset_index = 0
         self._path = path
         self._buf = np.empty(chunks, dtype=dtype)

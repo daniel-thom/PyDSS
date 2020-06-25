@@ -1,63 +1,71 @@
 from collections import defaultdict, namedtuple
 import enum
+import logging
 import os
 import re
 
+from PyDSS.common import DataConversion, LimitsFilter, StoreValuesType
 from PyDSS.pyContrReader import pyExportReader
 from PyDSS.utils.simulation_utils import calculate_line_loading_percent, \
     calculate_transformer_loading_percent, track_capacitor_state_changes, \
     track_reg_control_tap_number_changes
 from PyDSS.utils.utils import load_data
 from PyDSS.exceptions import InvalidConfiguration, InvalidParameter
+from PyDSS.metrics import NodeVoltageMetrics, TrackCapacitorChangeCounts, \
+    TrackRegControlTapNumberChanges, LineLoadingPercent, \
+    TransformerLoadingPercent
 from PyDSS.value_storage import DatasetPropertyType
 
 
 MinMax = namedtuple("MinMax", "min, max")
 
 
-CUSTOM_FUNCTIONS = {
-    # Functions must have the signature
-    #   func(dssObjectBase, sim_timestamp, sim_step_number, sim_options)
-    # Change-count functions must have the signature
-    #   func(dssObjectBase, sim_timestamp, sim_step_number, sim_options,
-    #        last_value, count)
-    "Capacitors.TrackStateChanges": track_capacitor_state_changes,
-    "Lines.LoadingPercent": calculate_line_loading_percent,
-    "RegControls.TrackTapNumberChanges": track_reg_control_tap_number_changes,
-    "Transformers.LoadingPercent": calculate_transformer_loading_percent,
+CUSTOM_METRICS = {
+    "Capacitors.TrackStateChanges": TrackCapacitorChangeCounts,
+    "Lines.LoadingPercent": LineLoadingPercent,
+    "RegControls.TrackTapNumberChanges": TrackRegControlTapNumberChanges,
+    "Transformers.LoadingPercent": TransformerLoadingPercent,
+    "Nodes.VoltageMetrics": NodeVoltageMetrics,
 }
 
-
-class LimitsFilter(enum.Enum):
-    INSIDE = "inside"
-    OUTSIDE = "outside"
-
-
-class StoreValuesType(enum.Enum):
-    ALL = "all"
-    CHANGE_COUNT = "change_count"
-    MOVING_AVERAGE = "moving_average"
-    SUM = "sum"
+logger = logging.getLogger(__name__)
 
 
 class ExportListProperty:
+    """Contains export options for an element property."""
     def __init__(self, elem_class, data):
         self.elem_class = elem_class
         self.name = data["property"]
         self.publish = data.get("publish", False)
+        self._data_conversion = DataConversion(data.get("data_conversion", "none"))
+        self._sum_elements = data.get("sum_elements", False)
         self._limits = self._parse_limits(data)
         self._limits_filter = LimitsFilter(data.get("limits_filter", "outside"))
         self._store_values_type = StoreValuesType(data.get("store_values_type", "all"))
         self._names, self._are_names_regex = self._parse_names(data)
         self._sample_interval = data.get("sample_interval", 1)
-        self._ma_store_interval = data.get("moving_average_store_interval")
         self._window_size = data.get("window_size", 100)
         custom_prop = f"{elem_class}.{self.name}"
-        self._custom_function = CUSTOM_FUNCTIONS.get(custom_prop)
+        self._custom_metric = CUSTOM_METRICS.get(custom_prop)
 
-        if self._store_values_type == StoreValuesType.MOVING_AVERAGE and \
-                self._ma_store_interval is None:
-            self._ma_store_interval = self._window_size
+        if self._sum_elements and self._store_values_type not in \
+                (StoreValuesType.ALL, StoreValuesType.SUM):
+            raise InvalidConfiguration(
+                "sum_elements requires store_values_types = all or sum"
+            )
+
+        if self._is_max() and self._limits is not None:
+            raise InvalidConfiguration("limits are not allowed with max types")
+
+    def _is_max(self):
+        return self._store_values_type in (
+            StoreValuesType.MAX, StoreValuesType.MOVING_AVERAGE_MAX,
+        )
+
+    def _is_moving_average(self):
+        return self._store_values_type in (
+            StoreValuesType.MOVING_AVERAGE, StoreValuesType.MOVING_AVERAGE_MAX,
+        )
 
     @staticmethod
     def _parse_limits(data):
@@ -106,23 +114,47 @@ class ExportListProperty:
         DatasetPropertyType
 
         """
-        if self._limits is not None or \
-                self._store_values_type == StoreValuesType.MOVING_AVERAGE:
+        if self._limits is not None:
             return DatasetPropertyType.FILTERED
-        if self._store_values_type == StoreValuesType.SUM:
+        if self._store_values_type in \
+                (StoreValuesType.SUM, StoreValuesType.MAX,
+                 StoreValuesType.MOVING_AVERAGE_MAX,
+                 StoreValuesType.CHANGE_COUNT):
             return DatasetPropertyType.NUMBER
         return DatasetPropertyType.ELEMENT_PROPERTY
 
     def get_max_size(self, num_steps):
         """Return the max number of items that could be stored."""
+        singles = (
+            StoreValuesType.CHANGE_COUNT, StoreValuesType.MAX,
+            StoreValuesType.MOVING_AVERAGE_MAX, StoreValuesType.SUM,
+        )
+        if self._store_values_type in singles:
+            return 1
         num_samples = num_steps / self._sample_interval
-        if self._store_values_type == StoreValuesType.MOVING_AVERAGE:
-            return int(num_samples / self._ma_store_interval)
         return int(num_samples)
 
     @property
-    def custom_function(self):
-        return self._custom_function
+    def data_conversion(self):
+        """Return the data_conversion attribute
+
+        Returns
+        -------
+        DataConversion
+
+        """
+        return self._data_conversion
+
+    @property
+    def custom_metric(self):
+        """Return the custom_metric attribute.
+
+        Returns
+        -------
+        Metric | None
+
+        """
+        return self._custom_metric
 
     @property
     def limits(self):
@@ -135,10 +167,30 @@ class ExportListProperty:
         """
         return self._limits
 
-    @property
-    def moving_average_store_interval(self):
-        """Return the interval on which moving averages are stored."""
-        return self._ma_store_interval
+    def serialize(self):
+        """Serialize object to a dictionary."""
+        if self._are_names_regex:
+            #raise InvalidConfiguration("cannot serialize when names are regex")
+            logger.warning("cannot serialize when names are regex")
+            names = None
+        else:
+            names = self._names
+        data = {
+            "property": self.name,
+            "data_conversion": self._data_conversion.value,
+            "sample_interval": self._sample_interval,
+            "names": names,
+            "publish": self.publish,
+            "store_values_type": self.store_values_type.value,
+            "sum_elements": self.sum_elements,
+        }
+        if self._limits is not None:
+            data["limits"] = [self._limits.min, self._limits.max]
+            data["limits_filter"] = self._limits_filter.value
+        if self._is_moving_average():
+            data["window_size"] = self._window_size
+
+        return data
 
     def should_store_name(self, name):
         """Return True if name matches the input criteria."""
@@ -177,34 +229,23 @@ class ExportListProperty:
             return self.name
         if self._store_values_type == StoreValuesType.MOVING_AVERAGE:
             return self.name + "Avg"
+        if self._store_values_type == StoreValuesType.MOVING_AVERAGE_MAX:
+            return self.name + "AvgMax"
+        if self._store_values_type == StoreValuesType.MAX:
+            return self.name + "Max"
         if self._store_values_type == StoreValuesType.SUM:
             return self.name + "Sum"
         assert False
 
     @property
     def store_values_type(self):
+        """Return the type of storage for this property."""
         return self._store_values_type
 
-    def serialize(self):
-        """Serialize object to a dictionary."""
-        if self._are_names_regex:
-            raise InvalidConfiguration("cannot serialize when names are regex")
-        data = {
-            "property": self.name,
-            "sample_interval": self._sample_interval,
-            "names": self._names,
-            "publish": self.publish,
-            "store_values_type": self.store_values_type.value,
-        }
-        if self._limits is not None:
-            data["limits"] = [self._limits.min, self._limits.max]
-            data["limits_filter"] = self._limits_filter.value
-        if self._store_values_type == StoreValuesType.MOVING_AVERAGE:
-            data["moving_average_store_interval"] = self._ma_store_interval
-            data["window_size"] = self._window_size
-
-        return data
-
+    @property
+    def sum_elements(self):
+        """Return True if the value is the sum of all elements."""
+        return self._sum_elements
     @property
     def window_size(self):
         """Return the window size for moving averages.
@@ -218,6 +259,7 @@ class ExportListProperty:
 
 
 class ExportListReader:
+    """Reads export files and provides access to export properties."""
     def __init__(self, filename):
         self._elem_classes = defaultdict(list)
         legacy_files = ("ExportMode-byClass.toml", "ExportMode-byElement.toml")

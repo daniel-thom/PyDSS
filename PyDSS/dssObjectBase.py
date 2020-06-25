@@ -2,12 +2,13 @@
 import abc
  
 from PyDSS.exceptions import InvalidParameter
-from PyDSS.value_storage import ValueByLabel, ValueByNumber
+from PyDSS.value_storage import ValueByLabel, ValueByList, ValueByNumber
 
 
 class dssObjectBase(abc.ABC):
 
     VARIABLE_OUTPUTS_BY_LABEL = {}
+    VARIABLE_OUTPUTS_BY_LIST = ()
     VARIABLE_OUTPUTS_COMPLEX = ()
 
     def __init__(self, dssInstance, name, fullName):
@@ -79,6 +80,10 @@ class dssObjectBase(abc.ABC):
         elif VarName in self.VARIABLE_OUTPUTS_COMPLEX:
             assert isinstance(value, list) and len(value) == 2, str(value)
             value = complex(value[0], value[1])
+        elif VarName in self.VARIABLE_OUTPUTS_BY_LIST:
+            assert isinstance(value, list), str(value)
+            labels = [f"_bus_index_{i}" for i in range(len(value))]
+            return ValueByList(self._FullName, VarName, value, labels)
         return ValueByNumber(self._FullName, VarName, value)
 
     def GetVariableNames(self):
@@ -92,7 +97,7 @@ class dssObjectBase(abc.ABC):
 
     @property
     def FullName(self):
-        return self._Name
+        return self._FullName
 
     @property
     def Name(self):

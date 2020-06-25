@@ -111,6 +111,8 @@
 
 [Reports]
 Format = "h5"
+Granularity = "per_element_per_time_point"
+
 [[Reports.Types]]
 name = "Capacitor State Change Counts"
 enabled = false
