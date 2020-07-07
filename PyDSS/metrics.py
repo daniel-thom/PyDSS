@@ -60,6 +60,27 @@ class Metric(abc.ABC):
         self._base_path = base_path
         self._num_steps = num_steps
 
+    @staticmethod
+    def is_circuit_wide():
+        """Return True if this metric should be used once for a circuit."""
+        return False
+
+    @abc.abstractmethod
+    def iter_containers(self):
+        """Return an iterator over the StorageFilterBase containers."""
+
+    @property
+    def label(self):
+        """Return a label for the metric.
+
+        Returns
+        -------
+        str
+
+        """
+        prop = next(iter(self._properties.values()))
+        return f"{prop.elem_class}.{prop.name}"
+
     def make_storage_container(self, hdf_store, path, prop, num_steps, max_chunk_bytes, values):
         """Make a storage container.
 
@@ -74,15 +95,6 @@ class Metric(abc.ABC):
         cls = STORAGE_TYPE_MAP[prop.store_values_type]
         container = cls(hdf_store, path, prop, num_steps, max_chunk_bytes, values, elem_names)
         return container
-
-    @staticmethod
-    def is_circuit_wide():
-        """Return True if this metric should be used once for a circuit."""
-        return False
-
-    @abc.abstractmethod
-    def iter_containers(self):
-        """Return an iterator over the StorageFilterBase containers."""
 
     def max_num_bytes(self):
         """Return the maximum number of bytes the containers could hold.

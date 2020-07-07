@@ -18,7 +18,7 @@ from PyDSS.export_list_reader import ExportListReader, StoreValuesType
 from PyDSS.metrics import Metric
 from PyDSS.reports import Reports, ReportGranularity
 from PyDSS.utils.dataframe_utils import write_dataframe
-from PyDSS.utils.utils import dump_data, UpdateStats
+from PyDSS.utils.utils import dump_data, TimerStats
 from PyDSS.utils.simulation_utils import CircularBufferHelper
 from PyDSS.value_storage import ValueContainer, ValueByNumber, DatasetPropertyType
 from PyDSS.metrics import OpenDssPropertyMetrics, SummedElementsOpenDssPropertyMetric
@@ -52,7 +52,7 @@ class ResultData:
         self.system_paths = system_paths
         self._element_metrics = {}  # object full name to OpenDssPropertyMetrics
         self._summed_element_metrics = {}
-        self._update_stats = UpdateStats(self.__class__.__name__)
+        self._stats = {}
         self._options = options
         self._cur_step = 0
         self._num_updates = 0
@@ -194,9 +194,14 @@ class ResultData:
         )
         self._cur_step = 0
 
+        self._stats.clear()
+        self._stats["Total"] = TimerStats("Total")
+        self._stats["Flusher"] = TimerStats("Flusher")
         base_path = "Exports/" + self._scenario
         for metric in self._iter_metrics():
             metric.initialize_data_store(hdf_store, base_path, num_steps)
+            label = metric.label
+            self._stats[label] = TimerStats(label)
 
     def _iter_metrics(self):
         for metric in self._element_metrics.values():
@@ -207,7 +212,7 @@ class ResultData:
             yield metric
 
     def UpdateResults(self):
-        start = time.time()
+        update_start = time.time()
         self.CurrentResults.clear()
 
         timestamp = self._dss_solver.GetDateTime().timestamp()
@@ -216,16 +221,26 @@ class ResultData:
         self._mode_dataset.write_value([self._dss_solver.getMode()])
 
         for metric in self._iter_metrics():
+            label = metric.label
+            stats = self._stats[label]
+            start = time.time()
+
             data = metric.append_values(self._cur_step)
+
+            end = time.time()
+            stats.update(end - start)
+
             if isinstance(data, dict):
                 # TODO: reconsider
                 # Something is only returned for OpenDSS properties
                 self.CurrentResults.update(data)
 
-        self._update_stats.update(time.time() -  start)
+        self._stats["Total"].update(end - update_start)
         self._num_updates += 1
         if self._num_updates % FLUSH_INTERVAL == 0:
+            start = time.time()
             self._hdf_store.flush()
+            self._stats["Flusher"].update(time.time() - start)
             logger.info("Flushed datasets")
 
         self._cur_step += 1
@@ -254,7 +269,8 @@ class ResultData:
             dataset.flush_data()
         for metric in self._iter_metrics():
             metric.close()
-        self._update_stats.log_stats()
+        for stats in self._stats.values():
+            stats.log_stats()
         
     def _export_event_log(self, metadata):
         # TODO: move to a base class

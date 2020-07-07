@@ -218,7 +218,8 @@ def make_human_readable_size(size, decimals=2):
     return f"{size:.{decimals}f} {unit}"
 
 
-class UpdateStats:
+class TimerStats:
+    """Tracks timer stats."""
     def __init__(self, label):
         self._label = label
         self._count = 0
@@ -228,6 +229,13 @@ class UpdateStats:
         self._total = 0.0
 
     def get_stats(self):
+        """Get the current stats summary.
+
+        Returns
+        -------
+        dict
+
+        """
         avg = 0 if self._count == 0 else self._total / self._count
         return {
             "min": self._min,
@@ -238,22 +246,22 @@ class UpdateStats:
         }
 
     def log_stats(self):
+        """Log a summary of the stats."""
         if self._count == 0:
-            logger.info("No stats have been recorded.")
+            logger.info("No stats have been recorded for %s.", self._label)
             return
 
         x = self.get_stats()
         text = "total={:.3f}s avg={:.3f}ms max={:.3f}ms min={:.3f}ms count={}".format(
             x["total"], x["avg"] * 1000, x["max"] * 1000, x["min"] * 1000, x["count"]
         )
-        logger.info("Update metric: %s: %s", self._label, text)
+        logger.info("TimerStats summary: %s: %s", self._label, text)
 
-    def update(self, update_time):
+    def update(self, duration):
+        """Update the stats with a new timing."""
         self._count += 1
-        self._total += update_time
-        if update_time > self._max:
-            self._max = update_time
-        if self._min is None or update_time < self._min:
-            self._min = update_time
-
-
+        self._total += duration
+        if duration > self._max:
+            self._max = duration
+        if self._min is None or duration < self._min:
+            self._min = duration
