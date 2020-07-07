@@ -14,7 +14,7 @@ class DatasetPropertyType(enum.Enum):
     ELEMENT_PROPERTY = "elem_prop"  # data is stored at every time point
     FILTERED = "filtered"  # data is stored after being filtered
     NUMBER = "number"  # Only a single value is written
-    TIMESTAMP = "timestamp"  # data are timestamps, tied to FILTERED
+    TIME_STEP = "time_step"  # data are time indices, tied to FILTERED
 
 
 class ValueStorageBase(abc.ABC):
@@ -428,8 +428,8 @@ class ValueContainer:
         complex: np.complex,
     }
 
-    def __init__(self, value, hdf_store, path, max_size, dataset_property_type,
-                 max_chunk_bytes=None, store_timestamp=False):
+    def __init__(self, values, hdf_store, path, max_size, elem_names,
+                 dataset_property_type, max_chunk_bytes=None, store_time_step=False):
         group_name = os.path.dirname(path)
         basename = os.path.basename(path)
         try:
@@ -439,66 +439,115 @@ class ValueContainer:
             # Don't bother checking each sub path.
             pass
 
-        dtype = self._TYPE_MAPPING.get(value.value_type)
+        dtype = self._TYPE_MAPPING.get(values[0].value_type)
         assert dtype is not None
         scaleoffset = None
         if dtype == np.float:
             scaleoffset = 4
         elif dtype == np.int:
             scaleoffset = 0
-        attributes = {"type": dataset_property_type.value}
-        timestamp_path = None
+        time_step_path = None
+        max_size = max_size * len(values) if store_time_step else max_size
 
-        if store_timestamp:
-            timestamp_path = self.timestamp_path(path)
-            self._timestamps = DatasetBuffer(
+        if store_time_step:
+            # Store indices for time step and element.
+            # Each row of this dataset corresponds to a row in the data.
+            # This will be required to interpret the raw data.
+            attributes = {"type": DatasetPropertyType.TIME_STEP.value}
+            time_step_path = self.time_step_path(path)
+            self._time_steps = DatasetBuffer(
                 hdf_store,
-                timestamp_path,
+                time_step_path,
                 max_size,
-                np.float,
-                ["Timestamp"],
+                np.int,
+                ["Time", "Name"],
                 scaleoffset=scaleoffset,
                 max_chunk_bytes=max_chunk_bytes,
-                attributes={"type": DatasetPropertyType.TIMESTAMP.value},
+                attributes=attributes,
             )
-            attributes["timestamp_path"] = timestamp_path
+            columns = []
+            tmp_columns = values[0].make_columns()
+            for column in tmp_columns:
+                fields = column.split(ValueStorageBase.DELIMITER)
+                fields[0] = "AllNames"
+                columns.append(ValueStorageBase.DELIMITER.join(fields))
+            column_ranges = [0, len(tmp_columns)]
         else:
-            self._timestamps = None
+            columns = []
+            #num_cols_per_element = []
+            column_ranges = []
+            col_index = 0
+            for value in values:
+                tmp_columns = value.make_columns()
+                col_range = (col_index, len(tmp_columns))
+                column_ranges.append(col_range)
+                for column in tmp_columns:
+                    columns.append(column)
+                    col_index += 1
+            self._time_steps = None
+
+        attributes = {
+            "column_ranges_per_name": column_ranges,
+            "names": elem_names,
+            "type": dataset_property_type.value,
+        }
+        if store_time_step:
+            attributes["time_step_path"] = time_step_path
 
         self._dataset = DatasetBuffer(
             hdf_store,
             path,
             max_size,
             dtype,
-            value.make_columns(),
+            columns,
             scaleoffset=scaleoffset,
             max_chunk_bytes=max_chunk_bytes,
             attributes=attributes,
         )
 
     @staticmethod
-    def timestamp_path(path):
-        return path + "Timestamp"
+    def time_step_path(path):
+        return path + "TimeStep"
 
-    def append(self, value, timestamp=None):
+    def append(self, values):
+        """Append a value to the container.
+
+        Parameters
+        ----------
+        value : list
+            list of ValueStorageBase
+
+        """
+        if isinstance(values[0].value, list):
+            vals = [x for y in values for x in y.value]
+        else:
+            vals = [x.value for x in values]
+
+        self._dataset.write_value(vals)
+
+    def append_by_time_step(self, value, time_step, elem_index):
         """Append a value to the container.
 
         Parameters
         ----------
         value : ValueStorageBase
-        timestamp : float | None
+        time_step : int
+        elem_index : int
 
         """
-        self._dataset.write_value(value.value)
-        if self._timestamps is not None:
-            assert timestamp is not None
-            self._timestamps.write_value(timestamp)
+        if isinstance(value.value, list):
+            vals = [x for x in value.value]
+        else:
+            vals = value.value
+
+        self._dataset.write_value(vals)
+        self._time_steps.write_value([time_step, elem_index])
 
     def flush_data(self):
         """Flush any outstanding data to disk."""
         self._dataset.flush_data()
-        if self._timestamps is not None:
-            self._timestamps.flush_data()
+        if self._time_steps is not None:
+            self._time_steps.flush_data()
 
     def max_num_bytes(self):
         """Return the maximum number of bytes the container could hold.
@@ -522,12 +571,12 @@ def get_dataset_property_type(dataset):
     return DatasetPropertyType(dataset.attrs["type"])
 
 
-def get_timestamp_path(dataset):
-    """Return the path to the timestamps for this dataset.
+def get_time_step_path(dataset):
+    """Return the path to the time_steps for this dataset.
 
     Returns
     -------
-    pd.DatetimeIndex
+    str
 
     """
-    return dataset.attrs["timestamp_path"]
+    return dataset.attrs["time_step_path"]

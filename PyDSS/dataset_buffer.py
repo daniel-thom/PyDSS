@@ -48,12 +48,8 @@ class DatasetBuffer:
             dtype,
             max_chunk_bytes,
         )
-        if num_columns == 1:
-            shape = (self._max_size,)
-            chunks = (self._chunk_size,)
-        else:
-            shape = (self._max_size, num_columns)
-            chunks = (self._chunk_size, num_columns)
+        shape = (self._max_size, num_columns)
+        chunks = (self._chunk_size, num_columns)
 
         self._dataset = self._hdf_store.create_dataset(
             name=path,
@@ -74,6 +70,9 @@ class DatasetBuffer:
         if attributes is not None:
             for attr, val in attributes.items():
                 self._dataset.attrs[attr] = val
+
+        logger.debug("Created DatasetBuffer path=%s shape=%s chnunks=%s",
+                     path, shape, chunks)
 
     def __del__(self):
         assert self._buf_index == 0, \
@@ -119,29 +118,35 @@ class DatasetBuffer:
         tmp = np.empty((1, num_columns), dtype=dtype)
         size_one_row = tmp.size * tmp.itemsize
         chunk_count = min(int(max_chunk_bytes / size_one_row), max_size)
-        logger.debug("chunk_count=%s", chunk_count)
         return chunk_count
 
     @staticmethod
-    def to_dataframe(dataset):
+    def to_dataframe(dataset, column_range=None):
         """Create a pandas DataFrame from a dataset created with this class.
 
         Parameters
         ----------
         dataset : h5py.Dataset
+        column_range : None | list
+            first element is column start, second element is length
+
 
         Returns
         -------
         pd.DataFrame
 
         """
-        if "length" in dataset.attrs.keys():
-            length = dataset.attrs["length"]
-        else:
-            # This can be removed once projects with the older format aren't
-            # supported.
-            length = len(dataset)
-        return pd.DataFrame(dataset[:length], columns=dataset.attrs["columns"])
+        length = dataset.attrs["length"]
+        columns = dataset.attrs["columns"]
+        if column_range is None:
+            return pd.DataFrame(dataset[:length], columns=columns)
+
+        start = column_range[0]
+        end = start + column_range[1]
+        return pd.DataFrame(
+            dataset[:length, start:end],
+            columns=columns[start:end],
+        )
 
     @staticmethod
     def to_datetime(dataset):

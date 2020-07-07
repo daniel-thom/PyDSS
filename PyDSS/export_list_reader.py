@@ -218,10 +218,9 @@ class ExportListProperty:
             return self._is_outside_limits(value)
         return self._is_inside_limits(value)
 
-    def should_store_timestamp(self):
-        """Return True if the timestamp should be stored with the value."""
-        return self.limits is not None or \
-            self._store_values_type == StoreValuesType.MOVING_AVERAGE
+    def should_store_time_step(self):
+        """Return True if the time step should be stored with the value."""
+        return self.limits is not None
 
     @property
     def storage_name(self):
@@ -272,6 +271,9 @@ class ExportListReader:
             self._elem_classes[elem_class].append(ExportListProperty(
                 elem_class, data
             ))
+
+        # TODO DT: verify that multiple instances of the same property have
+        # the same names.
 
     @staticmethod
     def _parse_file(filename):

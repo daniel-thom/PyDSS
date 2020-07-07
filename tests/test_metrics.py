@@ -1,8 +1,8 @@
 
 from collections import namedtuple
+import logging
 import os
 import tempfile
-import time
 
 import h5py
 import numpy as np
@@ -32,8 +32,13 @@ LIST_COMPLEX_NUMS = (
     [complex(17, 18), complex(19, 20)],
 )
 
+logger = logging.getLogger(__name__)
 
 FakeObj = namedtuple("FakeObj", "FullName, Name")
+OBJS = [
+    FakeObj("Fake.a", "a"),
+    FakeObj("Fake.b", "b"),
+]
 
 
 @pytest.fixture
@@ -47,21 +52,26 @@ def cleanup():
 
 class FakeMetric(MultiValueTypeMetrics):
 
-    def __init__(self, prop, dss_obj, options, values):
-        super().__init__(prop, dss_obj, options)
-        self._index = 0
+    def __init__(self, prop, dss_objs, options, values):
+        super().__init__(prop, dss_objs, options)
+        self._elem_index = 0
+        self._val_index = 0
         self._values = values
 
-    def _get_value(self, timestamp):
-        obj = self._dss_objs[0]
+    def _get_value(self, obj, timestamp):
         prop = next(iter(self._properties.values()))
-        if isinstance(self._values[self._index], list):
-            val = ValueByList(obj.FullName, prop.name, self._values[self._index], ["", ""])
+        if isinstance(self._values[self._val_index], list):
+            val = ValueByList(obj.FullName, prop.name, self._values[self._val_index], ["", ""])
         else:
-            val = ValueByNumber(obj.FullName, prop.name, self._values[self._index])
-        self._index += 1
-        if self._index == len(self._values):
-            self._index = 0
+            val = ValueByNumber(obj.FullName, prop.name, self._values[self._val_index])
+        logger.debug("elem_index=%s val_index=%s, val=%s", self._elem_index, self._val_index, val.value)
+        self._elem_index += 1
+        if self._elem_index == len(self._dss_objs):
+            self._elem_index = 0
+            # Change values once we've iterated through all elements.
+            self._val_index += 1
+            if self._val_index == len(self._values):
+                self._val_index = 0
         return val
 
 
@@ -71,25 +81,24 @@ def test_metrics_store_all(cleanup):
         "store_values_type": "all",
     }
     values = FLOATS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/Property"]
+        dataset = hdf_store["Fake/ElementProperties/Property"]
         assert dataset.attrs["length"] == len(values)
         assert dataset.attrs["type"] == "elem_prop"
         df = DatasetBuffer.to_dataframe(dataset)
         assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        assert len(series) == len(values)
-        for val1, val2 in zip(series.values, values):
-            assert val1 == val2
-        assert metric.max_num_bytes() == len(values) * 8
+        assert len(df) == len(values)
+        for column in df.columns:
+            for val1, val2 in zip(df[column].values, values):
+                assert val1 == val2
+        assert metric.max_num_bytes() == len(values) * len(OBJS) * 8 
 
 
 def test_metrics_store_all_complex_abs(cleanup):
@@ -99,25 +108,23 @@ def test_metrics_store_all_complex_abs(cleanup):
         "data_conversion": "abs",
     }
     values = COMPLEX_NUMS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/Property"]
+        dataset = hdf_store["Fake/ElementProperties/Property"]
         assert dataset.attrs["length"] == len(values)
         assert dataset.attrs["type"] == "elem_prop"
         df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        assert len(series) == len(values)
-        for val1, val2 in zip(series.values, values):
-            assert isinstance(val1, float)
-            assert val1 == abs(val2)
+        assert len(df) == len(values)
+        for column in df.columns:
+            for val1, val2 in zip(df[column].values, values):
+                assert isinstance(val1, float)
+                assert val1 == abs(val2)
 
 
 def test_metrics_store_all_complex_sum(cleanup):
@@ -127,25 +134,23 @@ def test_metrics_store_all_complex_sum(cleanup):
         "data_conversion": "sum",
     }
     values = LIST_COMPLEX_NUMS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/Property"]
+        dataset = hdf_store["Fake/ElementProperties/Property"]
         assert dataset.attrs["length"] == len(values)
         assert dataset.attrs["type"] == "elem_prop"
         df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        assert len(series) == len(values)
-        for val1, val2 in zip(series.values, values):
-            assert isinstance(val1, complex)
-            assert val1 == sum(val2)
+        assert len(df) == len(values)
+        for column in df.columns:
+            for val1, val2 in zip(df[column].values, values):
+                assert isinstance(val1, complex)
+                assert val1 == sum(val2)
 
 
 def test_metrics_store_all_complex_abs_sum(cleanup):
@@ -155,25 +160,23 @@ def test_metrics_store_all_complex_abs_sum(cleanup):
         "data_conversion": "abs_sum",
     }
     values = LIST_COMPLEX_NUMS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/Property"]
+        dataset = hdf_store["Fake/ElementProperties/Property"]
         assert dataset.attrs["length"] == len(values)
         assert dataset.attrs["type"] == "elem_prop"
         df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        assert len(series) == len(values)
-        for val1, val2 in zip(series.values, values):
-            assert isinstance(val1, float)
-            assert val1 == abs(sum(val2))
+        assert len(df) == len(values)
+        for column in df.columns:
+            for val1, val2 in zip(df[column].values, values):
+                assert isinstance(val1, float)
+                assert val1 == abs(sum(val2))
 
 
 def test_metrics_store_all_filtered(cleanup):
@@ -184,29 +187,30 @@ def test_metrics_store_all_filtered(cleanup):
         "limits_filter": LimitsFilter.OUTSIDE,
     }
     values = FLOATS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/Property"]
-        assert dataset.attrs["length"] == 2
+        dataset = hdf_store["Fake/ElementProperties/Property"]
+        assert dataset.attrs["length"] == 2 * len(OBJS)
         assert dataset.attrs["type"] == "filtered"
-        df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        assert len(df) == 2
-        series = df.iloc[:, 0]
-        assert series.values[0] == 4.0
-        assert series.values[1] == 5.0
+        assert [x for x in dataset[:4]] == [4, 4, 5, 5]
+        time_step_dataset = hdf_store["Fake/ElementProperties/PropertyTimeStep"]
+        assert time_step_dataset.attrs["type"] == "time_step"
+        assert time_step_dataset.attrs["length"] == 4
+        assert [x for x in time_step_dataset[0]] == [3, 0]
+        assert [x for x in time_step_dataset[1]] == [3, 1]
+        assert [x for x in time_step_dataset[2]] == [4, 0]
+        assert [x for x in time_step_dataset[3]] == [4, 1]
 
 
 def test_metrics_store_moving_average_and_max(cleanup):
     window_size = 10
-    values = [float(i) for i in range(100)]
+    values = [float(i) for i in range(50)] + [float(i) for i in range(25)]
     data1 = {
         "property": "Property",
         "store_values_type": "max",
@@ -218,8 +222,7 @@ def test_metrics_store_moving_average_and_max(cleanup):
     }
     prop1 = ExportListProperty("Fake", data1)
     prop2 = ExportListProperty("Fake", data2)
-    obj = FakeObj("Fake.name", "name")
-    metric = FakeMetric(prop1, obj, OPTIONS, values)
+    metric = FakeMetric(prop1, OBJS, OPTIONS, values)
     metric.add_property(prop2)
 
     base_df = pd.DataFrame(values)
@@ -228,26 +231,27 @@ def test_metrics_store_moving_average_and_max(cleanup):
 
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/PropertyAvg"]
-        assert dataset.attrs["length"] == len(values)
-        assert dataset.attrs["type"] == "elem_prop"
-        df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        for val1, val2 in zip(series.values, base_rm.values):
-            if np.isnan(val1):
-                assert np.isnan(val2)
-            else:
-                assert val1 == val2
+        dataset1 = hdf_store["Fake/ElementProperties/PropertyMax"]
+        assert dataset1.attrs["length"] == 1
+        assert dataset1.attrs["type"] == "number"
+        assert dataset1[0][0] == 49
+        assert dataset1[0][1] == 49
 
-        dataset2 = hdf_store[f"Fake/Elements/{obj.FullName}/PropertyMax"]
-        assert dataset2.attrs["length"] == 1
-        assert dataset2.attrs["type"] == "number"
-        assert dataset2[0] == 99.0
+        dataset2 = hdf_store["Fake/ElementProperties/PropertyAvg"]
+        assert dataset2.attrs["length"] == len(values)
+        assert dataset2.attrs["type"] == "elem_prop"
+        df = DatasetBuffer.to_dataframe(dataset2)
+        assert len(df) == len(values)
+        for column in df.columns:
+            for val1, val2 in zip(df[column].values, base_rm.values):
+                if np.isnan(val1):
+                    assert np.isnan(val2)
+                else:
+                    assert val1 == val2
 
 
 def test_metrics_store_moving_average_with_limits(cleanup):
@@ -261,29 +265,28 @@ def test_metrics_store_moving_average_with_limits(cleanup):
         "limits_filter": LimitsFilter.OUTSIDE,
     }
     values = [float(x) for x in range(1, 101)]
-    #values = [float(x) for _ in range(10) for x in range(10)]
     expected_values = [x for x in values if x < limits[0] or x > limits[1]]
     base_df = pd.DataFrame(values)
     base_series = base_df.iloc[:, 0]
     base_rm = base_series.rolling(window_size).mean()
     expected = [x for x in base_rm.values if x < limits[0] or x > limits[1]]
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/PropertyAvg"]
-        assert dataset.attrs["length"] == len(expected)
+        dataset = hdf_store["Fake/ElementProperties/PropertyAvg"]
+        assert dataset.attrs["length"] == len(expected) * len(OBJS)
         assert dataset.attrs["type"] == "filtered"
-        df = DatasetBuffer.to_dataframe(dataset)
-        assert isinstance(df, pd.DataFrame)
-        series = df.iloc[:, 0]
-        for val1, val2 in zip(series.values, expected):
-            assert val1 == val2
+        time_step_dataset = hdf_store["Fake/ElementProperties/PropertyAvgTimeStep"]
+        assert time_step_dataset.attrs["type"] == "time_step"
+        assert time_step_dataset.attrs["length"] == dataset.attrs["length"]
+        for i, expected_val in enumerate(expected):
+            assert dataset[i * 2] == expected_val
+            assert dataset[i * 2 + 1] == expected_val
 
 
 def test_metrics_store_moving_average_max(cleanup):
@@ -297,21 +300,20 @@ def test_metrics_store_moving_average_max(cleanup):
     base_df = pd.DataFrame(values)
     base_series = base_df.iloc[:, 0]
     base_rm = base_series.rolling(window_size).mean()
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/PropertyAvgMax"]
+        dataset = hdf_store["Fake/ElementProperties/PropertyAvgMax"]
         assert dataset.attrs["length"] == 1
         assert dataset.attrs["type"] == "number"
-        val = dataset[0]
-        assert val == base_rm.max()
-        assert metric.max_num_bytes() == 8
+        assert dataset[0][0] == base_rm.max()
+        assert dataset[0][1] == dataset[0][0]
+        assert metric.max_num_bytes() == 8 * len(OBJS)
 
 
 def test_metrics_store_sum(cleanup):
@@ -320,20 +322,21 @@ def test_metrics_store_sum(cleanup):
         "store_values_type": "sum",
     }
     values = FLOATS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/PropertySum"]
+        dataset = hdf_store["Fake/ElementProperties/PropertySum"]
         assert dataset.attrs["length"] == 1
         assert dataset.attrs["type"] == "number"
-        assert dataset[:][0] == sum(values)
-        assert metric.max_num_bytes() == 8
+        assert len(dataset[0]) == 2
+        assert dataset[0][0] == sum(values)
+        assert dataset[0][1] == sum(values)
+        assert metric.max_num_bytes() == 8 * len(OBJS)
 
 
 def test_metrics_store_max(cleanup):
@@ -342,17 +345,18 @@ def test_metrics_store_max(cleanup):
         "store_values_type": "max",
     }
     values = FLOATS
-    obj = FakeObj("Fake.name", "name")
     prop = ExportListProperty("Fake", data)
-    metric = FakeMetric(prop, obj, OPTIONS, values)
+    metric = FakeMetric(prop, OBJS, OPTIONS, values)
     with h5py.File(STORE_FILENAME, mode="w", driver="core") as hdf_store:
         metric.initialize_data_store(hdf_store, "", len(values))
-        for _ in range(len(values)):
-            metric.append_values(time.time())
+        for i in range(len(values)):
+            metric.append_values(i)
         metric.close()
 
-        dataset = hdf_store[f"Fake/Elements/{obj.FullName}/PropertyMax"]
+        dataset = hdf_store["Fake/ElementProperties/PropertyMax"]
         assert dataset.attrs["length"] == 1
         assert dataset.attrs["type"] == "number"
-        assert dataset[:][0] == max(values)
-        assert metric.max_num_bytes() == 8
+        assert len(dataset[0]) == 2
+        assert dataset[0][0] == max(values)
+        assert dataset[0][1] == max(values)
+        assert metric.max_num_bytes() == 8 * len(OBJS)

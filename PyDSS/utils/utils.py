@@ -238,6 +238,10 @@ class UpdateStats:
         }
 
     def log_stats(self):
+        if self._count == 0:
+            logger.info("No stats have been recorded.")
+            return
+
         x = self.get_stats()
         text = "total={:.3f}s avg={:.3f}ms max={:.3f}ms min={:.3f}ms count={}".format(
             x["total"], x["avg"] * 1000, x["max"] * 1000, x["min"] * 1000, x["count"]

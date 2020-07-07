@@ -11,182 +11,25 @@ import opendssdirect as dss
 
 from PyDSS.common import DataConversion, StoreValuesType
 from PyDSS.exceptions import InvalidConfiguration, InvalidParameter
-from PyDSS.utils.simulation_utils import CircularBufferHelper
-from PyDSS.value_storage import ValueContainer, ValueByNumber
+from PyDSS.storage_filters import STORAGE_TYPE_MAP, StorageFilterBase
+from PyDSS.value_storage import ValueByNumber
 
 
 logger = logging.getLogger(__name__)
 
 
-class StorageBase(abc.ABC):
-    """Base class for storage containers"""
-
-    def __init__(self, hdf_store, path, prop, num_steps, max_chunk_bytes, value):
-        self._prop = prop
-        self._container = self.make_container(
-            hdf_store,
-            path,
-            prop,
-            num_steps,
-            max_chunk_bytes,
-            value,
-        )
-
-    @abc.abstractmethod
-    def append_value(self, value, timestamp):
-        """Store a new value."""
-
-    def close(self):
-        """Perform any final writes to the container."""
-        self.flush_data()
-
-    def flush_data(self):
-        """Flush data to disk."""
-        self._container.flush_data()
-
-    def max_num_bytes(self):
-        """Return the maximum number of bytes the container could hold.
-
-        Returns
-        -------
-        int
-
-        """
-        return self._container.max_num_bytes()
-
-    @staticmethod
-    def make_container(hdf_store, path, prop, num_steps, max_chunk_bytes, value):
-        """Return an instance of ValueContainer for storing values."""
-        container = ValueContainer(
-            value,
-            hdf_store,
-            path,
-            prop.get_max_size(num_steps),
-            dataset_property_type=prop.get_dataset_property_type(),
-            max_chunk_bytes=max_chunk_bytes,
-            store_timestamp=prop.should_store_timestamp(),
-        )
-        logger.debug("Created storage container path=%s", path)
-        return container
-
-
-class StorageAll(StorageBase):
-    """Store values at every time point, optionally filtered."""
-
-    def append_value(self, value, timestamp):
-        if self._prop.should_store_value(value.value):
-            self._container.append(value, timestamp=timestamp)
-
-
-"""
-class StorageChangeCount(StorageBase):
-    def __init__(self, *args):
-        super().__init__(*args)
-        self._last_value = None
-        self._change_count = (None, 0)
-
-    def append_value(self, value, timestamp):
-        assert False
-"""
-
-
-class StorageMax(StorageBase):
-    """Stores the max value across time points."""
-    def __init__(self, *args):
-        super().__init__(*args)
-        self._max = None
-
-    def append_value(self, value, timestamp):
-        self._handle_value(value)
-
-    def close(self):
-        self._container.append(self._max)
-        self._container.flush_data()
-
-    def _handle_value(self, value):
-        if (self._max is None or value > self._max) and not np.isnan(value.value):
-            self._max = value
-
-
-class StorageMovingAverage(StorageBase):
-    """Stores a moving average across time points."""
-    def __init__(self, *args):
-        super().__init__(*args)
-        self._buf = CircularBufferHelper(self._prop)
-
-    def append_value(self, value, timestamp):
-        # Store every value in the circular buffer. Apply limits to the
-        # moving average.
-        self._buf.append(value.value)
-        avg = self._buf.average()
-        if self._prop.should_store_value(avg):
-            # TODO: perf issue?
-            new_value = copy.deepcopy(value)
-            new_value.set_element_property(self._prop.storage_name)
-            new_value.set_value(avg)
-            self._container.append(new_value, timestamp=timestamp)
-
-
-class StorageMovingAverageMax(StorageMax):
-    """Stores the max value of a moving average across time points."""
-    def __init__(self, *args):
-        super().__init__(*args)
-        self._buf = CircularBufferHelper(self._prop)
-
-    def append_value(self, value, timestamp):
-        self._buf.append(value.value)
-        avg = self._buf.average()
-        logger.info("append avg value value=%s avg=%s", value.value, avg)
-        new_value = copy.deepcopy(value)
-        new_value.set_element_property(self._prop.storage_name)
-        new_value.set_value(avg)
-        self._handle_value(new_value)
-
-
-class StorageSum(StorageBase):
-    """Keeps a running sum of all values and records the total."""
-    def __init__(self, *args):
-        super().__init__(*args)
-        self._sum = None
-
-    def append_value(self, value, _timestamp):
-        if self._sum is None:
-            self._sum = value
-        else:
-            self._sum += value
-
-    def close(self):
-        assert self._sum is not None
-        self._container.append(self._sum)
-        self.flush_data()
-
-
-STORAGE_TYPE_MAP = {
-    StoreValuesType.ALL: StorageAll,
-    #StoreValuesType.CHANGE_COUNT: StorageChangeCount,
-    StoreValuesType.MAX: StorageMax,
-    StoreValuesType.MOVING_AVERAGE: StorageMovingAverage,
-    StoreValuesType.MOVING_AVERAGE_MAX: StorageMovingAverageMax,
-    StoreValuesType.SUM: StorageSum,
-}
-
-
 class Metric(abc.ABC):
     """Base class for all metrics"""
-    def __init__(self, prop, dss_obj, options):
+    def __init__(self, prop, dss_objs, options):
         self._name = prop.name
         self._base_path = None
         self._hdf_store = None
         self._max_chunk_bytes = options["Exports"]["HDF Max Chunk Bytes"]
         self._num_steps = None
         self._properties = {}  # StoreValuesType to ExportListProperty
-        self._dss_objs = [dss_obj]
+        self._dss_objs = dss_objs
 
         self.add_property(prop)
-
-    def add_dss_obj(self, dss_obj):
-        """Add an instance of dssObjectBase for tracking in this metric."""
-        self._dss_objs.append(dss_obj)
 
     def add_property(self, prop):
         """Add an instance of ExportListProperty for tracking."""
@@ -197,8 +40,8 @@ class Metric(abc.ABC):
             raise InvalidParameter(f"{prop.store_values_type} is already stored")
 
     @abc.abstractmethod
-    def append_values(self, timestamp):
-        """Get the value at the current timestamp."""
+    def append_values(self, time_step):
+        """Get the values for all elements at the current time step."""
 
     def close(self):
         """Perform any final writes to the container."""
@@ -217,19 +60,19 @@ class Metric(abc.ABC):
         self._base_path = base_path
         self._num_steps = num_steps
 
-    @staticmethod
-    def make_storage_container(hdf_store, path, prop, num_steps, max_chunk_bytes, value):
+    def make_storage_container(self, hdf_store, path, prop, num_steps, max_chunk_bytes, values):
         """Make a storage container.
 
         Returns
         -------
-        StorageBase
+        StorageFilterBase
 
         """
         if prop.store_values_type not in STORAGE_TYPE_MAP:
             raise InvalidConfiguration(f"unsupported {prop.store_values_type}")
+        elem_names = [x.FullName for x in self._dss_objs]
         cls = STORAGE_TYPE_MAP[prop.store_values_type]
-        container = cls(hdf_store, path, prop, num_steps, max_chunk_bytes, value)
+        container = cls(hdf_store, path, prop, num_steps, max_chunk_bytes, values, elem_names)
         return container
 
     @staticmethod
@@ -239,7 +82,7 @@ class Metric(abc.ABC):
 
     @abc.abstractmethod
     def iter_containers(self):
-        """Return an iterator over the StorageBase containers."""
+        """Return an iterator over the StorageFilterBase containers."""
 
     def max_num_bytes(self):
         """Return the maximum number of bytes the containers could hold.
@@ -258,34 +101,36 @@ class Metric(abc.ABC):
 
 class ChangeCountMetric(Metric, abc.ABC):
     """Base class for any metric that only tracks number of changes."""
-    def __init__(self, prop, dss_obj, options):
-        super().__init__(prop, dss_obj, options)
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
         self._container = None
-        self._last_value = None
-        self._change_count = 0
+        self._last_values = {x.FullName: None for x in dss_objs}
+        self._change_counts = {x.FullName: 0 for x in dss_objs}
 
-    def append_values(self, timestamp):
+    def append_values(self, time_step):
         pass
 
     def close(self):
         assert len(self._properties) == 1
-        prop = list(self._properties.values())[0]
-        assert len(self._dss_objs) == 1
-        obj = self._dss_objs[0]
-        path = f"{self._base_path}/{prop.elem_class}/Elements/{obj.FullName}/{prop.storage_name}"
-        value = ValueByNumber(obj.FullName, prop.name, self._change_count)
+        prop = next(iter(self._properties.values()))
+        path = f"{self._base_path}/{prop.elem_class}/ElementProperties/{prop.storage_name}"
+        values = [
+            ValueByNumber(x, prop.name, y)
+            for x, y in self._change_counts.items()
+        ]
         # This class creates an instance of ValueContainer directly because
         # these metrics can only store one type, and so don't need an instance
-        # of StorageBase.
-        self._container = StorageBase.make_container(
+        # of StorageFilterBase.
+        self._container = StorageFilterBase.make_container(
             self._hdf_store,
             path,
             prop,
             self._num_steps,
             self._max_chunk_bytes,
-            value,
+            values,
+            [x.FullName for x in self._dss_objs],
         )
-        self._container.append(value)
+        self._container.append(values)
         self._container.flush_data()
 
     def iter_containers(self):
@@ -299,55 +144,57 @@ class MultiValueTypeMetrics(Metric, abc.ABC):
     max of all instantaneous values.
 
     """
-    def __init__(self, prop, dss_obj, options):
-        super().__init__(prop, dss_obj, options)
-        self._containers = {}  # StoreValuesType to StorageBase
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
+        self._containers = {}  # StoreValuesType to StorageFilterBase
 
     @abc.abstractmethod
-    def _get_value(self, timestamp):
-        """Get a value at the current timestamp."""
+    def _get_value(self, dss_obj, time_step):
+        """Get a value at the current time step."""
 
-    def append_values(self, timestamp):
+    def _initialize_containers(self, values):
+        prop_name = None
+        for prop in self._properties.values():
+            if prop_name is None:
+                prop_name = prop.name
+            else:
+                assert prop.name == prop_name, f"{prop.name} {prop_name}"
+            if prop.data_conversion != DataConversion.NONE:
+                vals = [
+                    convert_data(x.FullName, prop_name, y, prop.data_conversion)
+                    for x, y in zip(self._dss_objs, values)
+                ]
+            else:
+                vals = values
+            path = f"{self._base_path}/{prop.elem_class}/ElementProperties/{prop.storage_name}"
+            self._containers[prop.store_values_type] = self.make_storage_container(
+                self._hdf_store,
+                path,
+                prop,
+                self._num_steps,
+                self._max_chunk_bytes,
+                vals,
+            )
+
+    def append_values(self, time_step):
         start = time.time()
-        value = self._get_value(timestamp)
+        values = [self._get_value(x, time_step) for x in self._dss_objs]
 
         if not self._containers:
-            assert len(self._dss_objs) == 1, self._dss_objs
-            obj = self._dss_objs[0]
-            prop_name = None
-            for prop in self._properties.values():
-                if prop_name is None:
-                    prop_name = prop.name
-                else:
-                    assert prop.name == prop_name, f"{prop.name} {prop_name}"
-                if prop.data_conversion != DataConversion.NONE:
-                    val = convert_data(obj.FullName, prop_name, value, prop.data_conversion)
-                else:
-                    val = value
-                path = f"{self._base_path}/{prop.elem_class}/Elements/{obj.FullName}/{prop.storage_name}"
-                self._containers[prop.store_values_type] = self.make_storage_container(
-                    self._hdf_store,
-                    path,
-                    prop,
-                    self._num_steps,
-                    self._max_chunk_bytes,
-                    val,
-                )
+            self._initialize_containers(values)
 
         for value_type, container in self._containers.items():
             prop = self._properties[value_type]
             if prop.data_conversion != DataConversion.NONE:
-                val = convert_data(
-                    self._dss_objs[0].FullName,
-                    prop.name,
-                    value,
-                    prop.data_conversion,
-                )
+                vals = [
+                    convert_data(x.FullName, prop.name, y, prop.data_conversion)
+                    for x, y in zip(self._dss_objs, values)
+                ]
             else:
-                val = value
-            container.append_value(val, timestamp)
+                vals = values
+            container.append_values(vals, time_step)
 
-        return val
+        return vals
 
     def iter_containers(self):
         return self._containers.values()
@@ -356,17 +203,18 @@ class MultiValueTypeMetrics(Metric, abc.ABC):
 class OpenDssPropertyMetrics(MultiValueTypeMetrics):
     """Stores metrics for any OpenDSS element property."""
 
-    def _get_value(self, _timestamp):
-        return self._dss_objs[0].GetValue(self._name, convert=True)
+    def _get_value(self, dss_obj, _time_step):
+        return dss_obj.GetValue(self._name, convert=True)
 
-    def append_values(self, timestamp):
+    def append_values(self, time_step):
         curr_data = {}
-        value = super().append_values(timestamp)
-        if len(value.make_columns()) > 1:
-            for column, val in zip(value.make_columns(), value.value):
-                curr_data[column] = val
-        else:
-            curr_data[value.make_columns()[0]] = value.value
+        values = super().append_values(time_step)
+        for dss_obj, value in zip(self._dss_objs, values):
+            if len(value.make_columns()) > 1:
+                for column, val in zip(value.make_columns(), value.value):
+                    curr_data[column] = val
+            else:
+                curr_data[value.make_columns()[0]] = value.value
 
         return curr_data
 
@@ -374,8 +222,8 @@ class OpenDssPropertyMetrics(MultiValueTypeMetrics):
 class LineLoadingPercent(MultiValueTypeMetrics):
     """Calculates line loading percent at every time point."""
 
-    def _get_value(self, _timestamp):
-        line = self._dss_objs[0]
+    def _get_value(self, dss_obj, _time_step):
+        line = dss_obj
         normal_amps = line.GetValue("NormalAmps", convert=True).value
         currents = line.GetValue("Currents", convert=True).value
         current = max([abs(x) for x in currents])
@@ -386,8 +234,8 @@ class LineLoadingPercent(MultiValueTypeMetrics):
 class TransformerLoadingPercent(MultiValueTypeMetrics):
     """Calculates transformer loading percent at every time point."""
 
-    def _get_value(self, _timestamp):
-        transformer = self._dss_objs[0]
+    def _get_value(self, dss_obj, _time_step):
+        transformer = dss_obj
         normal_amps = transformer.GetValue("NormalAmps", convert=True).value
         currents = transformer.GetValue("Currents", convert=True).value
         current = max([abs(x) for x in currents])
@@ -397,13 +245,12 @@ class TransformerLoadingPercent(MultiValueTypeMetrics):
 
 class SummedElementsOpenDssPropertyMetric(Metric):
     """Sums all elements' values for a given property at each time point."""
-    def __init__(self, prop, dss_obj, options):
-        super().__init__(prop, dss_obj, options)
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
         self._container = None
         self._data_conversion = prop.data_conversion
 
-    def append_values(self, timestamp):
-        start = time.time()
+    def append_values(self, time_step):
         total = None
         for obj in self._dss_objs:
             value = obj.GetValue(self._name, convert=True)
@@ -431,9 +278,9 @@ class SummedElementsOpenDssPropertyMetric(Metric):
                 prop,
                 self._num_steps,
                 self._max_chunk_bytes,
-                total,
+                [total],
             )
-        self._container.append_value(value, timestamp)
+        self._container.append_values([value], time_step)
 
 
     @staticmethod
@@ -448,59 +295,55 @@ class NodeVoltageMetrics(Metric):
     """Stores metrics for node voltages."""
     def __init__(self, prop, dss_obj, options):
         super().__init__(prop, dss_obj, options)
-        self._step_number = 1
         # Indices for node names are tied to indices for node voltages.
         self._node_names = None
-        self._containers = defaultdict(dict)
+        self._containers = {}
 
-    def _iter_items(self):
-        for prop in self._properties.values():
-            for i, node_name in enumerate(self._node_names):
-                yield i, node_name, prop
+    def _make_values(self, voltages):
+        return [ValueByNumber(x, "Voltage", y) for x, y in zip(self._node_names, voltages)]
 
-    @staticmethod
-    def _make_value(name, value):
-        return ValueByNumber(name, "Voltage", value)
-
-    def append_values(self, timestamp):
+    def append_values(self, time_step):
         start = time.time()
         voltages = dss.Circuit.AllBusMagPu()
+        values = None
         if not self._containers:
             # TODO: limit to objects that have been added
             self._node_names = dss.Circuit.AllNodeNames()
-            for i, node_name, prop in self._iter_items():
-                path = f"{self._base_path}/Nodes/Elements/{node_name}/{prop.storage_name}"
-                value = self._make_value(node_name, voltages[i])
-                self._containers[prop.store_values_type][node_name] = self.make_storage_container(
+            for prop in self._properties.values():
+                path = f"{self._base_path}/Nodes/ElementProperties/{prop.storage_name}"
+                values = self._make_values(voltages)
+                self._containers[prop.store_values_type] = self.make_storage_container(
                     self._hdf_store,
                     path,
                     prop,
                     self._num_steps,
                     self._max_chunk_bytes,
-                    value,
+                    values,
                 )
 
-        for i, node_name, prop in self._iter_items():
-            value = self._make_value(node_name, voltages[i])
-            self._containers[prop.store_values_type][node_name].append_value(value, timestamp)
-
-        self._step_number += 1
+        if values is None:
+            values = self._make_values(voltages)
+        for sv_type, prop in self._properties.items():
+            self._containers[sv_type].append_values(values, time_step)
 
     @staticmethod
     def is_circuit_wide():
         return True
 
     def iter_containers(self):
-        for _, node_name, prop in self._iter_items():
-            yield self._containers[prop.store_values_type][node_name]
+        for sv_type in self._properties:
+            if sv_type in self._containers:
+                yield self._containers[sv_type]
 
 
 class TrackCapacitorChangeCounts(ChangeCountMetric):
     """Store the number of changes for a capacitor."""
 
-    def append_values(self, timestamp):
-        start = time.time()
-        capacitor = self._dss_objs[0]
+    def append_values(self, _time_step):
+        for capacitor in self._dss_objs:
+            self._update_counts(capacitor)
+
+    def _update_counts(self, capacitor):
         dss.Capacitors.Name(capacitor.Name)
         if dss.CktElement.Name() != dss.Element.Name():
             raise InvalidParameter(
@@ -513,33 +356,37 @@ class TrackCapacitorChangeCounts(ChangeCountMetric):
             )
 
         cur_value = sum(states)
-        if self._last_value is None and cur_value != self._last_value:
+        last_value = self._last_values[capacitor.FullName]
+        if last_value is None and cur_value != last_value:
             logger.debug("%s changed state old=%s new=%s", capacitor.Name,
-                         self._last_value, cur_value)
-            self._change_count += 1
+                         last_value, cur_value)
+            self._change_counts[capacitor.FullName] += 1
 
-        self._last_value = cur_value
+        self._last_values[capacitor.FullName] = cur_value
 
 
 class TrackRegControlTapNumberChanges(ChangeCountMetric):
     """Store the number of tap number changes for a RegControl."""
 
-    def append_values(self, timestamp):
-        start = time.time()
-        reg_control = self._dss_objs[0]
+    def append_values(self, _time_step):
+        for reg_control in self._dss_objs:
+            self._update_counts(reg_control)
+
+    def _update_counts(self, reg_control):
         dss.RegControls.Name(reg_control.Name)
         if reg_control.dss.CktElement.Name() != dss.Element.Name():
             raise InvalidParameter(
                 f"Object is not a circuit element {reg_control.Name()}"
             )
         tap_number = dss.RegControls.TapNumber()
-        if self._last_value is not None:
-            self._change_count += abs(tap_number - self._last_value)
+        last_value = self._last_values[reg_control.FullName]
+        if last_value is not None:
+            self._change_counts[reg_control.FullName] += abs(tap_number - last_value)
             logger.debug("%s changed count from %s to %s count=%s",
-                         reg_control.Name, self._last_value, tap_number,
-                         self._change_count)
+                         reg_control.Name, last_value, tap_number,
+                         self._change_counts[reg_control.FullName])
 
-        self._last_value = tap_number
+        self._last_values[reg_control.FullName] = tap_number
 
 
 def convert_data(name, prop_name, value, conversion):

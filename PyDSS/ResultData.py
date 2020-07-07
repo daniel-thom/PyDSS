@@ -54,6 +54,7 @@ class ResultData:
         self._summed_element_metrics = {}
         self._update_stats = UpdateStats(self.__class__.__name__)
         self._options = options
+        self._cur_step = 0
         self._num_updates = 0
 
         self._dss_command = dss_command
@@ -117,52 +118,48 @@ class ResultData:
                 objs = self._objects_by_class[elem_class]
             else:
                 continue
-            for name, obj in objs.items():
-                if not obj.Enabled:
-                    continue
-                for prop in self._export_list.iter_export_properties(elem_class=elem_class):
-                    if not prop.should_store_name(name):
-                        continue
-                    if prop.custom_metric is None:
-                        self._add_opendss_metric(obj, name, prop)
-                    else:
-                        self._add_custom_metric(obj, name, prop)
+            enabled_objs = [x for x in objs.values() if x.Enabled]
+            for prop in self._export_list.iter_export_properties(elem_class=elem_class):
+                dss_objs = [x for x in enabled_objs if prop.should_store_name(x.FullName)]
+                if prop.custom_metric is None:
+                    self._add_opendss_metric(prop, dss_objs)
+                else:
+                    self._add_custom_metric(prop, dss_objs)
 
-    def _add_opendss_metric(self, obj, full_name, prop):
+    def _add_opendss_metric(self, prop, dss_objs):
+        obj = dss_objs[0]
         if not obj.IsValidAttribute(prop.name):
-            raise InvalidParameter(f"{full_name} / {prop.name} cannot be exported")
+            raise InvalidParameter(f"{obj.FullName} / {prop.name} cannot be exported")
+        key = (prop.elem_class, prop.name)
         if prop.sum_elements:
-            key = (prop.elem_class, prop.name)
             metric = self._summed_element_metrics.get(key)
             if metric is None:
-                metric = SummedElementsOpenDssPropertyMetric(prop, obj, self._options)
+                metric = SummedElementsOpenDssPropertyMetric(prop, dss_objs, self._options)
                 self._summed_element_metrics[key] = metric
             else:
                 metric.add_dss_obj(obj)
         else:
-            key = (full_name, prop.name)
             metric = self._element_metrics.get(key)
             if metric is None:
-                metric = OpenDssPropertyMetrics(prop, obj, self._options)
+                metric = OpenDssPropertyMetrics(prop, dss_objs, self._options)
                 self._element_metrics[key] = metric
             else:
                 metric.add_property(prop)
 
-    def _add_custom_metric(self, obj, full_name, prop):
+    def _add_custom_metric(self, prop, dss_objs):
         cls = prop.custom_metric
         if cls.is_circuit_wide():
             metric = self._circuit_metrics.get(cls)
             if metric is None:
-                metric = cls(prop, obj, self._options)
+                metric = cls(prop, dss_objs, self._options)
                 self._circuit_metrics[cls] = metric
             else:
-                metric.add_dss_obj(obj)
                 metric.add_property(prop)
         else:
-            key = (full_name, prop.name)
+            key = (prop.elem_class, prop.name)
             metric = self._element_metrics.get(key)
             if metric is None:
-                metric = cls(prop, obj, self._options)
+                metric = cls(prop, dss_objs, self._options)
                 self._element_metrics[key] = metric
             else:
                 metric.add_property(prop)
@@ -195,6 +192,7 @@ class ResultData:
             columns=("Mode",),
             max_chunk_bytes=self._max_chunk_bytes
         )
+        self._cur_step = 0
 
         base_path = "Exports/" + self._scenario
         for metric in self._iter_metrics():
@@ -213,12 +211,12 @@ class ResultData:
         self.CurrentResults.clear()
 
         timestamp = self._dss_solver.GetDateTime().timestamp()
-        self._time_dataset.write_value(timestamp)
-        self._frequency_dataset.write_value(self._dss_solver.getFrequency())
-        self._mode_dataset.write_value(self._dss_solver.getMode())
+        self._time_dataset.write_value([timestamp])
+        self._frequency_dataset.write_value([self._dss_solver.getFrequency()])
+        self._mode_dataset.write_value([self._dss_solver.getMode()])
 
         for metric in self._iter_metrics():
-            data = metric.append_values(timestamp)
+            data = metric.append_values(self._cur_step)
             if isinstance(data, dict):
                 # TODO: reconsider
                 # Something is only returned for OpenDSS properties
@@ -230,6 +228,7 @@ class ResultData:
             self._hdf_store.flush()
             logger.info("Flushed datasets")
 
+        self._cur_step += 1
         return self.CurrentResults
 
     def ExportResults(self, fileprefix=""):
