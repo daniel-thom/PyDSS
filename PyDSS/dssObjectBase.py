@@ -17,6 +17,7 @@ class dssObjectBase(abc.ABC):
         self._Variables = {}
         self._dssInstance = dssInstance
         self._Enabled = True
+        self._CachedValueStorage = {}
 
     @property
     def dss(self):
@@ -85,6 +86,19 @@ class dssObjectBase(abc.ABC):
             labels = [f"_bus_index_{i}" for i in range(len(value))]
             return ValueByList(self._FullName, VarName, value, labels)
         return ValueByNumber(self._FullName, VarName, value)
+
+    def UpdateValue(self, VarName):
+        cachedValue = self._CachedValueStorage.get(VarName)
+        if cachedValue is None:
+            cachedValue = self.GetValue(VarName, convert=True)
+            self._CachedValueStorage[VarName] = cachedValue
+        else:
+            value = self.GetValue(VarName, convert=False)
+            if isinstance(cachedValue, ValueByNumber) and VarName in self.VARIABLE_OUTPUTS_COMPLEX:
+                value = complex(value[0], value[1])
+            cachedValue.set_value_from_raw(value)
+
+        return cachedValue
 
     def GetVariableNames(self):
         return self._Variables.keys()

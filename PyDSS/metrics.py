@@ -216,7 +216,7 @@ class OpenDssPropertyMetrics(MultiValueTypeMetrics):
     """Stores metrics for any OpenDSS element property."""
 
     def _get_value(self, dss_obj, _time_step):
-        return dss_obj.GetValue(self._name, convert=True)
+        return dss_obj.UpdateValue(self._name)
 
     def append_values(self, time_step):
         curr_data = {}
@@ -233,11 +233,18 @@ class OpenDssPropertyMetrics(MultiValueTypeMetrics):
 
 class LineLoadingPercent(MultiValueTypeMetrics):
     """Calculates line loading percent at every time point."""
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
+        self._normal_amps = {}  # Name to normal_amps value
 
     def _get_value(self, dss_obj, _time_step):
         line = dss_obj
-        normal_amps = line.GetValue("NormalAmps", convert=True).value
-        currents = line.GetValue("Currents", convert=True).value
+        normal_amps = self._normal_amps.get(line.Name)
+        if normal_amps is None:
+            normal_amps = line.GetValue("NormalAmps", convert=True).value
+            self._normal_amps[line.Name] = normal_amps
+
+        currents = line.UpdateValue("Currents").value
         current = max([abs(x) for x in currents])
         loading = current / normal_amps * 100
         return ValueByNumber(line.Name, "LineLoading", loading)
@@ -245,11 +252,18 @@ class LineLoadingPercent(MultiValueTypeMetrics):
 
 class TransformerLoadingPercent(MultiValueTypeMetrics):
     """Calculates transformer loading percent at every time point."""
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
+        self._normal_amps = {}  # Name to normal_amps value
 
     def _get_value(self, dss_obj, _time_step):
         transformer = dss_obj
-        normal_amps = transformer.GetValue("NormalAmps", convert=True).value
-        currents = transformer.GetValue("Currents", convert=True).value
+        normal_amps = self._normal_amps.get(transformer.Name)
+        if normal_amps is None:
+            normal_amps = transformer.GetValue("NormalAmps", convert=True).value
+            self._normal_amps[transformer.Name] = normal_amps
+
+        currents = transformer.UpdateValue("Currents").value
         current = max([abs(x) for x in currents])
         loading = current / normal_amps * 100
         return ValueByNumber(transformer.Name, "TransformerLoading", loading)
@@ -265,7 +279,7 @@ class SummedElementsOpenDssPropertyMetric(Metric):
     def append_values(self, time_step):
         total = None
         for obj in self._dss_objs:
-            value = obj.GetValue(self._name, convert=True)
+            value = obj.UpdateValue(self._name)
             if self._data_conversion != DataConversion.NONE:
                 value = convert_data(
                     "Total",

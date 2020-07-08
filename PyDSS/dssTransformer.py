@@ -63,6 +63,7 @@ class dssTransformer(dssElement):
         return [values[i * nLists:(i + 1) * nLists] for i in range((len(values) + nLists - 1) // nLists)]
 
     def GetValue(self, VarName, convert=False):
+        self.SetActiveObject()
         if VarName in self._Variables:
             VarValue = self.GetVariable(VarName, convert=convert)
         elif VarName in self._Parameters:

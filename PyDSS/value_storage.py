@@ -145,7 +145,17 @@ class ValueStorageBase(abc.ABC):
 
     @abc.abstractmethod
     def set_value(self, value):
-        """Set the value.
+        """Set the value from another instance.
+
+        Parameters
+        ----------
+        value : ValueStorageBase
+
+        """
+
+    @abc.abstractmethod
+    def set_value_from_raw(self, value):
+        """Set the value from a new raw value from opendssdirect.
 
         Parameters
         ----------
@@ -248,6 +258,9 @@ class ValueByList(ValueStorageBase):
         if not isinstance(value[0], self._value_type):
             self._value_type = type(value[0])
 
+    def set_value_from_raw(self, value):
+        self._value = value
+
     @property
     def value(self):
         return self._value
@@ -270,6 +283,7 @@ class ValueByNumber(ValueStorageBase):
                 f"Data export feature does not support strings: name={name} prop={prop} value={value}"
             )
         self._value = value
+        self._is_complex = isinstance(self._value_type, complex)
 
     def __iadd__(self, other):
         self._value += other.value
@@ -292,6 +306,9 @@ class ValueByNumber(ValueStorageBase):
         self._value = value
         if not isinstance(value, self._value_type):
             self._value_type = type(value)
+
+    def set_value_from_raw(self, value):
+        self._value = value
 
     def make_columns(self):
         return [ValueStorageBase.DELIMITER.join((self._name, self._prop))]
@@ -335,14 +352,18 @@ class ValueByLabel(ValueStorageBase):
 
         self._name = name
         self._prop = prop
+        self._nodes = Nodes
         self._labels = []
         self._value = []
         self._value_type = complex if is_complex else float
+        self._is_complex = is_complex
 
         n = 2
         m = int(len(value) / (len(Nodes)*n))
-        value = self.chunk_list(value, n)
-        value = self.chunk_list(value, m)
+
+        self._m = m
+        self._n = n
+        value = self._fix_value(value)
 
         # Chunk_list example
         # X = list(range(12)) , nList= 2
@@ -353,17 +374,16 @@ class ValueByLabel(ValueStorageBase):
         #                            [[6, 7], [8, 9], [10, 11]] Terminal two complex pairs
         #                            ]
 
-        for i, node_val in enumerate(zip(Nodes, value)):
+        for i, node_val in enumerate(zip(self._nodes, value)):
             node, val = node_val
             for v, x in zip(node, val):
                 label = '{}{}'.format(phs[v], str(i+1))
-                if is_complex:
+                # Note that the value logic is duplicated in set_value_from_raw
+                if self._is_complex:
                     label += " " + units[0]
                     self._labels.append(label)
                     self._value += [complex(x[0], x[1])]
                 else:
-                    # TODO: only generate labels once.
-                    # Should be able to do that with an existing instance.
                     label_mag = label + self.DELIMITER + "mag" + ' ' + units[0]
                     label_ang = label + self.DELIMITER + "ang" + ' ' + units[1]
                     self._labels.extend([label_mag, label_ang])
@@ -386,6 +406,11 @@ class ValueByLabel(ValueStorageBase):
     def chunk_list(values, nLists):
         return  [values[i * nLists:(i + 1) * nLists] for i in range((len(values) + nLists - 1) // nLists)]
 
+    def _fix_value(self, value):
+        value = self.chunk_list(value, self._n)
+        value = self.chunk_list(value, self._m)
+        return value
+
     @property
     def num_columns(self):
         return len(self._labels)
@@ -400,6 +425,17 @@ class ValueByLabel(ValueStorageBase):
         self._value = value
         if not isinstance(value[0], self._value_type):
             self._value_type = type(value[0])
+
+    def set_value_from_raw(self, value):
+        value = self._fix_value(value)
+        self._value.clear()
+        for i, node_val in enumerate(zip(self._nodes, value)):
+            node, val = node_val
+            for v, x in zip(node, val):
+                if self._is_complex:
+                    self._value += [complex(x[0], x[1])]
+                else:
+                    self._value += [x[0], x[1]]
 
     def make_columns(self):
         return [
