@@ -10,6 +10,7 @@ import h5py
 import numpy as np
 import pandas as pd
 
+from PyDSS.common import  DatasetPropertyType
 from PyDSS.dataset_buffer import DatasetBuffer
 from PyDSS.element_options import ElementOptions
 from PyDSS.exceptions import InvalidParameter
@@ -17,8 +18,8 @@ from PyDSS.pydss_project import PyDssProject, RUN_SIMULATION_FILENAME
 from PyDSS.reports import Reports, REPORTS, REPORTS_DIR
 from PyDSS.utils.dataframe_utils import read_dataframe, write_dataframe
 from PyDSS.utils.utils import dump_data, load_data
-from PyDSS.value_storage import ValueStorageBase, DatasetPropertyType, \
-    get_dataset_property_type, get_time_step_path
+from PyDSS.value_storage import ValueStorageBase, get_dataset_property_type, \
+    get_time_step_path
 
 
 logger = logging.getLogger(__name__)
@@ -249,19 +250,21 @@ class PyDssScenarioResults:
                     if dataset_property_type == DatasetPropertyType.NUMBER:
                         self._elem_nums_by_prop[elem_class][prop] = []
                         prop_dict = self._elem_nums_by_prop
-                    else:
-                        assert dataset_property_type in (
-                            DatasetPropertyType.ELEMENT_PROPERTY,
-                            DatasetPropertyType.FILTERED,
-                        )
+                    elif dataset_property_type in (
+                        DatasetPropertyType.ELEMENT_PROPERTY,
+                        DatasetPropertyType.FILTERED,
+                    ):
                         self._elem_data_by_prop[elem_class][prop] = []
                         prop_dict = self._elem_data_by_prop
+                    else:
+                        continue
 
                     self._props_by_class[elem_class].append(prop)
                     self._elem_indices_by_prop[elem_class][prop] = {}
                     attrs = dataset.attrs
-                    names = attrs["names"]
-                    self._column_ranges_per_elem[elem_class][prop] = attrs["column_ranges_per_name"]
+                    names = DatasetBuffer.get_names(dataset)
+                    self._column_ranges_per_elem[elem_class][prop] = \
+                        DatasetBuffer.get_column_ranges(dataset)
                     for i, name in enumerate(names):
                         self._elems_by_class[elem_class].add(name)
                         prop_dict[elem_class][prop].append(name)
@@ -382,9 +385,15 @@ class PyDssScenarioResults:
         dataset = self._group[f"{element_class}/ElementProperties/{prop}"]
         prop_type = get_dataset_property_type(dataset)
         if prop_type == DatasetPropertyType.ELEMENT_PROPERTY:
-            return self._get_elem_prop_dataframe(element_class, prop, element_name, dataset, real_only=real_only, abs_val=abs_val, **kwargs)
+            return self._get_elem_prop_dataframe(
+                element_class, prop, element_name, dataset, real_only=real_only,
+                abs_val=abs_val, **kwargs
+            )
         elif prop_type == DatasetPropertyType.FILTERED:
-            return self._get_filtered_dataframe(element_class, prop, element_name, dataset, real_only=real_only, abs_val=abs_val, **kwargs)
+            return self._get_filtered_dataframe(
+                element_class, prop, element_name, dataset, real_only=real_only,
+                abs_val=abs_val, **kwargs
+            )
         else:
             assert False, str(prop_type)
 
@@ -411,8 +420,8 @@ class PyDssScenarioResults:
 
         """
         dataset = self._group[f"{element_class}/ElementProperties/{prop}"]
-        columns = dataset.attrs["columns"]
-        names = dataset.attrs["names"]
+        columns = DatasetBuffer.get_columns(dataset)
+        names = DatasetBuffer.get_names(dataset)
         length = dataset.attrs["length"]
         indices_df = self._get_indices_df()
         data_vals = dataset[:]
@@ -908,7 +917,7 @@ class PyDssScenarioResults:
                 data.append(val)
                 timestamps.append(indices_df.iloc[ts_index, 0])
 
-        columns = self._fix_columns(name, dataset.attrs["columns"])
+        columns = self._fix_columns(name, DatasetBuffer.get_columns(dataset))
         return pd.DataFrame(data, columns=columns, index=timestamps)
 
     def _get_indices_df(self):

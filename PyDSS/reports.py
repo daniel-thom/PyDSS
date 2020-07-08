@@ -650,7 +650,16 @@ class VoltageMetrics(ReportBase):
     FILENAME = "voltage_metrics.json"
     NAME = "Voltage Metrics"
 
+    def __init__(self, name, results, simulation_config):
+        super().__init__(name, results, simulation_config)
+        assert len(results.scenarios) == 2
+        self._scenario = results.scenarios[1]
+
     def generate(self, output_dir):
+        dfs = self._scenario.get_filtered_dataframes("Nodes", "VoltageMetrics")
+        self._gen_metric_1(dfs)
+
+    def _gen_metric_1(self, dfs):
         pass
 
     @staticmethod

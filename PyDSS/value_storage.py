@@ -6,15 +6,9 @@ import re
 
 import numpy as np
 
+from PyDSS.common import DatasetPropertyType
 from PyDSS.dataset_buffer import DatasetBuffer
 from PyDSS.exceptions import InvalidParameter, InvalidConfiguration
-
-
-class DatasetPropertyType(enum.Enum):
-    ELEMENT_PROPERTY = "elem_prop"  # data is stored at every time point
-    FILTERED = "filtered"  # data is stored after being filtered
-    NUMBER = "number"  # Only a single value is written
-    TIME_STEP = "time_step"  # data are time indices, tied to FILTERED
 
 
 class ValueStorageBase(abc.ABC):
@@ -474,7 +468,6 @@ class ValueContainer:
             column_ranges = [0, len(tmp_columns)]
         else:
             columns = []
-            #num_cols_per_element = []
             column_ranges = []
             col_index = 0
             for value in values:
@@ -486,11 +479,7 @@ class ValueContainer:
                     col_index += 1
             self._time_steps = None
 
-        attributes = {
-            "column_ranges_per_name": column_ranges,
-            "names": elem_names,
-            "type": dataset_property_type.value,
-        }
+        attributes = {"type": dataset_property_type.value}
         if store_time_step:
             attributes["time_step_path"] = time_step_path
 
@@ -503,6 +492,8 @@ class ValueContainer:
             scaleoffset=scaleoffset,
             max_chunk_bytes=max_chunk_bytes,
             attributes=attributes,
+            names=elem_names,
+            column_ranges_per_name=column_ranges,
         )
 
     @staticmethod

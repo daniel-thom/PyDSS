@@ -11,7 +11,7 @@ import pandas as pd
 
 from PyDSS.pyLogger import getLoggerTag
 from PyDSS.unitDefinations import unit_info
-from PyDSS.common import PV_LOAD_SHAPE_FILENAME
+from PyDSS.common import PV_LOAD_SHAPE_FILENAME, DatasetPropertyType
 from PyDSS.dataset_buffer import DatasetBuffer
 from PyDSS.exceptions import InvalidConfiguration, InvalidParameter
 from PyDSS.export_list_reader import ExportListReader, StoreValuesType
@@ -20,7 +20,7 @@ from PyDSS.reports import Reports, ReportGranularity
 from PyDSS.utils.dataframe_utils import write_dataframe
 from PyDSS.utils.utils import dump_data, TimerStats
 from PyDSS.utils.simulation_utils import CircularBufferHelper
-from PyDSS.value_storage import ValueContainer, ValueByNumber, DatasetPropertyType
+from PyDSS.value_storage import ValueContainer, ValueByNumber
 from PyDSS.metrics import OpenDssPropertyMetrics, SummedElementsOpenDssPropertyMetric
 
 

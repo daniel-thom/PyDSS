@@ -132,6 +132,14 @@ class DataConversion(enum.Enum):
     SUM = "sum"
 
 
+class DatasetPropertyType(enum.Enum):
+    ELEMENT_PROPERTY = "elem_prop"  # data is stored at every time point
+    FILTERED = "filtered"  # data is stored after being filtered
+    METADATA = "metadata"  # metadata for another dataset
+    NUMBER = "number"  # Only a single value is written
+    TIME_STEP = "time_step"  # data are time indices, tied to FILTERED
+
+
 class LimitsFilter(enum.Enum):
     INSIDE = "inside"
     OUTSIDE = "outside"

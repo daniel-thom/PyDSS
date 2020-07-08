@@ -4,7 +4,8 @@ import logging
 import os
 import re
 
-from PyDSS.common import DataConversion, LimitsFilter, StoreValuesType
+from PyDSS.common import DataConversion, LimitsFilter, StoreValuesType, \
+    DatasetPropertyType
 from PyDSS.pyContrReader import pyExportReader
 from PyDSS.utils.simulation_utils import calculate_line_loading_percent, \
     calculate_transformer_loading_percent, track_capacitor_state_changes, \
@@ -14,7 +15,6 @@ from PyDSS.exceptions import InvalidConfiguration, InvalidParameter
 from PyDSS.metrics import NodeVoltageMetrics, TrackCapacitorChangeCounts, \
     TrackRegControlTapNumberChanges, LineLoadingPercent, \
     TransformerLoadingPercent
-from PyDSS.value_storage import DatasetPropertyType
 
 
 MinMax = namedtuple("MinMax", "min, max")
