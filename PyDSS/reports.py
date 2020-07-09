@@ -296,6 +296,11 @@ class PvReportBase(ReportBase, abc.ABC):
                     "data_conversion": "abs_sum",
                     "store_values_type": _type,
                     "sum_elements": sum_elements,
+                },
+                {
+                    "property": "ExportPowersMetric",
+                    "store_values_type": _type,
+                    "sum_elements": sum_elements,
                 }
             ]
         }

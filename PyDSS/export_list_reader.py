@@ -14,7 +14,7 @@ from PyDSS.utils.utils import load_data
 from PyDSS.exceptions import InvalidConfiguration, InvalidParameter
 from PyDSS.metrics import NodeVoltageMetrics, TrackCapacitorChangeCounts, \
     TrackRegControlTapNumberChanges, LineLoadingPercent, \
-    TransformerLoadingPercent
+    TransformerLoadingPercent, ExportPowersMetric
 
 
 MinMax = namedtuple("MinMax", "min, max")
@@ -26,6 +26,7 @@ CUSTOM_METRICS = {
     "RegControls.TrackTapNumberChanges": TrackRegControlTapNumberChanges,
     "Transformers.LoadingPercent": TransformerLoadingPercent,
     "Nodes.VoltageMetrics": NodeVoltageMetrics,
+    "PVSystems.ExportPowersMetric": ExportPowersMetric,
 }
 
 logger = logging.getLogger(__name__)

@@ -7,6 +7,7 @@ import time
 
 import h5py
 import numpy as np
+import pandas as pd
 import opendssdirect as dss
 
 from PyDSS.common import DataConversion, StoreValuesType
@@ -324,33 +325,33 @@ class NodeVoltageMetrics(Metric):
         # Indices for node names are tied to indices for node voltages.
         self._node_names = None
         self._containers = {}
+        self._voltages = None
 
     def _make_values(self, voltages):
         return [ValueByNumber(x, "Voltage", y) for x, y in zip(self._node_names, voltages)]
 
     def append_values(self, time_step):
-        start = time.time()
         voltages = dss.Circuit.AllBusMagPu()
-        values = None
         if not self._containers:
             # TODO: limit to objects that have been added
             self._node_names = dss.Circuit.AllNodeNames()
+            self._voltages = [ValueByNumber(x, "Voltage", y) for x, y in zip(self._node_names, voltages)]
             for prop in self._properties.values():
                 path = f"{self._base_path}/Nodes/ElementProperties/{prop.storage_name}"
-                values = self._make_values(voltages)
+                #values = self._make_values(voltages)
                 self._containers[prop.store_values_type] = self.make_storage_container(
                     self._hdf_store,
                     path,
                     prop,
                     self._num_steps,
                     self._max_chunk_bytes,
-                    values,
+                    self._voltages,
                 )
-
-        if values is None:
-            values = self._make_values(voltages)
+        else:
+            for i in range(len(voltages)):
+                self._voltages[i].set_value_from_raw(voltages[i])
         for sv_type, prop in self._properties.items():
-            self._containers[sv_type].append_values(values, time_step)
+            self._containers[sv_type].append_values(self._voltages, time_step)
 
     @staticmethod
     def is_circuit_wide():
@@ -413,6 +414,98 @@ class TrackRegControlTapNumberChanges(ChangeCountMetric):
                          self._change_counts[reg_control.FullName])
 
         self._last_values[reg_control.FullName] = tap_number
+
+
+class OpenDssExportMetric(Metric):
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
+        self._containers = {}
+        filename = self._run_command()
+        self.check_output(filename)
+
+    def _run_command(self):
+        cmd = f"{self.export_command()}"
+        result = dss.utils.run_command(cmd)
+        if not result:
+            raise Exception(f"{cmd} failed")
+        return result
+
+    @abc.abstractmethod
+    def check_output(self, filename):
+        """Check that the output is expected."""
+
+    @staticmethod
+    @abc.abstractmethod
+    def export_command(self):
+        """Return the command to run in OpenDSS."""
+
+    def iter_containers(self):
+        yield None
+
+    @abc.abstractmethod
+    def parse_file(self, filename):
+        """Parse data in filename."""
+
+    @staticmethod
+    def is_circuit_wide():
+        return True
+
+    def iter_containers(self):
+        for sv_type in self._properties:
+            if sv_type in self._containers:
+                yield self._containers[sv_type]
+
+
+class ExportPowersMetric(OpenDssExportMetric, abc.ABC):
+    def __init__(self, prop, dss_objs, options):
+        super().__init__(prop, dss_objs, options)
+        # The OpenDSS file output upper-cases the name.
+        # Make a mapping for fast matching and lookup.
+        self._names = {}
+        for i, dss_obj in enumerate(dss_objs):
+            elem_type, name = dss_obj.FullName.split(".")
+            self._names[f"{elem_type}.{name.upper()}"] = i
+
+        # TODO: make this the full name
+        self._powers =  [ValueByNumber(x, "Power", 0.0) for x in self._names]
+
+    def append_values(self, time_step):
+        filename = self._run_command()
+        self.parse_file(filename)
+        if not self._containers:
+            for prop in self._properties.values():
+                path = f"{self._base_path}/{prop.elem_class}/ElementProperties/{prop.storage_name}"
+                self._containers[prop.store_values_type] = self.make_storage_container(
+                    self._hdf_store,
+                    path,
+                    prop,
+                    self._num_steps,
+                    self._max_chunk_bytes,
+                    self._powers,
+                )
+
+        for sv_type, prop in self._properties.items():
+            self._containers[sv_type].append_values(self._powers, time_step)
+
+    def check_output(self, filename):
+        df = pd.read_csv(filename)
+        expected = {0: "Element", 1: "Terminal", 2: "P(kW)"}
+        for index, val in expected.items():
+            if df.columns[index].strip() != val:
+                raise Exception(f"Unexpected format in powers file: {index} {val} {df.columns}")
+
+    @staticmethod
+    def export_command():
+        return "export powers"
+
+    def parse_file(self, filename):
+        with open(filename) as f_in:
+            for line in f_in:
+                fields = line.split(",")
+                name = fields[0]
+                if name in self._names:
+                    #terminal = fields[1]
+                    self._powers[self._names[name]].set_value_from_raw(float(fields[2]))
 
 
 def convert_data(name, prop_name, value, conversion):
