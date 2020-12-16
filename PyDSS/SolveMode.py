@@ -6,6 +6,7 @@ from PyDSS.pyLogger import getLoggerTag
 from PyDSS.modes.Dynamic import Dynamic
 from PyDSS.modes.Snapshot import Snapshot
 from PyDSS.modes.QSTS import QSTS
+from PyDSS.modes.QSTS2 import QSTS2
 
 
 def GetSolver(SimulationSettings, dssInstance):
@@ -20,6 +21,8 @@ def GetSolver(SimulationSettings, dssInstance):
         return Snapshot(dssInstance=dssInstance, SimulationSettings=SimulationSettings, Logger=pyLogger)
     elif SimulationSettings['Project']['Simulation Type'].lower() == 'qsts':
         return QSTS(dssInstance=dssInstance, SimulationSettings=SimulationSettings, Logger=pyLogger)
+    elif SimulationSettings['Project']['Simulation Type'].lower() == 'qsts2':
+        return QSTS2(dssInstance=dssInstance, SimulationSettings=SimulationSettings, Logger=pyLogger)
     elif SimulationSettings['Project']['Simulation Type'].lower() == 'dynamic':
         return Dynamic(dssInstance=dssInstance, SimulationSettings=SimulationSettings, Logger=pyLogger)
     else:

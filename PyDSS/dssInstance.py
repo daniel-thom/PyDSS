@@ -29,6 +29,7 @@ from bokeh.plotting import curdoc
 from bokeh.layouts import row
 from bokeh.client import push_session
 from opendssdirect.utils import run_command
+import opendssdirect as dss
 
 CONTROLLER_PRIORITIES = 3
 
@@ -259,7 +260,7 @@ class OpenDSS:
             if not has_converged:
                 name = postprocessor.__class__.__name__
                 self._Logger.warn("postprocessor %s reported a convergence error at step %s", name, step)
-                self._handleConvergenceErrorChecks(step, error)
+                self._HandleConvergenceErrorChecks(step, error)
 
         return step, has_converged
 
@@ -268,7 +269,7 @@ class OpenDSS:
         for priority in range(CONTROLLER_PRIORITIES):
             priority_has_converged = False
             for i in range(self._Options["Project"]["Max Control Iterations"]):
-                has_converged, error = self._UpdateControllers(priority, step, UpdateResults=False)
+                has_converged, error = self._UpdateControllers(priority, step, i, UpdateResults=False)
                 if has_converged:
                     priority_has_converged = True
                     break
@@ -278,11 +279,11 @@ class OpenDSS:
             if not priority_has_converged:
                 time_step_has_converged = False
                 self._Logger.warning("Control Loop %s no convergence @ %s error=%s", priority, step, error)
-                self._handleConvergenceErrorChecks(step, error)
+                self._HandleConvergenceErrorChecks(step, error)
 
         return time_step_has_converged
 
-    def _handleConvergenceErrorChecks(self, step, error):
+    def _HandleConvergenceErrorChecks(self, step, error):
         self._convergenceErrors += 1
 
         if self._maxConvergenceError != 0.0 and error > self._maxConvergenceError:
@@ -293,7 +294,7 @@ class OpenDSS:
             self._Logger.error("Exceeded convergence error count threshold at step %s", step)
             raise PyDssConvergenceErrorCountExceeded(f"{self._convergenceErrors} errors occurred")
 
-    def _UpdateControllers(self, Priority, Time, UpdateResults):
+    def _UpdateControllers(self, Priority, Time, Iteration, UpdateResults):
         errors = []
         maxError = 0.0
 
@@ -400,18 +401,9 @@ class OpenDSS:
                 self._dssSolver.setMode('Yearly')
 
         if self._Options['Helics']['Co-simulation Mode']:
-            if self._increment_flag:
-                self._dssSolver.IncStep()
-            else:
-                self._dssSolver.reSolve()
-        else:
-            self._dssSolver.IncStep()
-
-        if self._Options['Helics']['Co-simulation Mode']:
             self._HI.updateHelicsPublications()
             self._increment_flag, helics_time = self._HI.request_time_increment()
 
-        self._dssSolver.IncrementTimeStep()
         return has_converged
 
     def DryRunSimulation(self, project, scenario):
@@ -463,6 +455,15 @@ class OpenDSS:
             while step < Steps:
                 has_converged = self.RunStep(step)
                 step = self._ProcessStepResults(step, has_converged, postprocessors)
+
+                if self._Options['Helics']['Co-simulation Mode']:
+                    if self._increment_flag:
+                        self._dssSolver.IncStep()
+                    else:
+                        self._dssSolver.reSolve()
+                else:
+                    self._dssSolver.IncStep()
+
                 if self._increment_flag:
                     step += 1
         finally:

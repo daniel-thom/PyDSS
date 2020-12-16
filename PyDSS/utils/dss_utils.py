@@ -41,6 +41,18 @@ def read_pv_systems_from_dss_file(filename):
 
 
 def get_load_shape_resolution_secs():
+    """Return the load shape resolution.
+
+    Returns
+    -------
+    int
+
+    Raises
+    ------
+    InvalidConfiguration
+        Raised if all load shape resolutions are not the same.
+
+    """
     def func():
         if dss.LoadShape.Name() == "default":
             return None

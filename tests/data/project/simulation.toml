@@ -27,7 +27,7 @@
 "Control mode" = "Time"
 "Disable PyDSS controllers" = false
 "Project Path" = "./tests/data"
-"Simulation Type" = "QSTS"
+"Simulation Type" = "QSTS2"
 "Active Project" = "project"
 "Active Scenario" = ""
 "DSS File" = "Master_Spohn_existing_VV.dss"
