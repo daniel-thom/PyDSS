@@ -1,5 +1,7 @@
 import os
 
+from PyDSS.reports.reports import ReportGranularity
+
 settings_dict = {
         "Exports": {
             'Export Mode': {'type': str, 'Options': ["byClass", "byElement"]},
@@ -7,12 +9,11 @@ settings_dict = {
             # Feather is not supported because its underlying libraries do not support complex numbers
             'Export Format': {'type': str, 'Options': ["csv", "h5"]},
             'Export Compression': {'type': bool, 'Options': [True, False]},
-            'Export Iteration Order': {'type': str, 'Options': ["ElementValuesPerProperty",
-                                                                "ValuesByPropertyAcrossElements"]},
             'Export Elements': {'type': bool, 'Options': [True, False]},
             'Export Event Log': {'type': bool, 'Options': [True, False]},
             'Export Data Tables': {'type': bool, 'Options': [True, False]},
             'Export Data In Memory': {'type': bool, 'Options': [True, False]},
+            'Export PV Profiles': {'type': bool, 'Options': [True, False]},
             'HDF Max Chunk Bytes': {'type': int, 'Options': range(16 * 1024, 1024 * 1024 + 1)},
             'Log Results': {'type': bool, 'Options': [True, False]},
             'Result Container': {'type': str, 'Options': ['ResultContainer', 'ResultData']},
@@ -63,8 +64,11 @@ settings_dict = {
             'Date offset': {'type': int, 'Options': range(0, 365)},
             'Step resolution (sec)' : {'type': float},
             'Max Control Iterations' : {'type': int},
+            'Convergence error percent threshold': {'type': float},
+            'Skip export on convergence error': {'type': float},
             'Error tolerance': {'type': float},
-            'Simulation Type': {'type': str, 'Options': ["QSTS", "Dynamic", "Snapshot", "Monte Carlo"]},
+            'Max error tolerance': {'type': float},
+            'Simulation Type': {'type': str, 'Options': ["QSTS", "QSTS2", "Dynamic", "Snapshot", "Monte Carlo"]},
             'Active Project': {'type': str},
             'Scenarios': {'type': list},
             'Active Scenario': {'type': str},
@@ -73,12 +77,18 @@ settings_dict = {
             'Return Results': {'type': bool, 'Options': [True, False]},
             'Control mode': {'type': str, 'Options': ["Static", "Time"]},
             'Disable PyDSS controllers': {'type': bool, 'Options': [True, False]},
+            'Use Controller Registry': {'type': bool, 'Options': [True, False]},
         },
         "Profiles": {
             "Use profile manager":  {'type': bool, 'Options': [True, False]},
             "Profile store path": {'type': str},
             "Profile mapping": {'type': str},
-        }
+        },
+        "Reports": {
+            'Format': {'type': str, 'Options': ["csv", "h5"]},
+            'Granularity': {'type': str, 'Options': [x.value for x in ReportGranularity]},
+            'Types': {'type': list}
+        },
     }
 
 
@@ -132,4 +142,11 @@ def validate_settings(dss_args):
                                         'DSSfiles',
                                         dss_args['Project']['DSS File']))), \
         "Master DSS file '{}' does not exist.".format(dss_args['Project']['DSS File'])
+
+    if "Reports" in dss_args:
+        if [x for x in dss_args["Reports"]["Types"] if x["enabled"]]:
+            if not dss_args["Exports"]["Log Results"]:
+                raise InvalidConfiguration("Reports are only supported with Log Results")
+            if dss_args["Exports"]["Result Container"] != "ResultData":
+                raise InvalidConfiguration("Reports are only supported with ResultData container")
     return

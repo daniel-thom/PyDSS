@@ -7,7 +7,6 @@ import logging
 
 from PyDSS.exceptions import InvalidConfiguration
 from PyDSS import dssInstance
-from PyDSS.reports.reports import ReportGranularity
 from PyDSS.utils.utils import dump_data, load_data
 from PyDSS.valiate_settings import validate_settings
 
