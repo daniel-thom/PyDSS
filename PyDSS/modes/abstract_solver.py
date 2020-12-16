@@ -65,3 +65,11 @@ class abstact_solver(abc.ABC):
     @abc.abstractmethod
     def setMode(self, mode):
         return
+
+    @abc.abstractmethod
+    def GetOpenDSSTime(self):
+        return
+
+    def reset(self):
+
+        return

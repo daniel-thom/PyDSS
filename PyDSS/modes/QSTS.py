@@ -35,11 +35,6 @@ class QSTS(abstact_solver):
         self._EndTime = self._EndTime + timedelta(minutes=EndTimeMin)
         self._sStepRes = sStepResolution
         self._dssIntance = dssInstance
-        dss.Solution = dssInstance.Solution
-        dss.Solution.Mode(2)
-        self._sStepResHours = self._sStepRes / 60.0 / 60.0
-        dss.Solution.StepSize(0.0)
-
         if (StartTimeMin * 60) % self._sStepRes != 0:
             raise InvalidConfiguration(f"Start Time (min) is not a multiple of Step resolution (sec)")
 
@@ -85,6 +80,9 @@ class QSTS(abstact_solver):
         self._Time = self._Time + timedelta(seconds=self._sStepRes)
         self._Hour = int(dss.Solution.DblHour() // 1)
         self._Second = (dss.Solution.DblHour() % 1) * 60 * 60
+
+    def GetOpenDSSTime(self):
+        return self._dssSolution.DblHour() #- self._sStepRes/3600
 
     def GetTotalSeconds(self):
         return (self._Time - self._StartTime).total_seconds()

@@ -217,6 +217,13 @@ class ResultData:
         for metric in self._circuit_metrics.values():
             yield metric
 
+    def GetCurrentData(self):
+        self.CurrentResults.clear()
+        for elem in self._elements:
+            data = elem.get_current_data()
+            self.CurrentResults.update(data)
+        return self.CurrentResults
+
     def UpdateResults(self, store_nan=False):
         update_start = time.time()
         self.CurrentResults.clear()
@@ -258,7 +265,6 @@ class ResultData:
             "event_log": None,
             "element_info_files": [],
         }
-
         if self._options["Exports"]["Export Event Log"]:
             self._export_event_log(metadata)
         if self._options["Exports"]["Export Elements"]:
@@ -529,6 +535,199 @@ class ResultData:
 
         """
         total = 0
+        for metric in self._iter_metrics():
+            total += metric.max_num_bytes()
+        return total
+
+
+class ElementData:
+    def __init__(self, element_class, name, properties, obj, max_chunk_bytes,
+                 store_frequency=False, store_mode=False,
+                 scenario=None, hdf_store=None):
+        self._properties = properties
+        self._name = name
+        self._obj = obj
+        self._data = {x: None for x in properties}
+        self._num_steps = None
+        self._element_class = element_class
+        self._scenario = scenario
+        self._hdf_store = hdf_store
+        self._max_chunk_bytes = max_chunk_bytes
+
+    def export_data(self, path, fmt, compress):
+        """Export data to path.
+
+        Parameters
+        ----------
+        path : str
+            Output directory
+        fmt : str
+            Filer format type (csv, h5)
+        compress : bool
+            Compress data
+
+        """
+        pass
+
+    @property
+    def path(self):
+        return self._path
+
+    def initialize_data_store(self, hdf_store, scenario, num_steps):
+        self._hdf_store = hdf_store
+        self._num_steps = num_steps
+        self._scenario = scenario
+        # Reset these for MonteCarlo simulations.
+        for prop in self._data:
+            self._data[prop] = None
+
+    def append_values(self):
+        curr_data = {}
+        for prop in self.properties:
+            value = self._obj.GetValue(prop, convert=True)
+            if len(value.make_columns()) > 1:
+                for column, val in zip(value.make_columns(), value.value):
+                    curr_data[column] = val
+            else:
+                curr_data[value.make_columns()[0]] = value.value
+            if self._data[prop] is None:
+                path = f"Exports/{self._scenario}/{self._element_class}/{self._name}/{prop}"
+                self._data[prop] = ValueContainer(
+                    value,
+                    self._hdf_store,
+                    path,
+                    self._num_steps,
+                    max_chunk_bytes=self._max_chunk_bytes,
+                )
+            self._data[prop].append(value)
+        return curr_data
+
+    @property
+    def element_class(self):
+        return self._element_class
+
+    def flush_data(self):
+        """Flush any outstanding data to disk."""
+        for container in self._data.values():
+            if container is None:
+                continue
+            container.flush_data()
+
+    def max_num_bytes(self):
+        """Return the maximum number of bytes the element could store.
+
+        Returns
+        -------
+        int
+
+        """
+        total = 0
+        for container in self._data.values():
+            assert container is not None, \
+                "max_num_bytes cannot be called until at least one value has been collected"
+            total += container.max_num_bytes()
+        for element in self._elements:
+            total += element.max_num_bytes()
+        return total
+
+
+class ElementData:
+    def __init__(self, element_class, name, properties, obj, max_chunk_bytes,
+                 store_frequency=False, store_mode=False,
+                 scenario=None, hdf_store=None):
+        self._properties = properties
+        self._name = name
+        self._obj = obj
+        self._data = {x: None for x in properties}
+        self._num_steps = None
+        self._element_class = element_class
+        self._scenario = scenario
+        self._hdf_store = hdf_store
+        self._max_chunk_bytes = max_chunk_bytes
+
+    def export_data(self, path, fmt, compress):
+        """Export data to path.
+
+        Parameters
+        ----------
+        path : str
+            Output directory
+        fmt : str
+            Filer format type (csv, h5)
+        compress : bool
+            Compress data
+
+        """
+        pass
+
+    @property
+    def path(self):
+        return self._path
+
+    def initialize_data_store(self, hdf_store, scenario, num_steps):
+        self._hdf_store = hdf_store
+        self._num_steps = num_steps
+        self._scenario = scenario
+        # Reset these for MonteCarlo simulations.
+        for prop in self._data:
+            self._data[prop] = None
+
+    def get_current_data(self):
+        curr_data = {}
+        for prop in self.properties:
+            value = self._obj.GetValue(prop, convert=True)
+            if len(value.make_columns()) > 1:
+                for column, val in zip(value.make_columns(), value.value):
+                    curr_data[column] = val
+            else:
+                curr_data[value.make_columns()[0]] = value.value
+        return curr_data
+
+    def append_values(self):
+        curr_data = {}
+        for prop in self.properties:
+            value = self._obj.GetValue(prop, convert=True)
+            if len(value.make_columns()) > 1:
+                for column, val in zip(value.make_columns(), value.value):
+                    curr_data[column] = val
+            else:
+                curr_data[value.make_columns()[0]] = value.value
+            if self._data[prop] is None:
+                path = f"Exports/{self._scenario}/{self._element_class}/{self._name}/{prop}"
+                self._data[prop] = ValueContainer(
+                    value,
+                    self._hdf_store,
+                    path,
+                    self._num_steps,
+                    max_chunk_bytes=self._max_chunk_bytes,
+                )
+            self._data[prop].append(value)
+        return curr_data
+
+    @property
+    def element_class(self):
+        return self._element_class
+
+    def flush_data(self):
+        """Flush any outstanding data to disk."""
+        for container in self._data.values():
+            if container is None:
+                continue
+            container.flush_data()
+
+    def max_num_bytes(self):
+        """Return the maximum number of bytes the element could store.
+
+        Returns
+        -------
+        int
+
+        """
+        total = 0
+        for container in self._data.values():
+            assert container is not None, \
+                "max_num_bytes cannot be called until at least one value has been collected"
+            total += container.max_num_bytes()
         for metric in self._iter_metrics():
             total += metric.max_num_bytes()
         return total

@@ -17,7 +17,6 @@ PV_LOAD_SHAPE_FILENAME = "pv_load_shape_data.h5"
 PV_PROFILES_FILENAME = "pv_profiles.json"
 INTEGER_NAN = -9999
 
-
 class VisualizationType(enum.Enum):
     FREQUENCY_PLOT = "FrequencySweep"
     HISTOGRAM_PLOT = "Histogram"
@@ -37,6 +36,8 @@ class ControllerType(enum.Enum):
     MOTOR_STALL = "MotorStall"
     PV_VOLTAGE_RIDETHROUGH = "PvVoltageRideThru"
     FAULT_CONTROLLER = "FaultController"
+    THERMOSTATIC_LOAD_CONTROLLER = "ThermostaticLoad"
+    THERMOSTATIC_LOAD = "ThermostaticLoad2"
 
 
 CONTROLLER_TYPES = tuple(x.value for x in ControllerType)
