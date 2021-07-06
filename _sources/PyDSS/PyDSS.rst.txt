@@ -1,0 +1,316 @@
+PyDSS package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   PyDSS.Extensions
+   PyDSS.ProfileManager
+   PyDSS.api
+   PyDSS.cli
+   PyDSS.pyControllers
+   PyDSS.pyPlots
+   PyDSS.pyPostprocessor
+   PyDSS.reports
+
+Submodules
+----------
+
+PyDSS.NetworkModifier module
+----------------------------
+
+.. automodule:: PyDSS.NetworkModifier
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.ResultData module
+-----------------------
+
+.. automodule:: PyDSS.ResultData
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.SolveMode module
+----------------------
+
+.. automodule:: PyDSS.SolveMode
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.common module
+-------------------
+
+.. automodule:: PyDSS.common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.config\_data module
+-------------------------
+
+.. automodule:: PyDSS.config_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dataset\_buffer module
+----------------------------
+
+.. automodule:: PyDSS.dataset_buffer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssBus module
+-------------------
+
+.. automodule:: PyDSS.dssBus
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssCircuit module
+-----------------------
+
+.. automodule:: PyDSS.dssCircuit
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssElement module
+-----------------------
+
+.. automodule:: PyDSS.dssElement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssElementFactory module
+------------------------------
+
+.. automodule:: PyDSS.dssElementFactory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssInstance module
+------------------------
+
+.. automodule:: PyDSS.dssInstance
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssObjectBase module
+--------------------------
+
+.. automodule:: PyDSS.dssObjectBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.dssTransformer module
+---------------------------
+
+.. automodule:: PyDSS.dssTransformer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.element\_fields module
+----------------------------
+
+.. automodule:: PyDSS.element_fields
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.element\_options module
+-----------------------------
+
+.. automodule:: PyDSS.element_options
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.exceptions module
+-----------------------
+
+.. automodule:: PyDSS.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.export\_list\_reader module
+---------------------------------
+
+.. automodule:: PyDSS.export_list_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.helics\_interface module
+------------------------------
+
+.. automodule:: PyDSS.helics_interface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.loggers module
+--------------------
+
+.. automodule:: PyDSS.loggers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.metrics module
+--------------------
+
+.. automodule:: PyDSS.metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.naerm module
+------------------
+
+.. automodule:: PyDSS.naerm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.node\_voltage\_metrics module
+-----------------------------------
+
+.. automodule:: PyDSS.node_voltage_metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pyContrReader module
+--------------------------
+
+.. automodule:: PyDSS.pyContrReader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pyDSS module
+------------------
+
+.. automodule:: PyDSS.pyDSS
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pyLogger module
+---------------------
+
+.. automodule:: PyDSS.pyLogger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pyPlotReader module
+-------------------------
+
+.. automodule:: PyDSS.pyPlotReader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pyResults module
+----------------------
+
+.. automodule:: PyDSS.pyResults
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pydss\_fs\_interface module
+---------------------------------
+
+.. automodule:: PyDSS.pydss_fs_interface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pydss\_project module
+---------------------------
+
+.. automodule:: PyDSS.pydss_project
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.pydss\_results module
+---------------------------
+
+.. automodule:: PyDSS.pydss_results
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.registry module
+---------------------
+
+.. automodule:: PyDSS.registry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.storage\_filters module
+-----------------------------
+
+.. automodule:: PyDSS.storage_filters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.thermal\_metrics module
+-----------------------------
+
+.. automodule:: PyDSS.thermal_metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.unitDefinations module
+----------------------------
+
+.. automodule:: PyDSS.unitDefinations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.valiate\_settings module
+------------------------------
+
+.. automodule:: PyDSS.valiate_settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.value\_storage module
+---------------------------
+
+.. automodule:: PyDSS.value_storage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS
+   :members:
+   :undoc-members:
+   :show-inheritance:

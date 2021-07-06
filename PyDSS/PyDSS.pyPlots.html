@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPlots package &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyDSS.pyPlots.Plots package" href="PyDSS.pyPlots.Plots.html" />
+    <link rel="prev" title="PyDSS.pyControllers.Controllers package" href="PyDSS.pyControllers.Controllers.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../PyDSS.html">PyDSS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">PyDSS</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../PyDSS.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="modules.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="PyDSS.html">PyDSS package</a> &raquo;</li>
+        
+      <li>PyDSS.pyPlots package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/PyDSS/PyDSS.pyPlots.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pydss-pyplots-package">
+<h1>PyDSS.pyPlots package<a class="headerlink" href="#pydss-pyplots-package" title="Permalink to this headline">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PyDSS.pyPlots.Plots.html">PyDSS.pyPlots.Plots package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.FrequencySweep">PyDSS.pyPlots.Plots.FrequencySweep module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.Histogram">PyDSS.pyPlots.Plots.Histogram module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.NetworkGraph">PyDSS.pyPlots.Plots.NetworkGraph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.Table">PyDSS.pyPlots.Plots.Table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.ThreeDim">PyDSS.pyPlots.Plots.ThreeDim module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.TimeSeries">PyDSS.pyPlots.Plots.TimeSeries module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.Topology">PyDSS.pyPlots.Plots.Topology module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.VoltageDistance">PyDSS.pyPlots.Plots.VoltageDistance module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots.XY">PyDSS.pyPlots.Plots.XY module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-PyDSS.pyPlots.pyPlotAbstract">
+<span id="pydss-pyplots-pyplotabstract-module"></span><h2>PyDSS.pyPlots.pyPlotAbstract module<a class="headerlink" href="#module-PyDSS.pyPlots.pyPlotAbstract" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.</span></span><span class="sig-name descname"><span class="pre">PlotAbstract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/pyPlotAbstract.html#PlotAbstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An abstract class that serves as template for all pyPlot classes in <a class="reference internal" href="PyDSS.pyPlots.Plots.html#module-PyDSS.pyPlots.Plots" title="PyDSS.pyPlots.Plots"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyDSS.pyPlots.Plots</span></code></a> module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>PlotProperties</strong> (<em>dict</em>) – A <a class="reference internal" href="PyDSS.html#PyDSS.dssElement.dssElement" title="PyDSS.dssElement.dssElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssElement.dssElement</span></code></a> object that wraps around an OpenDSS ‘Fault’ element</p></li>
+<li><p><strong>dssBuses</strong> (dict of <a class="reference internal" href="PyDSS.html#PyDSS.dssBus.dssBus" title="PyDSS.dssBus.dssBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssBus.dssBus</span></code></a> objects) – Dictionary of all <a class="reference internal" href="PyDSS.html#PyDSS.dssBus.dssBus" title="PyDSS.dssBus.dssBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssBus.dssBus</span></code></a> objects in PyDSS</p></li>
+<li><p><strong>dssObjects</strong> (dict of <a class="reference internal" href="PyDSS.html#PyDSS.dssElement.dssElement" title="PyDSS.dssElement.dssElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssElement.dssElement</span></code></a> objects) – Dictionary of all <a class="reference internal" href="PyDSS.html#PyDSS.dssElement.dssElement" title="PyDSS.dssElement.dssElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssElement.dssElement</span></code></a> objects in PyDSS</p></li>
+<li><p><strong>dssCircuit</strong> (dict of <a class="reference internal" href="PyDSS.html#PyDSS.dssCircuit.dssCircuit" title="PyDSS.dssCircuit.dssCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssCircuit.dssCircuit</span></code></a> objects) – Dictionary of all <a class="reference internal" href="PyDSS.html#PyDSS.dssCircuit.dssCircuit" title="PyDSS.dssCircuit.dssCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssCircuit.dssCircuit</span></code></a> objects in PyDSS</p></li>
+<li><p><strong>dssSolver</strong> (<a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode" title="PyDSS.SolveMode"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyDSS.SolveMode</span></code></a>) – An instance of one of the classes defined in <a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode" title="PyDSS.SolveMode"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyDSS.SolveMode</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/pyPlotAbstract.html#PlotAbstract.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/pyPlotAbstract.html#PlotAbstract.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.pyPlots">
+<span id="pydss-pyplots-pyplots-module"></span><h2>PyDSS.pyPlots.pyPlots module<a class="headerlink" href="#module-PyDSS.pyPlots.pyPlots" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.pyPlots.Create">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.pyPlots.</span></span><span class="sig-name descname"><span class="pre">Create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PlotPropertyDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/pyPlots.html#Create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.pyPlots.Create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-PyDSS.pyPlots" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="PyDSS.pyPlots.Plots.html" class="btn btn-neutral float-right" title="PyDSS.pyPlots.Plots package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="PyDSS.pyControllers.Controllers.html" class="btn btn-neutral float-left" title="PyDSS.pyControllers.Controllers package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

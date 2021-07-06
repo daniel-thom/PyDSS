@@ -1,0 +1,1442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pydss_results &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pydss_results</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pydss_results</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Provides access to PyDSS result data.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">PyDSS.common</span> <span class="kn">import</span>  <span class="n">DatasetPropertyType</span>
+<span class="kn">from</span> <span class="nn">PyDSS.dataset_buffer</span> <span class="kn">import</span> <span class="n">DatasetBuffer</span>
+<span class="kn">from</span> <span class="nn">PyDSS.element_options</span> <span class="kn">import</span> <span class="n">ElementOptions</span>
+<span class="kn">from</span> <span class="nn">PyDSS.exceptions</span> <span class="kn">import</span> <span class="n">InvalidParameter</span>
+<span class="kn">from</span> <span class="nn">PyDSS.pydss_project</span> <span class="kn">import</span> <span class="n">PyDssProject</span><span class="p">,</span> <span class="n">RUN_SIMULATION_FILENAME</span>
+<span class="kn">from</span> <span class="nn">PyDSS.reports.reports</span> <span class="kn">import</span> <span class="n">Reports</span><span class="p">,</span> <span class="n">REPORTS_DIR</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.dataframe_utils</span> <span class="kn">import</span> <span class="n">read_dataframe</span><span class="p">,</span> <span class="n">write_dataframe</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.utils</span> <span class="kn">import</span> <span class="n">dump_data</span><span class="p">,</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">make_json_serializable</span><span class="p">,</span> \
+    <span class="n">make_timestamps</span>
+<span class="kn">from</span> <span class="nn">PyDSS.value_storage</span> <span class="kn">import</span> <span class="n">ValueStorageBase</span><span class="p">,</span> <span class="n">get_dataset_property_type</span><span class="p">,</span> \
+    <span class="n">get_time_step_path</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PyDssResults"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssResults">[docs]</a><span class="k">class</span> <span class="nc">PyDssResults</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Interface to perform analysis on PyDSS output data.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructs PyDssResults object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        project_path : str | None</span>
+<span class="sd">            Load project from files in path</span>
+<span class="sd">        project : PyDssProject | None</span>
+<span class="sd">            Existing project object</span>
+<span class="sd">        in_memory : bool</span>
+<span class="sd">            If true, load all exported data into memory.</span>
+<span class="sd">        frequency : bool</span>
+<span class="sd">            If true, add frequency column to all dataframes.</span>
+<span class="sd">        mode : bool</span>
+<span class="sd">            If true, add mode column to all dataframes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">ElementOptions</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">project_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># TODO: handle old version?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">PyDssProject</span><span class="o">.</span><span class="n">load_project</span><span class="p">(</span>
+                <span class="n">project_path</span><span class="p">,</span>
+                <span class="n">simulation_file</span><span class="o">=</span><span class="n">RUN_SIMULATION_FILENAME</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">project</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="s2">&quot;project_path or project must be set&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">fs_interface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">get_hdf_store_filename</span><span class="p">()</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;core&quot;</span> <span class="k">if</span> <span class="n">in_memory</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">simulation_config</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Log Results&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">list_scenario_names</span><span class="p">():</span>
+                <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">read_scenario_export_metadata</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">scenario_result</span> <span class="o">=</span> <span class="n">PyDssScenarioResults</span><span class="p">(</span>
+                    <span class="n">name</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">project_path</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="p">,</span>
+                    <span class="n">metadata</span><span class="p">,</span>
+                    <span class="n">options</span><span class="p">,</span>
+                    <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scenario_result</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssResults.generate_reports"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssResults.generate_reports">[docs]</a>    <span class="k">def</span> <span class="nf">generate_reports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate all reports specified in the configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            list of report filenames</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Reports</span><span class="o">.</span><span class="n">generate_reports</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssResults.read_report"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssResults.read_report">[docs]</a>    <span class="k">def</span> <span class="nf">read_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the report data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        report_name : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_reports</span> <span class="o">=</span> <span class="n">Reports</span><span class="o">.</span><span class="n">get_all_reports</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">report_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_reports</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;invalid report name </span><span class="si">{</span><span class="n">report_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">report_cls</span> <span class="o">=</span> <span class="n">all_reports</span><span class="p">[</span><span class="n">report_name</span><span class="p">]</span>
+
+        <span class="c1"># This bypasses self._fs_intf because reports are always extracted.</span>
+        <span class="n">reports_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">project_path</span><span class="p">,</span> <span class="n">REPORTS_DIR</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">reports_dir</span><span class="p">):</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">report_cls</span><span class="o">.</span><span class="n">FILENAME</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reports_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.toml&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;.h5&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">read_dataframe</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;did not find report </span><span class="si">{</span><span class="n">report_name</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">reports_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scenarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the PyDssScenarioResults instances for the project.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            list of PyDssScenarioResults</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span>
+
+<div class="viewcode-block" id="PyDssResults.get_scenario"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssResults.get_scenario">[docs]</a>    <span class="k">def</span> <span class="nf">get_scenario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the PyDssScenarioResults object for scenario with name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Scenario name</span>
+
+<span class="sd">        Results</span>
+<span class="sd">        -------</span>
+<span class="sd">        PyDssScenarioResults</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidParameter</span>
+<span class="sd">            Raised if the scenario does not exist.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">scenario</span>
+
+        <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scenario </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not exist&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hdf_store</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a handle to the HDF data store.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        h5py.File</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">project_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the PyDSS project.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">project_path</span>
+
+<div class="viewcode-block" id="PyDssResults.read_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssResults.read_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read a file from the PyDSS project.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path to the file relative from the project directory.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Contents of the file</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">simulation_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the simulation configuration</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">simulation_config</span></div>
+
+
+<div class="viewcode-block" id="PyDssScenarioResults"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults">[docs]</a><span class="k">class</span> <span class="nc">PyDssScenarioResults</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Contains results for one scenario.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">project_path</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="n">fs_intf</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project_path</span> <span class="o">=</span> <span class="n">project_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="n">store</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span> <span class="o">=</span> <span class="n">fs_intf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Exports/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_classes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">h5py</span><span class="o">.</span><span class="n">Group</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elems_by_class</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_data_by_prop</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_indices_by_prop</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_props_by_class</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_props</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_ranges_per_elem</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_indices_df</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_frequency</span> <span class="o">=</span> <span class="n">frequency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_format_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_datasets</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_parse_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_classes</span><span class="p">:</span>
+            <span class="n">class_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;ElementProperties&quot;</span> <span class="ow">in</span> <span class="n">class_group</span><span class="p">:</span>
+                <span class="n">prop_group</span> <span class="o">=</span> <span class="n">class_group</span><span class="p">[</span><span class="s2">&quot;ElementProperties&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">prop_group</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">dataset_property_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">dataset_property_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">TIME_STEP</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="n">dataset_property_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="n">prop_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span>
+                    <span class="k">elif</span> <span class="n">dataset_property_type</span> <span class="ow">in</span> <span class="p">(</span>
+                            <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">PER_TIME_POINT</span><span class="p">,</span>
+                            <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">FILTERED</span><span class="p">,</span>
+                    <span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_data_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="n">prop_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_data_by_prop</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">continue</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_props_by_class</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_elem_indices_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="n">names</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">get_names</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_column_ranges_per_elem</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">get_column_ranges</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_elems_by_class</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">prop_names</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_indices_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_props</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_elems_by_class</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+            <span class="n">summed_elem_props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SummedElementProperties&quot;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">summed_elem_props</span><span class="p">:</span>
+                <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="s2">&quot;SummedElementProperties&quot;</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span>
+                <span class="n">dataset_property_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">dataset_property_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+                    <span class="p">}</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_name_from_column"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_name_from_column">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_name_from_column</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the element name from the dataframe column. The dataframe should have been</span>
+<span class="sd">        returned from this class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        column : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the name of the scenario.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+<div class="viewcode-block" id="PyDssScenarioResults.export_data"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.export_data">[docs]</a>    <span class="k">def</span> <span class="nf">export_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export data to path.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Output directory; defaults to scenario exports path</span>
+<span class="sd">        fmt : str</span>
+<span class="sd">            Filer format type (csv, h5)</span>
+<span class="sd">        compress : bool</span>
+<span class="sd">            Compress data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_path</span><span class="p">,</span> <span class="s2">&quot;Exports&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_element_timeseries</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_element_values</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_summed_element_timeseries</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_summed_element_values</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_export_element_timeseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_classes</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_properties</span><span class="p">(</span><span class="n">elem_class</span><span class="p">):</span>
+                <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                <span class="n">prop_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prop_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">FILTERED</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_export_filtered_dataframes</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_full_dataframe</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+                    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;__&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">])</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">fmt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+                    <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_element_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">):</span>
+        <span class="n">elem_prop_nums</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]:</span>
+                <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]:</span>
+                    <span class="n">col_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_element_column_range</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="n">col_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">length</span> <span class="o">=</span> <span class="n">col_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">:</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">elem_prop_nums</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]:</span>
+                        <span class="n">elem_prop_nums</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="n">elem_prop_nums</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">if</span> <span class="n">elem_prop_nums</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;element_property_values.json&quot;</span><span class="p">)</span>
+            <span class="n">dump_data</span><span class="p">(</span><span class="n">elem_prop_nums</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">make_json_serializable</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported data to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_filtered_dataframes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_filtered_dataframes</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Skip empty dataframe </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;__&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">])</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">fmt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+            <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_summed_element_timeseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]:</span>
+                <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="s2">&quot;SummedElementProperties&quot;</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span>
+                <span class="n">prop_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prop_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">PER_TIME_POINT</span><span class="p">:</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+                    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;__&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">])</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">fmt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+                    <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_summed_element_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">compress</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;summed_element_property_values.json&quot;</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">make_json_serializable</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_dataframe"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">get_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the dataframe for an element.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        element_name : str</span>
+<span class="sd">        real_only : bool</span>
+<span class="sd">            If dtype of any column is complex, drop the imaginary component.</span>
+<span class="sd">        abs_val : bool</span>
+<span class="sd">            If dtype of any column is complex, compute its absolute value.</span>
+<span class="sd">        kwargs</span>
+<span class="sd">            Filter on options; values can be strings or regular expressions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidParameter</span>
+<span class="sd">            Raised if the element is not stored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_props</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;element </span><span class="si">{</span><span class="n">element_name</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">prop_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">PER_TIME_POINT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem_prop_dataframe</span><span class="p">(</span>
+                <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="n">real_only</span><span class="p">,</span>
+                <span class="n">abs_val</span><span class="o">=</span><span class="n">abs_val</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">prop_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">FILTERED</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filtered_dataframe</span><span class="p">(</span>
+                <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="n">real_only</span><span class="p">,</span>
+                <span class="n">abs_val</span><span class="o">=</span><span class="n">abs_val</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+        <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">prop_type</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_filtered_dataframes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_filtered_dataframes">[docs]</a>    <span class="k">def</span> <span class="nf">get_filtered_dataframes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the dataframes for all elements.</span>
+
+<span class="sd">        Calling this is much more efficient than calling get_dataframe for each</span>
+<span class="sd">        element.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        element_name : str</span>
+<span class="sd">        real_only : bool</span>
+<span class="sd">            If dtype of any column is complex, drop the imaginary component.</span>
+<span class="sd">        abs_val : bool</span>
+<span class="sd">            If dtype of any column is complex, compute its absolute value.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            key = str (name), val = pd.DataFrame</span>
+<span class="sd">            The dict will be empty if no data was stored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_properties</span><span class="p">(</span><span class="n">element_class</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2"> is not stored&quot;</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">get_names</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+        <span class="n">indices_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indices_df</span><span class="p">()</span>
+        <span class="n">data_vals</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="n">length</span><span class="p">]</span>
+        <span class="n">elem_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">elem_timestamps</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+        <span class="c1"># The time_step_dataset has these columns:</span>
+        <span class="c1"># 1. time step index</span>
+        <span class="c1"># 2. element index</span>
+        <span class="c1"># Each row describes the source data in the dataset row.</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;time_step_path&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">length</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+        <span class="n">time_step_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="n">path</span><span class="p">][:</span><span class="n">length</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+            <span class="n">ts_index</span> <span class="o">=</span> <span class="n">time_step_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">elem_index</span> <span class="o">=</span> <span class="n">time_step_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="c1"># TODO DT: more than one column?</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">data_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">real_only</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">real</span>
+            <span class="k">elif</span> <span class="n">abs_val</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">elem_data</span><span class="p">[</span><span class="n">elem_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">elem_timestamps</span><span class="p">[</span><span class="n">elem_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indices_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ts_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">dfs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">elem_index</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">elem_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">elem_name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">elem_index</span><span class="p">]</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fix_columns</span><span class="p">(</span><span class="n">elem_name</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+            <span class="n">dfs</span><span class="p">[</span><span class="n">elem_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">vals</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">elem_timestamps</span><span class="p">[</span><span class="n">elem_index</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">dfs</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_full_dataframe"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_full_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">get_full_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a dataframe containing all data.  The dataframe is copied.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        real_only : bool</span>
+<span class="sd">            If dtype of any column is complex, drop the imaginary component.</span>
+<span class="sd">        abs_val : bool</span>
+<span class="sd">            If dtype of any column is complex, compute its absolute value.</span>
+<span class="sd">        kwargs</span>
+<span class="sd">            Filter on options; values can be strings or regular expressions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_properties</span><span class="p">(</span><span class="n">element_class</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;property </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_options</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elems_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">columns</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="n">real_only</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="n">abs_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_summed_element_total"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_summed_element_total">[docs]</a>    <span class="k">def</span> <span class="nf">get_summed_element_total</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the total value for a summed element property.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidParameter</span>
+<span class="sd">            Raised if the element class is not stored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">[</span><span class="n">element_class</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">[</span><span class="n">element_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_element_property_value"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_element_property_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_element_property_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the number stored for the element property.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">element_class</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">element_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">element_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_name</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">col_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_element_column_range</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">col_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">col_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">:</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_option_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_option_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_option_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the option values for the element property.</span>
+
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        element_name : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">get_option_values</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.get_summed_element_dataframe"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.get_summed_element_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">get_summed_element_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the dataframe for a summed element property.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        real_only : bool</span>
+<span class="sd">            If dtype of any column is complex, drop the imaginary component.</span>
+<span class="sd">        abs_val : bool</span>
+<span class="sd">            If dtype of any column is complex, compute its absolute value.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidParameter</span>
+<span class="sd">            Raised if the element class is not stored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_timeseries_props</span><span class="p">[</span><span class="n">element_class</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+
+        <span class="n">elem_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="n">element_class</span><span class="p">][</span><span class="s2">&quot;SummedElementProperties&quot;</span><span class="p">]</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">elem_group</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_indices_to_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">real_only</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">:</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="n">abs_val</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">:</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.iterate_dataframes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.iterate_dataframes">[docs]</a>    <span class="k">def</span> <span class="nf">iterate_dataframes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generator over the dataframes by element name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+<span class="sd">        real_only : bool</span>
+<span class="sd">            If dtype of any column is complex, drop the imaginary component.</span>
+<span class="sd">        abs_val : bool</span>
+<span class="sd">            If dtype of any column is complex, compute its absolute value.</span>
+<span class="sd">        kwargs : dict</span>
+<span class="sd">            Filter on options; values can be strings or regular expressions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            Tuple containing the name or property and a pd.DataFrame</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_names</span><span class="p">(</span><span class="n">element_class</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_props</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span>
+                    <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="n">real_only</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="n">abs_val</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="p">)</span>
+                <span class="k">yield</span> <span class="n">name</span><span class="p">,</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.iterate_element_property_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.iterate_element_property_values">[docs]</a>    <span class="k">def</span> <span class="nf">iterate_element_property_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a generator over all element properties stored as values.</span>
+
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            element_class, property, element_name, value</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_property_value</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                    <span class="k">yield</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_classes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_classes">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the element classes stored in the results.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_classes</span><span class="p">[:]</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_names"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_names">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the element names for a property stored in the results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: prop is deprecated</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elems_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="p">[])))</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_properties"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_properties">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">element_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the properties stored in the results for a class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        element_name : str | None</span>
+<span class="sd">            If not None, list properties only for that name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_props_by_class</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">element_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_props_by_class</span><span class="p">[</span><span class="n">element_class</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">element_name</span><span class="p">,</span> <span class="p">[])</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_value_names"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_value_names">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_value_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">element_class</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_values_by_prop</span><span class="p">[</span><span class="n">element_class</span><span class="p">][</span><span class="n">prop</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_property_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_property_values">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_property_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_name</span><span class="p">):</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_prop_nums</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_prop_nums</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_prop_nums</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">element_name</span><span class="p">:</span>
+                        <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nums</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_property_options"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_property_options">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_property_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List the possible options for the element class and property.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+<span class="sd">        prop : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">list_options</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_element_info_files"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_element_info_files">[docs]</a>    <span class="k">def</span> <span class="nf">list_element_info_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the files describing the OpenDSS element objects.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            list of filenames (str)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;element_info_files&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.list_summed_element_properties"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.list_summed_element_properties">[docs]</a>    <span class="k">def</span> <span class="nf">list_summed_element_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the properties stored for a class where the values are a sum</span>
+<span class="sd">        of all elements.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_class : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidParameter</span>
+<span class="sd">            Raised if the element_class is not stored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">element_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;class=</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> is not stored&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_elem_props</span><span class="p">[</span><span class="n">element_class</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_element_info_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_element_info_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_element_info_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the contents of file describing an OpenDSS element object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            full path to a file (returned by list_element_info_files) or</span>
+<span class="sd">            an element class, like &quot;Transformers&quot;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="n">actual</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">_file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_element_info_files</span><span class="p">():</span>
+                <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">_file</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">basename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Info&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">filename</span><span class="p">:</span>
+                    <span class="n">actual</span> <span class="o">=</span> <span class="n">_file</span>
+            <span class="k">if</span> <span class="n">actual</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;element info file for </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> is not stored&quot;</span>
+                <span class="p">)</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">actual</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_capacitor_changes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_capacitor_changes">[docs]</a>    <span class="k">def</span> <span class="nf">read_capacitor_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read the capacitor state changes from the OpenDSS event log.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Maps capacitor names to count of state changes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;event_log&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">_read_capacitor_changes</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_event_log"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_event_log">[docs]</a>    <span class="k">def</span> <span class="nf">read_event_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the event log for the scenario.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            list of dictionaries (one dict for each row in the file)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;event_log&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">_read_event_log</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_pv_profiles"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_pv_profiles">[docs]</a>    <span class="k">def</span> <span class="nf">read_pv_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns exported PV profiles for all PV systems.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="o">.</span><span class="n">read_scenario_pv_profiles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_check_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks that kwargs are valid and returns available option names.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">is_option_valid</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;class=</span><span class="si">{</span><span class="n">element_class</span><span class="si">}</span><span class="s2"> property=</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> option=</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s2"> is invalid&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">list_options</span><span class="p">(</span><span class="n">element_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_feeder_head_info"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_feeder_head_info">[docs]</a>    <span class="k">def</span> <span class="nf">read_feeder_head_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read the feeder head information.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exports/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">/FeederHeadInfo.json&quot;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="PyDssScenarioResults.read_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_results.PyDssScenarioResults.read_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read a file from the PyDSS project.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path to the file relative from the project directory.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Contents of the file</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_indices_to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="n">indices_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indices_df</span><span class="p">()</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices_df</span><span class="p">[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_frequency</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices_df</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_mode</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Simulation Mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices_df</span><span class="p">[</span><span class="s2">&quot;Simulation Mode&quot;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_finalize_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">dataset_property_type</span> <span class="o">=</span> <span class="n">get_dataset_property_type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dataset_property_type</span> <span class="o">==</span> <span class="n">DatasetPropertyType</span><span class="o">.</span><span class="n">FILTERED</span><span class="p">:</span>
+            <span class="n">time_step_path</span> <span class="o">=</span> <span class="n">get_time_step_path</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+            <span class="n">time_step_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="n">time_step_path</span><span class="p">]</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;TimeStep&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">time_step_dataset</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;TimeStep&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_indices_to_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">real_only</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">:</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="n">abs_val</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">:</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_fix_columns</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span>
+            <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">DELIMITER</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cols</span>
+
+    <span class="k">def</span> <span class="nf">_get_elem_prop_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">col_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_element_column_range</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">column_range</span><span class="o">=</span><span class="n">col_range</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_options</span><span class="p">(</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="n">ValueStorageBase</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">real_only</span><span class="o">=</span><span class="n">real_only</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="n">abs_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">_get_element_column_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">elem_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_indices_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">col_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_column_ranges_per_elem</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">][</span><span class="n">elem_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">col_range</span>
+
+    <span class="k">def</span> <span class="nf">_get_filtered_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span>
+                                <span class="n">real_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abs_val</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">indices_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indices_df</span><span class="p">()</span>
+        <span class="n">elem_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_indices_by_prop</span><span class="p">[</span><span class="n">elem_class</span><span class="p">][</span><span class="n">prop</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+        <span class="n">data_vals</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="n">length</span><span class="p">]</span>
+
+        <span class="c1"># The time_step_dataset has these columns:</span>
+        <span class="c1"># 1. time step index</span>
+        <span class="c1"># 2. element index</span>
+        <span class="c1"># Each row describes the source data in the dataset row.</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;time_step_path&quot;</span><span class="p">]</span>
+        <span class="n">time_step_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="n">path</span><span class="p">][:</span><span class="n">length</span><span class="p">]</span>
+
+        <span class="k">assert</span> <span class="n">length</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">timestamps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+            <span class="n">stored_elem_index</span> <span class="o">=</span> <span class="n">time_step_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">stored_elem_index</span> <span class="o">==</span> <span class="n">elem_index</span><span class="p">:</span>
+                <span class="n">ts_index</span> <span class="o">=</span> <span class="n">time_step_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="c1"># TODO DT: more than one column?</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">data_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># TODO: profile this vs a df operation at end</span>
+                <span class="k">if</span> <span class="n">real_only</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">real</span>
+                <span class="k">elif</span> <span class="n">abs_val</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">timestamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indices_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ts_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fix_columns</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">DatasetBuffer</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">timestamps</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_indices_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indices_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_indices_df</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indices_df</span>
+
+    <span class="k">def</span> <span class="nf">_make_indices_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Timestamp&quot;</span><span class="p">:</span> <span class="n">make_timestamps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_frequency</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_mode</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Simulation Mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group</span><span class="p">[</span><span class="s2">&quot;Mode&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_indices_df</span> <span class="o">=</span> <span class="n">df</span></div>
+
+
+<span class="k">def</span> <span class="nf">_read_capacitor_changes</span><span class="p">(</span><span class="n">event_log_text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read the capacitor state changes from an OpenDSS event log.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    event_log_text : str</span>
+<span class="sd">        Text of event log</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Maps capacitor names to count of state changes.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">capacitor_changes</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(Capacitor\.\w+)&quot;</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_read_event_log</span><span class="p">(</span><span class="n">event_log_text</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Element&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">capacitor_changes</span><span class="p">:</span>
+                <span class="n">capacitor_changes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Action&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;OPENED&quot;</span><span class="p">,</span> <span class="s2">&quot;CLOSED&quot;</span><span class="p">,</span> <span class="s2">&quot;STEP UP&quot;</span><span class="p">):</span>
+                <span class="n">capacitor_changes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">capacitor_changes</span>
+
+
+<span class="k">def</span> <span class="nf">_read_event_log</span><span class="p">(</span><span class="n">event_log_text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return OpenDSS event log information.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    event_log_text : str</span>
+<span class="sd">        Text of event log</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        list of dictionaries (one dict for each row in the file)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">event_log_text</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">event_log_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="n">name_and_value</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">token</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)]</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name_and_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">name_and_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">row</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

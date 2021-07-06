@@ -1,41 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>PyDSS.pyControllers.Controllers.StorageController &mdash; PyDSS 0.0.1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link href="../../../../_static/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -72,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -80,45 +89,190 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Sample TOML files.html">Default simulation settings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Sample TOML files.html#default-visualization-settings">Default visualization settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Project management.html">Improved project management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Result management.html">Enhanced result export features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Dynamic visualization capabilities.html">Dynamic visualization capabilities</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html">Frequency sweep plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#gis-plot">GIS plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#histogram-plot">Histogram plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#voltage-sag-plot">Voltage sag plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#time-series-plot">Time series plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic plots.html#xy-plots">XY plots</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Creating custom dynamic plots.html">Development of custom dynamic plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Extended controls library.html">Extended controls library</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html">Fault controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html#pv-controller">PV controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html#pv-controller-gen">Pv controller [Gen]</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html#socket-controller">Socket controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html#storage-controller">Storage controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS controllers.html#xfmr-controller">Xfmr controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../Creating custom controls.html">Extending PyDSS controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../External interfaces for cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html">The socket interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-api-interface">The API interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Automated comparison of scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -153,11 +307,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
@@ -177,19 +333,35 @@
            <div itemprop="articleBody">
             
   <h1>Source code for PyDSS.pyControllers.Controllers.StorageController</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span>  <span class="nn">PyDSS.pyControllers.pyControllerAbstract</span> <span class="k">import</span> <span class="n">ControllerAbstract</span>
+<span></span><span class="kn">from</span>  <span class="nn">PyDSS.pyControllers.pyControllerAbstract</span> <span class="kn">import</span> <span class="n">ControllerAbstract</span>
 <span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">ast</span>
 
-<div class="viewcode-block" id="StorageController"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController">[docs]</a><span class="k">class</span> <span class="nc">StorageController</span><span class="p">(</span><span class="n">ControllerAbstract</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">StorageObj</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dssInstance</span><span class="p">,</span> <span class="n">ElmObjectList</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController">[docs]</a><span class="k">class</span> <span class="nc">StorageController</span><span class="p">(</span><span class="n">ControllerAbstract</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Numerous control implementation for a storage system from both behind-the-meter and front-of- meter applications. Subclass of the :class:`PyDSS.pyControllers.pyControllerAbstract.ControllerAbstract` abstract class.</span>
+
+<span class="sd">            :param StorageObj: A :class:`PyDSS.dssElement.dssElement` object that wraps around an OpenDSS Storage element</span>
+<span class="sd">            :type FaultObj: class:`PyDSS.dssElement.dssElement`</span>
+<span class="sd">            :param Settings: A dictionary that defines the settings for the PvController.</span>
+<span class="sd">            :type Settings: dict</span>
+<span class="sd">            :param dssInstance: An :class:`opendssdirect` instance</span>
+<span class="sd">            :type dssInstance: :class:`opendssdirect`</span>
+<span class="sd">            :param ElmObjectList: Dictionary of all dssElement, dssBus and dssCircuit objects</span>
+<span class="sd">            :type ElmObjectList: dict</span>
+<span class="sd">            :param dssSolver: An instance of one of the classed defined in :mod:`PyDSS.SolveMode`.</span>
+<span class="sd">            :type dssSolver: :mod:`PyDSS.SolveMode`</span>
+<span class="sd">            :raises: AssertionError if &#39;StorageObj&#39; is not a wrapped OpenDSS Storage element</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">StorageObj</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dssInstance</span><span class="p">,</span> <span class="n">ElmObjectList</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">StorageController</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StorageController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">StorageObj</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dssInstance</span><span class="p">,</span> <span class="n">ElmObjectList</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span> <span class="o">=</span> <span class="n">StorageObj</span>
-        <span class="n">Class</span><span class="p">,</span> <span class="n">Name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetInfo</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span> <span class="o">=</span> <span class="s1">&#39;pyCont_&#39;</span> <span class="o">+</span> <span class="n">Class</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">Name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ceClass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceName</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetInfo</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ceClass</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;storage&#39;</span><span class="p">),</span> <span class="s1">&#39;StorageController works only with an OpenDSS Storage element&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span> <span class="o">=</span> <span class="s1">&#39;pyCont_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceClass</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceName</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__Pin</span> <span class="o">=</span> <span class="mi">0</span>
@@ -201,7 +373,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__ElmObjectList</span> <span class="o">=</span> <span class="n">ElmObjectList</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ControlDict</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;None&#39;</span>   <span class="p">:</span> <span class="k">lambda</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;None&#39;</span>   <span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
             <span class="s1">&#39;PS&#39;</span>     <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">PeakShavingControl</span><span class="p">,</span>
             <span class="s1">&#39;CF&#39;</span>     <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">CapacityFirmimgControl</span><span class="p">,</span>
             <span class="s1">&#39;TT&#39;</span>     <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">TimeTriggeredControl</span><span class="p">,</span>
@@ -222,26 +394,33 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span> <span class="o">=</span> <span class="n">dssInstance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span> <span class="o">=</span> <span class="n">dssSolver</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span> <span class="o">=</span> <span class="n">Settings</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">__Srated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">StorageObj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kVA&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">StorageObj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kWrated&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__Pbatt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">StorageObj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kW&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dampCoef</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;DampCoef&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ControlDict</span><span class="p">[</span><span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Control&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-        <span class="c1">#Class, Name = self.__ControlledElm.GetInfo()</span>
-        <span class="c1">#self.__Name = &#39;pyCont_&#39; + Class + &#39;_&#39; + Name</span>
-        <span class="c1">#self.__Convergance = np.zeros((1440,10))</span>
         <span class="k">return</span>
 
-<div class="viewcode-block" id="StorageController.Update"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.Update">[docs]</a>    <span class="k">def</span> <span class="nf">Update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Priority</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Update</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.Name"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.Name">[docs]</a>    <span class="k">def</span> <span class="nf">Name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span></div>
+
+<div class="viewcode-block" id="StorageController.ControlledElement"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.ControlledElement">[docs]</a>    <span class="k">def</span> <span class="nf">ControlledElement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ceClass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceName</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StorageController.debugInfo"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.debugInfo">[docs]</a>    <span class="k">def</span> <span class="nf">debugInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Control</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="StorageController.Update"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.Update">[docs]</a>    <span class="k">def</span> <span class="nf">Update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Priority</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Update</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">TimeChange</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">!=</span> <span class="p">(</span><span class="n">Time</span><span class="p">,</span> <span class="n">Priority</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">=</span> <span class="p">(</span><span class="n">Time</span><span class="p">,</span> <span class="n">Priority</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">[</span><span class="n">Priority</span><span class="p">]()</span></div>
 
-<div class="viewcode-block" id="StorageController.SetSetting"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.SetSetting">[docs]</a>    <span class="k">def</span> <span class="nf">SetSetting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Property</span><span class="p">,</span> <span class="n">Value</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.SetSetting"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.SetSetting">[docs]</a>    <span class="k">def</span> <span class="nf">SetSetting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Property</span><span class="p">,</span> <span class="n">Value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="n">Property</span><span class="p">]</span> <span class="o">=</span> <span class="n">Value</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="StorageController.GetSetting"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.GetSetting">[docs]</a>    <span class="k">def</span> <span class="nf">GetSetting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Property</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.GetSetting"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.GetSetting">[docs]</a>    <span class="k">def</span> <span class="nf">GetSetting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Property</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="n">Property</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="nf">__parseRatePlan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tarrif</span><span class="p">):</span>
@@ -269,7 +448,9 @@
                     <span class="k">pass</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="StorageController.TimeOfUse"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.TimeOfUse">[docs]</a>    <span class="k">def</span> <span class="nf">TimeOfUse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.TimeOfUse"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.TimeOfUse">[docs]</a>    <span class="k">def</span> <span class="nf">TimeOfUse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a time of use controller for behind the meter applications</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dP</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">Pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;touLoadLim&#39;</span><span class="p">]</span>
         <span class="n">touCharge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;%touCharge&#39;</span><span class="p">]</span>
@@ -286,7 +467,7 @@
         <span class="k">if</span> <span class="n">isTOU</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">Pin</span> <span class="o">&gt;</span> <span class="n">Pub</span><span class="p">:</span>
                 <span class="n">dP</span> <span class="o">=</span> <span class="n">Pin</span> <span class="o">-</span> <span class="n">Pub</span>
-                <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">+</span> <span class="p">(</span><span class="n">dP</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__a</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pbatt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
+                <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">+</span> <span class="n">dP</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__a</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pbatt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">Pbatt</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">else</span><span class="p">:</span>
@@ -309,7 +490,10 @@
         <span class="k">return</span> <span class="n">Error</span></div>
 
 
-<div class="viewcode-block" id="StorageController.DemandCharge"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.DemandCharge">[docs]</a>    <span class="k">def</span> <span class="nf">DemandCharge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.DemandCharge"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.DemandCharge">[docs]</a>    <span class="k">def</span> <span class="nf">DemandCharge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a demand charge controller for behind the meter applications</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">Demand</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">dP</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">DemandChgThreh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;DemandChgThreh[kWh]&#39;</span><span class="p">]</span>
@@ -334,7 +518,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">Demand</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__EnergyCounter</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetStepResolutionMinutes</span><span class="p">())</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Demand</span> <span class="o">&gt;=</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">DemandChgThreh</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mitigating demand charge: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Demand</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">Pin</span> <span class="o">&gt;</span> <span class="n">Pub</span><span class="p">:</span>
                     <span class="n">dP</span> <span class="o">=</span> <span class="n">Pin</span> <span class="o">-</span> <span class="n">Pub</span>
                     <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">+</span> <span class="p">(</span><span class="n">dP</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__a</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pbatt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
@@ -361,7 +544,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dPold</span> <span class="o">=</span> <span class="n">dP</span>
         <span class="k">return</span> <span class="n">Error</span></div>
 
-<div class="viewcode-block" id="StorageController.ScheduledControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.ScheduledControl">[docs]</a>    <span class="k">def</span> <span class="nf">ScheduledControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.ScheduledControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.ScheduledControl">[docs]</a>    <span class="k">def</span> <span class="nf">ScheduledControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a fixed schedule controller. Used to implemented predefined dispatch signals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">P_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Schedule&#39;</span><span class="p">]</span>
         <span class="n">Days</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Days&#39;</span><span class="p">]</span>
         <span class="n">LenSchedule</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P_profile</span><span class="p">)</span>
@@ -371,7 +556,7 @@
         <span class="n">CurrentTime</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Solution</span><span class="o">.</span><span class="n">Hour</span><span class="p">())</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> \
                       <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Solution</span><span class="o">.</span><span class="n">Seconds</span><span class="p">())</span>
 
-        <span class="n">Index</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">CurrentTime</span> <span class="o">/</span> <span class="n">TimeStepPerSample</span><span class="p">)</span>
+        <span class="n">Index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">CurrentTime</span> <span class="o">/</span> <span class="n">TimeStepPerSample</span><span class="p">)</span>
         <span class="n">Pout</span> <span class="o">=</span> <span class="n">P_profile</span><span class="p">[</span><span class="n">Index</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">Pout</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;DISCHARGING&#39;</span><span class="p">)</span>
@@ -383,11 +568,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;IDLE&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="StorageController.NonExportTimeTriggered"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.NonExportTimeTriggered">[docs]</a>    <span class="k">def</span> <span class="nf">NonExportTimeTriggered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.NonExportTimeTriggered"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.NonExportTimeTriggered">[docs]</a>    <span class="k">def</span> <span class="nf">NonExportTimeTriggered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a smart non-export controller. Makes use of TOU window to optimize charging</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># self.dPold = 0</span>
         <span class="n">dP</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">Plb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;BaseLoadLim&#39;</span><span class="p">]</span>
-        <span class="c1"># perDischarge = self.__Settings[&#39;%DischargeRate&#39;]</span>
         <span class="n">sTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;ExpWindowStart&#39;</span><span class="p">]</span>
         <span class="n">eTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;ExpWindowEnd&#39;</span><span class="p">]</span>
         <span class="n">KWHrated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kWhrated&#39;</span><span class="p">))</span>
@@ -415,9 +601,6 @@
             <span class="n">perKWHstored</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">tored&#39;</span><span class="p">))</span>
             <span class="n">kWhrem</span> <span class="o">=</span> <span class="n">KWHrated</span> <span class="o">*</span> <span class="p">(</span><span class="n">perKWHstored</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">Pbatt</span> <span class="o">=</span> <span class="n">kWhrem</span> <span class="o">/</span> <span class="p">(</span><span class="n">Twindow</span><span class="p">)</span> <span class="o">*</span> <span class="n">effDchg</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">perIdle</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span> <span class="o">/</span> <span class="mi">100</span>
-            <span class="c1">#print(perKWHstored, kWhrem, self.Pbatt)</span>
-
-        <span class="c1"># print(self.__ControlledElm.GetParameter(&#39;%stored&#39;))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ExportOld</span> <span class="o">=</span> <span class="n">Export</span>
 
         <span class="k">if</span> <span class="n">Export</span><span class="p">:</span>
@@ -434,16 +617,10 @@
                 <span class="n">Sin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ElmObjectList</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PowerMeaElem&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;Powers&#39;</span><span class="p">)</span>
                 <span class="n">Sin2</span> <span class="o">=</span> <span class="n">Sin</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Sin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span>
                 <span class="n">Pin</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Sin2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
-            <span class="c1"># Pbatt = -float(self.__ControlledElm.GetVariable(&#39;Powers&#39;)[0])*3 + IdlingkW</span>
-            <span class="c1"># #Does not work as well as KW parameter for some reason</span>
             <span class="n">Pbatt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kw&#39;</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">Pin</span> <span class="o">&lt;</span> <span class="n">Plb</span><span class="p">:</span>
                 <span class="n">dP</span> <span class="o">=</span> <span class="n">Plb</span> <span class="o">-</span> <span class="n">Pin</span>
-                <span class="c1"># Pbatt = Pbatt + Pin - Plb</span>
                 <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">-</span> <span class="p">(</span><span class="n">dP</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__a</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pbatt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
-
-                <span class="c1"># dP = Pin - Plb</span>
-                <span class="c1"># Pbatt = Pbatt + dP * self.__Settings[&#39;DampCoef&#39;]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">Pbatt</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -461,7 +638,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dPold</span> <span class="o">=</span> <span class="n">dP</span>
         <span class="k">return</span> <span class="n">Error</span></div>
 
-<div class="viewcode-block" id="StorageController.PeakShavingControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.PeakShavingControl">[docs]</a>    <span class="k">def</span> <span class="nf">PeakShavingControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.PeakShavingControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.PeakShavingControl">[docs]</a>    <span class="k">def</span> <span class="nf">PeakShavingControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a peak shaving / base loading controller. Setting both peak shaving and base loading</span>
+<span class="sd">        limits to zero will make the storage work in &quot;SELF CONSUMPTION&quot; mode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PS_ub&#39;</span><span class="p">]</span>
         <span class="n">Plb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PS_lb&#39;</span><span class="p">]</span>
         <span class="n">IdlingkWPercent</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;%IdlingkW&#39;</span><span class="p">))</span>
@@ -471,10 +651,10 @@
             <span class="n">Pin</span> <span class="o">=</span> <span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">Sin</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">Sin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ElmObjectList</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PowerMeaElem&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;Powers&#39;</span><span class="p">)</span>
-            <span class="n">Pin</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Sin</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
-        <span class="c1">#Pbatt = -float(self.__ControlledElm.GetVariable(&#39;Powers&#39;)[0])*3 + IdlingkW</span>
-        <span class="c1">#Does not work as well as KW parameter for some reason</span>
+            <span class="n">Pin</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Sin</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Sin</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">])</span>
+
         <span class="n">Pbatt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kw&#39;</span><span class="p">))</span>
+
         <span class="k">if</span> <span class="n">Pin</span> <span class="o">&gt;</span> <span class="n">Pub</span><span class="p">:</span>
             <span class="n">dP</span> <span class="o">=</span> <span class="n">Pin</span> <span class="o">-</span> <span class="n">Pub</span>
             <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">+</span> <span class="n">dP</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dampCoef</span>
@@ -485,7 +665,7 @@
             <span class="n">Pbatt</span> <span class="o">=</span> <span class="n">Pbatt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dampCoef</span>
 
         <span class="k">if</span> <span class="n">Pbatt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">pctdischarge</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">Pbatt</span><span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span><span class="p">)</span><span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="n">pctdischarge</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">Pbatt</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span><span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
             <span class="n">pctdischarge</span> <span class="o">=</span> <span class="mi">100</span> <span class="k">if</span> <span class="n">pctdischarge</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="n">pctdischarge</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;DISCHARGING&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;%Discharge&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pctdischarge</span><span class="p">))</span>
@@ -498,11 +678,9 @@
 
         <span class="n">Error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Pbatt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Srated</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">PbattOld</span> <span class="o">=</span> <span class="n">Pbatt</span>
-        <span class="c1"># if Error &gt; 0.2:</span>
-        <span class="c1">#     print((self.__Name, Pbatt, self.PbattOld, self.__Prated, Pin, Plb, Pub, dP))</span>
         <span class="k">return</span> <span class="n">Error</span></div>
 
-<div class="viewcode-block" id="StorageController.RealTimeControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.RealTimeControl">[docs]</a>    <span class="k">def</span> <span class="nf">RealTimeControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.RealTimeControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.RealTimeControl">[docs]</a>    <span class="k">def</span> <span class="nf">RealTimeControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">kWOut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;%kWOut&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">kWOut</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;DISCHARGING&#39;</span><span class="p">)</span>
@@ -514,7 +692,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;IDLE&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="StorageController.TimeTriggeredControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.TimeTriggeredControl">[docs]</a>    <span class="k">def</span> <span class="nf">TimeTriggeredControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.TimeTriggeredControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.TimeTriggeredControl">[docs]</a>    <span class="k">def</span> <span class="nf">TimeTriggeredControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">HrCharge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;HrCharge&#39;</span><span class="p">]</span>
         <span class="n">HrDischarge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;HrDischarge&#39;</span><span class="p">]</span>
         <span class="n">rateCharge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1">ateCharge&#39;</span><span class="p">]</span>
@@ -526,7 +704,7 @@
         <span class="n">MnD</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">HrDischarge</span> <span class="o">-</span> <span class="n">HrD</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
         <span class="n">Minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Solution</span><span class="o">.</span><span class="n">Seconds</span><span class="p">()</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span>
-        <span class="n">Hour</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Solution</span><span class="o">.</span><span class="n">Hour</span><span class="p">()</span>
+        <span class="n">Hour</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Solution</span><span class="o">.</span><span class="n">Hour</span><span class="p">()</span> <span class="o">%</span> <span class="mi">24</span>
         <span class="k">if</span> <span class="n">Hour</span> <span class="o">==</span> <span class="n">HrC</span> <span class="ow">and</span> <span class="n">Minutes</span> <span class="o">==</span> <span class="n">MnC</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;CHARGING&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%c</span><span class="s1">harge&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">rateCharge</span><span class="p">))</span>
@@ -535,13 +713,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;%Discharge&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">rateDischarge</span><span class="p">))</span>
         <span class="k">return</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="StorageController.CapacityFirmimgControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.CapacityFirmimgControl">[docs]</a>    <span class="k">def</span> <span class="nf">CapacityFirmimgControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.CapacityFirmimgControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.CapacityFirmimgControl">[docs]</a>    <span class="k">def</span> <span class="nf">CapacityFirmimgControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a capacity firming algorithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dPub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;CF_dP_ub&#39;</span><span class="p">]</span>
         <span class="n">dPlb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;CF_dP_lb&#39;</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__PinOld</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Pin</span>
-        <span class="c1">#print(self.Time[0], self.__PinOld, self.__Pin)</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PowerMeaElem&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Total&#39;</span><span class="p">:</span>
             <span class="n">Sin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">TotalPower</span><span class="p">()</span>
             <span class="n">Pin</span> <span class="o">=</span> <span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">Sin</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
@@ -579,7 +759,10 @@
         <span class="n">Error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dPbatt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Error</span></div>
 
-<div class="viewcode-block" id="StorageController.ConstantPowerFactorControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.ConstantPowerFactorControl">[docs]</a>    <span class="k">def</span> <span class="nf">ConstantPowerFactorControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.ConstantPowerFactorControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.ConstantPowerFactorControl">[docs]</a>    <span class="k">def</span> <span class="nf">ConstantPowerFactorControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a constant power factor algorithm. In all cases of reactive power support, active power</span>
+<span class="sd">        will be prioritized over reactive power.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">PF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;pf&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">reSolve</span><span class="p">()</span>
         <span class="n">Pcalc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s1">&#39;kw&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span>
@@ -602,7 +785,11 @@
 
         <span class="k">return</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="StorageController.VariablePowerFactorControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.VariablePowerFactorControl">[docs]</a>    <span class="k">def</span> <span class="nf">VariablePowerFactorControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StorageController.VariablePowerFactorControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.VariablePowerFactorControl">[docs]</a>    <span class="k">def</span> <span class="nf">VariablePowerFactorControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a variable power factor algorithm. In all cases of reactive power support, active power</span>
+<span class="sd">            will be prioritized over reactive power.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">pMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Pmin&#39;</span><span class="p">]</span>
         <span class="n">pMax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Pmax&#39;</span><span class="p">]</span>
         <span class="n">pfMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;pfMin&#39;</span><span class="p">]</span>
@@ -622,7 +809,6 @@
                 <span class="n">PF</span> <span class="o">=</span> <span class="n">Pcalc</span> <span class="o">*</span> <span class="n">m</span> <span class="o">+</span> <span class="n">c</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">PF</span> <span class="o">=</span> <span class="n">pfMax</span>
-        <span class="c1">#print (Pcalc,PF)</span>
 
         <span class="n">Qcalc</span> <span class="o">=</span>  <span class="p">(</span><span class="n">Pcalc</span> <span class="o">/</span> <span class="n">PF</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">PF</span><span class="p">))</span>
 
@@ -639,8 +825,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%c</span><span class="s1">harge&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">Pcalc</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="StorageController.VoltVarControl"><a class="viewcode-back" href="../../../../PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.VoltVarControl">[docs]</a>    <span class="k">def</span> <span class="nf">VoltVarControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
+<div class="viewcode-block" id="StorageController.VoltVarControl"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.StorageController.StorageController.VoltVarControl">[docs]</a>    <span class="k">def</span> <span class="nf">VoltVarControl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of a Volt / var algorithm. Enables the storage to stack multiple services. In all cases of</span>
+<span class="sd">        reactive power support, active power will be prioritized over reactive power.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">uMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMin&#39;</span><span class="p">]</span>
         <span class="n">uMax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMax&#39;</span><span class="p">]</span>
         <span class="n">uDbMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uDbMin&#39;</span><span class="p">]</span>
@@ -696,8 +884,6 @@
             <span class="n">dQ</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="n">Error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dQ</span><span class="p">)</span>
-        <span class="c1"># if Error &gt; 0.1 or math.isnan(Error):</span>
-        <span class="c1">#     print((self.__Name, uIn, Qcalc, Qpv, self.oldQcalc, dQ, Ppv, Pcalc, pct, pf, self.__ControlledElm.GetVariable(&#39;Powers&#39;)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">oldQcalc</span> <span class="o">=</span> <span class="n">Qcalc</span>
         <span class="k">return</span> <span class="n">Error</span></div></div>
 </pre></div>
@@ -706,20 +892,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Aadil Latif
+        &#169; Copyright 2019, Aadil Latif.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -727,7 +918,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

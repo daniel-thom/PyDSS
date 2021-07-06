@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link href="../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades</h1><div class="highlight"><pre>
+<span></span><span class="c1">#**Authors:**</span>
+<span class="c1"># Akshay Kumar Jain; Akshay.Jain@nrel.gov</span>
+
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">opendssdirect</span> <span class="k">as</span> <span class="nn">dss</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="c1"># from place_new_regs import place_new_regs</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy.spatial.distance</span> <span class="k">as</span> <span class="nn">ssd</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
+
+
+<span class="c1"># Post process thermal upgrades dss files to create network plots and also to create easier post processing files</span>
+<span class="c1"># TODO: make function to post process orig and new objects (instead of text parsing file)</span>
+<div class="viewcode-block" id="postprocess_thermal_upgrades"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades">[docs]</a><span class="k">class</span> <span class="nc">postprocess_thermal_upgrades</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dss</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span> <span class="o">=</span> <span class="n">Settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;new_lines&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;orig_lines&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_xfmrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;new_xfmrs&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_xfmrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;orig_xfmrs&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_lc_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;orig_lc_parameters&quot;</span><span class="p">]</span>
+        <span class="c1"># TODO - next two lines to be used when we move to object comparison instead of text parsing</span>
+        <span class="c1"># self.orig_line_parameters = self.Settings[&quot;orig_line_parameters&quot;]</span>
+        <span class="c1"># self.orig_DT_parameters = self.Settings[&quot;orig_DT_parameters&quot;]</span>
+        <span class="n">dss</span><span class="o">.</span><span class="n">Vsources</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">BusNames</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Create_plots&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_op_plots</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_orig_line_DT_params</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_thermal_upgrades</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_all_parallel</span><span class="p">()</span>  <span class="c1"># save csv of parallel lines and transformers</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Parallel line and transformer computation failed&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.get_orig_line_DT_params"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_orig_line_DT_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_orig_line_DT_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_line_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_DT_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># NEED TO CHECK WHY THIS IS COMMENTED OUT</span>
+        <span class="c1"># self.orig_lc_parameters = {}</span>
+        <span class="c1"># f = open(os.path.join(self.Settings[&quot;Outputs&quot;], &quot;Original_linecodes_parameters.json&quot;), &quot;r&quot;)</span>
+        <span class="c1"># data = json.load(f)</span>
+        <span class="c1"># for lc, params in data.items():</span>
+        <span class="c1">#     self.orig_lc_parameters[lc.lower()] = params</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span> <span class="s2">&quot;Original_line_parameters.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">ln_par</span><span class="p">,</span> <span class="n">ln_par_val</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">ln_par</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s2">&quot;linecode&quot;</span><span class="p">:</span>
+                        <span class="n">ln_ampacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_lc_parameters</span><span class="p">[</span><span class="n">ln_par_val</span><span class="p">][</span><span class="s2">&quot;Ampacity&quot;</span><span class="p">]</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;Ampacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ln_ampacity</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No linecode for line: </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+                <span class="k">pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig_line_parameters</span><span class="p">[</span><span class="s2">&quot;line.&quot;</span><span class="o">+</span><span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span> <span class="s2">&quot;Original_xfmr_parameters.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">xfmr</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig_DT_parameters</span><span class="p">[</span><span class="s2">&quot;transformer.&quot;</span><span class="o">+</span><span class="n">xfmr</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="n">params</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.process_thermal_upgrades"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.process_thermal_upgrades">[docs]</a>    <span class="k">def</span> <span class="nf">process_thermal_upgrades</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span> <span class="s2">&quot;thermal_upgrades.dss&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">datafile</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datafile</span><span class="p">:</span>
+                <span class="n">new_line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">parameters</span> <span class="ow">in</span> <span class="n">new_line</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">parameters</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;line.&quot;</span><span class="p">):</span>
+                        <span class="n">ln_name</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_upgrade&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">ln_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;new&quot;</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">ln_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_line_parameters</span><span class="p">[</span><span class="n">ln_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]],</span><span class="s2">&quot;upgrade&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,[]]}</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">):</span>
+                                <span class="n">lc_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_line_upgrade_params</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+                                <span class="n">lc_ampacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_lc_parameters</span><span class="p">[</span><span class="n">lc_name</span><span class="p">][</span><span class="s2">&quot;Ampacity&quot;</span><span class="p">]</span>
+                                <span class="n">ln_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Linecode&quot;</span><span class="p">:</span> <span class="n">lc_name</span><span class="p">,</span> <span class="s2">&quot;Ampacity&quot;</span><span class="p">:</span> <span class="n">lc_ampacity</span><span class="p">}</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">ln_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_line_parameters</span><span class="p">[</span><span class="n">ln_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]],</span><span class="s2">&quot;upgrade&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,[</span><span class="n">ln_params</span><span class="p">]]}</span>
+                        <span class="k">elif</span> <span class="n">ln_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;new&quot;</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">ln_name</span><span class="p">][</span><span class="s2">&quot;new&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">):</span>
+                                <span class="n">lc_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_line_upgrade_params</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+                                <span class="n">lc_ampacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_lc_parameters</span><span class="p">[</span><span class="n">lc_name</span><span class="p">][</span><span class="s2">&quot;Ampacity&quot;</span><span class="p">]</span>
+                                <span class="n">ln_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Linecode&quot;</span><span class="p">:</span><span class="n">lc_name</span><span class="p">,</span><span class="s2">&quot;Ampacity&quot;</span><span class="p">:</span><span class="n">lc_ampacity</span><span class="p">}</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">ln_name</span><span class="p">][</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">ln_name</span><span class="p">][</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ln_params</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">parameters</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;transformer.&quot;</span><span class="p">):</span>
+                        <span class="n">dt_name</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_upgrade&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">dt_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;new&quot;</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">dt_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_DT_parameters</span><span class="p">[</span><span class="n">dt_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]],</span><span class="s2">&quot;upgrade&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,[]]}</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">):</span>
+                                <span class="n">dt_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_xfmr_upgrade_params</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">dt_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_DT_parameters</span><span class="p">[</span><span class="n">dt_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]],</span><span class="s2">&quot;upgrade&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,[</span><span class="n">dt_params</span><span class="p">]]}</span>
+                        <span class="k">elif</span> <span class="n">dt_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;new&quot;</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">dt_name</span><span class="p">][</span><span class="s2">&quot;new&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">):</span>
+                                <span class="n">dt_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_xfmr_upgrade_params</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">dt_name</span><span class="p">][</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">dt_name</span><span class="p">][</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="s2">&quot;feederhead_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;feederhead_name&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="s2">&quot;feederhead_basekV&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;feederhead_basekV&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_to_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">,</span> <span class="s2">&quot;Processed_thermal_upgrades&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Create_plots&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_node_dicts</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_feeder</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.write_to_json"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.write_to_json">[docs]</a>    <span class="k">def</span> <span class="nf">write_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name</span><span class="p">)),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.get_line_upgrade_params"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_line_upgrade_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_line_upgrade_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_line</span><span class="p">):</span>
+        <span class="n">lc_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">line_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">new_line</span> <span class="k">if</span> <span class="s1">&#39;Line.&#39;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">line_name</span> <span class="o">=</span> <span class="n">line_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">parameters</span> <span class="ow">in</span> <span class="n">new_line</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">parameters</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;linecode&quot;</span><span class="p">):</span>
+                <span class="n">lc_name</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">parameters</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;geometry&quot;</span><span class="p">):</span>
+                <span class="n">lc_name</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lc_name</span> <span class="o">=</span> <span class="n">line_name</span>  <span class="c1"># i.e. if the line parameters are defined in line definition itself</span>
+        <span class="k">return</span> <span class="n">lc_name</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.get_xfmr_upgrade_params"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_xfmr_upgrade_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_xfmr_upgrade_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_line</span><span class="p">):</span>
+        <span class="n">dt_params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">new_line</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;%noloadloss&quot;</span><span class="p">):</span>
+                <span class="n">dt_params</span><span class="p">[</span><span class="s2">&quot;%noloadloss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;kva&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="s2">&quot;kva&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dt_params</span><span class="p">:</span>
+                    <span class="n">dt_params</span><span class="p">[</span><span class="s2">&quot;kva&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">params</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="s2">&quot;kva&quot;</span> <span class="ow">in</span> <span class="n">dt_params</span><span class="p">:</span>
+                    <span class="n">dt_params</span><span class="p">[</span><span class="s2">&quot;kva&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dt_params</span><span class="p">:</span>
+                    <span class="n">dt_params</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">params</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">dt_params</span><span class="p">:</span>
+                    <span class="n">dt_params</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">dt_params</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.create_edge_node_dicts"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_edge_node_dicts">[docs]</a>    <span class="k">def</span> <span class="nf">create_edge_node_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_to_plt_dict</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_pos_plt_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_size_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_lst</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DT_size_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_coords</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">vals</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">):</span>
+                <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+                <span class="n">from_bus</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">BusNames</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">to_bus</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">BusNames</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_to_plt_dict</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">from_bus</span><span class="p">,</span> <span class="n">to_bus</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_pos_plt_dict</span><span class="p">[</span><span class="n">from_bus</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">from_bus</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_pos_plt_dict</span><span class="p">[</span><span class="n">to_bus</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">to_bus</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edge_size_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">vals</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">vals</span><span class="p">[</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;transformer&quot;</span><span class="p">):</span>
+                <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+                <span class="n">bus_sec</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">BusNames</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bus_sec</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DT_size_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">vals</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">vals</span><span class="p">[</span><span class="s2">&quot;upgrade&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">25</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_coords</span><span class="p">[</span><span class="n">bus_sec</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">bus_sec</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.create_op_plots"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_op_plots">[docs]</a>    <span class="k">def</span> <span class="nf">create_op_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_bus_names</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">AllBusNames</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_nodes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_edges</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">correct_node_coords</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Length: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.correct_node_coords"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.correct_node_coords">[docs]</a>    <span class="k">def</span> <span class="nf">correct_node_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># If node doesn&#39;t have node attributes, attach parent or child node&#39;s attributes</span>
+        <span class="n">new_temp_graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>
+        <span class="n">temp_graph</span> <span class="o">=</span> <span class="n">new_temp_graph</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">in_degree</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">new_x</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">new_y</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">pred_buses</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">temp_graph</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_buses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">pred_bus</span> <span class="ow">in</span> <span class="n">pred_buses</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">pred_bus</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                            <span class="n">new_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="n">new_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">]</span>
+                            <span class="k">break</span>
+                <span class="k">if</span> <span class="n">new_x</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">new_y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Since either predecessor nodes were not available or they did not have</span>
+                    <span class="c1"># non-zero coordinates, try successor nodes</span>
+                    <span class="c1"># Get a leaf node</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">out_degree</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">in_degree</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">leaf_node</span> <span class="o">=</span> <span class="n">x</span>
+                            <span class="k">break</span>
+                    <span class="n">succ_buses</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">temp_graph</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">leaf_node</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">succ_buses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">pred_bus</span> <span class="ow">in</span> <span class="n">succ_buses</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">pred_bus</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                                <span class="k">continue</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                                <span class="n">new_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                                <span class="n">new_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">[</span><span class="n">pred_bus</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">]</span>
+                                <span class="k">break</span>
+        <span class="c1"># Update pos dict with new coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.generate_nodes"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">generate_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_bus_names</span><span class="p">:</span>
+            <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveBus</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">position</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">Bus</span><span class="o">.</span><span class="n">X</span><span class="p">())</span>
+            <span class="n">position</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">Bus</span><span class="o">.</span><span class="n">Y</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.generate_edges"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_edges">[docs]</a>    <span class="k">def</span> <span class="nf">generate_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        All lines, switches, reclosers etc are modeled as lines, so calling lines takes care of all of them.</span>
+<span class="sd">        However we also need to loop over transformers as they form the edge between primary and secondary nodes</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">from_bus</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Bus1</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">to_bus</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Bus2</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">phases</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Phases</span><span class="p">()</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Length</span><span class="p">()</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Name</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">from_bus</span><span class="p">,</span> <span class="n">to_bus</span><span class="p">,</span> <span class="n">phases</span><span class="o">=</span><span class="n">phases</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">dss</span><span class="o">.</span><span class="n">Transformers</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">bus_names</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">BusNames</span><span class="p">()</span>
+            <span class="n">from_bus</span> <span class="o">=</span> <span class="n">bus_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">to_bus</span> <span class="o">=</span> <span class="n">bus_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">phases</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">NumPhases</span><span class="p">()</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Transformers</span><span class="o">.</span><span class="n">Name</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">from_bus</span><span class="p">,</span> <span class="n">to_bus</span><span class="p">,</span> <span class="n">phases</span><span class="o">=</span><span class="n">phases</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dss</span><span class="o">.</span><span class="n">Transformers</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.plot_feeder"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.plot_feeder">[docs]</a>    <span class="k">def</span> <span class="nf">plot_feeder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_size_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">de</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_pos_plt_dict</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_to_plt_dict</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+                                        <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_size_list</span><span class="p">)</span>
+        <span class="n">ec</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_lst</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_coords</span><span class="p">,</span> <span class="n">nodelist</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">DT_sec_lst</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">DT_size_list</span><span class="p">,</span>
+                                        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ldn</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_dict</span><span class="p">,</span> <span class="n">nodelist</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_list</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                     <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># nx.draw_networkx_labels(self.G, pos=self.pos_dict, node_size=1, font_size=15)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Thermal violations&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span><span class="s2">&quot;Thermal_upgrades.pdf&quot;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.parallel_upgrades"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.parallel_upgrades">[docs]</a>    <span class="k">def</span> <span class="nf">parallel_upgrades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equipment_type</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;upgrade_df is a dataframe version of the processed_thermal_upgrades.json</span>
+<span class="sd">        file produced by Akshay&#39;s upgrade codeself.</span>
+<span class="sd">        equipment_type is a string equal to either &quot;Transformer&quot; or &quot;Line&quot; &#39;&#39;&#39;</span>
+        <span class="n">parallel_equip_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">parallel_equip_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">parallel_equip_counts</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">equip_str</span> <span class="o">=</span> <span class="n">equipment_type</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+            <span class="k">if</span> <span class="n">equip_str</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+                <span class="c1"># count of new lines added to address overload. Often 1, but could be &gt; 1 with severe overloads</span>
+                <span class="n">parallel_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pen_level_upgrades</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;new&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">parallel_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">parallel_equip_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                    <span class="n">parallel_equip_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parallel_count</span><span class="p">)</span>
+
+        <span class="n">parallel_equip_df</span><span class="p">[</span><span class="s1">&#39;element_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parallel_equip_ids</span>
+        <span class="n">parallel_equip_df</span><span class="p">[</span><span class="s1">&#39;count_of_equipment_in_parallel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parallel_equip_counts</span>
+
+        <span class="k">return</span> <span class="n">parallel_equip_df</span></div>
+
+<div class="viewcode-block" id="postprocess_thermal_upgrades.get_all_parallel"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.html#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_all_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; processed_upgrade_file is the name of the json file written out from</span>
+<span class="sd">        Akshay&#39;s thermal upgrades code&#39;&#39;&#39;</span>
+
+        <span class="n">xfmr_parallel_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallel_upgrades</span><span class="p">(</span><span class="s1">&#39;Transformer&#39;</span><span class="p">)</span>
+        <span class="n">line_parallel_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallel_upgrades</span><span class="p">(</span><span class="s1">&#39;Line&#39;</span><span class="p">)</span>
+
+        <span class="n">xfmr_parallel_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span> <span class="s1">&#39;summary_of_parallel_transformer_upgrades.csv&#39;</span><span class="p">))</span>
+        <span class="n">line_parallel_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Settings</span><span class="p">[</span><span class="s2">&quot;Outputs&quot;</span><span class="p">],</span> <span class="s1">&#39;summary_of_parallel_line_upgrades.csv&#39;</span><span class="p">))</span>
+        <span class="k">return</span></div></div>
+
+
+<span class="c1"># Test Disco feeder</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">Settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Feeder&quot;</span>                    <span class="p">:</span> <span class="s2">&quot;../Test_Feeder_J1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;master file&quot;</span>               <span class="p">:</span> <span class="s2">&quot;Master.dss&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Outputs&quot;</span>                   <span class="p">:</span> <span class="s2">&quot;../Outputs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Create_plots&quot;</span>              <span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">()</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">postprocess_thermal_upgrades</span><span class="p">(</span><span class="n">Settings</span><span class="p">,</span> <span class="n">dss</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

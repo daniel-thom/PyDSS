@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPlots.Plots package &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyDSS.pyPostprocessor package" href="PyDSS.pyPostprocessor.html" />
+    <link rel="prev" title="PyDSS.pyPlots package" href="PyDSS.pyPlots.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../PyDSS.html">PyDSS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">PyDSS</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../PyDSS.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="modules.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="PyDSS.html">PyDSS package</a> &raquo;</li>
+        
+          <li><a href="PyDSS.pyPlots.html">PyDSS.pyPlots package</a> &raquo;</li>
+        
+      <li>PyDSS.pyPlots.Plots package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/PyDSS/PyDSS.pyPlots.Plots.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pydss-pyplots-plots-package">
+<h1>PyDSS.pyPlots.Plots package<a class="headerlink" href="#pydss-pyplots-plots-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-PyDSS.pyPlots.Plots.FrequencySweep">
+<span id="pydss-pyplots-plots-frequencysweep-module"></span><h2>PyDSS.pyPlots.Plots.FrequencySweep module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.FrequencySweep" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.FrequencySweep.</span></span><span class="sig-name descname"><span class="pre">FrequencySweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/FrequencySweep.html#FrequencySweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/FrequencySweep.html#FrequencySweep.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/FrequencySweep.html#FrequencySweep.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.getObject">
+<span class="sig-name descname"><span class="pre">getObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ObjName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/FrequencySweep.html#FrequencySweep.getObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.getObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.getObjectValue">
+<span class="sig-name descname"><span class="pre">getObjectValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjPpty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/FrequencySweep.html#FrequencySweep.getObjectValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.FrequencySweep.FrequencySweep.getObjectValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.Histogram">
+<span id="pydss-pyplots-plots-histogram-module"></span><h2>PyDSS.pyPlots.Plots.Histogram module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.Histogram" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Histogram.Histogram">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.Histogram.</span></span><span class="sig-name descname"><span class="pre">Histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsbyClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Histogram.html#Histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Histogram.Histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Histogram.Histogram.GetFigure">
+<span class="sig-name descname"><span class="pre">GetFigure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Histogram.html#Histogram.GetFigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Histogram.Histogram.GetFigure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Histogram.Histogram.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Histogram.html#Histogram.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Histogram.Histogram.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Histogram.Histogram.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Histogram.html#Histogram.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Histogram.Histogram.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.NetworkGraph">
+<span id="pydss-pyplots-plots-networkgraph-module"></span><h2>PyDSS.pyPlots.Plots.NetworkGraph module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.NetworkGraph" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.NetworkGraph.</span></span><span class="sig-name descname"><span class="pre">NetworkGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsbyClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.CreateGraphVisualization">
+<span class="sig-name descname"><span class="pre">CreateGraphVisualization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.CreateGraphVisualization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.CreateGraphVisualization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.Get">
+<span class="sig-name descname"><span class="pre">Get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.Get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.Get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetColorList">
+<span class="sig-name descname"><span class="pre">GetColorList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.GetColorList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetColorList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetFigure">
+<span class="sig-name descname"><span class="pre">GetFigure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.GetFigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetFigure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetUniqueEdgeProperties">
+<span class="sig-name descname"><span class="pre">GetUniqueEdgeProperties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.GetUniqueEdgeProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetUniqueEdgeProperties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetUniqueNodeProperties">
+<span class="sig-name descname"><span class="pre">GetUniqueNodeProperties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.GetUniqueNodeProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.GetUniqueNodeProperties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/NetworkGraph.html#NetworkGraph.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.NetworkGraph.NetworkGraph.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.Table">
+<span id="pydss-pyplots-plots-table-module"></span><h2>PyDSS.pyPlots.Plots.Table module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.Table" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.Table.</span></span><span class="sig-name descname"><span class="pre">Table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table.GetColorArray">
+<span class="sig-name descname"><span class="pre">GetColorArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DataSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pallete</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table.GetColorArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table.GetColorArray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table.getObject">
+<span class="sig-name descname"><span class="pre">getObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ObjName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table.getObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table.getObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Table.Table.getObjectValue">
+<span class="sig-name descname"><span class="pre">getObjectValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjPpty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Multiplier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Table.html#Table.getObjectValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Table.Table.getObjectValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.ThreeDim">
+<span id="pydss-pyplots-plots-threedim-module"></span><h2>PyDSS.pyPlots.Plots.ThreeDim module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.ThreeDim" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.ThreeDim.</span></span><span class="sig-name descname"><span class="pre">ThreeDim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.GetColorArray">
+<span class="sig-name descname"><span class="pre">GetColorArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DataSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pallete</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim.GetColorArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.GetColorArray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.getObject">
+<span class="sig-name descname"><span class="pre">getObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ObjName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim.getObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.getObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.getObjectValue">
+<span class="sig-name descname"><span class="pre">getObjectValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjPpty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Multiplier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/ThreeDim.html#ThreeDim.getObjectValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.ThreeDim.ThreeDim.getObjectValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.TimeSeries">
+<span id="pydss-pyplots-plots-timeseries-module"></span><h2>PyDSS.pyPlots.Plots.TimeSeries module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.TimeSeries" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.TimeSeries.TimeSeries">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.TimeSeries.</span></span><span class="sig-name descname"><span class="pre">TimeSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/TimeSeries.html#TimeSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.TimeSeries.TimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.TimeSeries.TimeSeries.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/TimeSeries.html#TimeSeries.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.TimeSeries.TimeSeries.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.TimeSeries.TimeSeries.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/TimeSeries.html#TimeSeries.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.TimeSeries.TimeSeries.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.Topology">
+<span id="pydss-pyplots-plots-topology-module"></span><h2>PyDSS.pyPlots.Plots.Topology module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.Topology" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.Topology.</span></span><span class="sig-name descname"><span class="pre">Topology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.GetBusDataFrame">
+<span class="sig-name descname"><span class="pre">GetBusDataFrame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.GetBusDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.GetBusDataFrame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.GetColorArray">
+<span class="sig-name descname"><span class="pre">GetColorArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DataSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pallete</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.GetColorArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.GetColorArray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.GetFigure">
+<span class="sig-name descname"><span class="pre">GetFigure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.GetFigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.GetFigure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.GetLineDataFrame">
+<span class="sig-name descname"><span class="pre">GetLineDataFrame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.GetLineDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.GetLineDataFrame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.GetResourceData">
+<span class="sig-name descname"><span class="pre">GetResourceData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.GetResourceData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.GetResourceData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.PlotElementClass">
+<span class="sig-name descname"><span class="pre">PlotElementClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.PlotElementClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.PlotElementClass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.Topology.Topology.create_topology">
+<span class="sig-name descname"><span class="pre">create_topology</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/Topology.html#Topology.create_topology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.Topology.Topology.create_topology" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.VoltageDistance">
+<span id="pydss-pyplots-plots-voltagedistance-module"></span><h2>PyDSS.pyPlots.Plots.VoltageDistance module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.VoltageDistance" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.VoltageDistance.</span></span><span class="sig-name descname"><span class="pre">VoltageDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsbyClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/VoltageDistance.html#VoltageDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.GetBusData">
+<span class="sig-name descname"><span class="pre">GetBusData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/VoltageDistance.html#VoltageDistance.GetBusData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.GetBusData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.GetLineData">
+<span class="sig-name descname"><span class="pre">GetLineData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/VoltageDistance.html#VoltageDistance.GetLineData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.GetLineData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/VoltageDistance.html#VoltageDistance.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.VoltageDistance.VoltageDistance.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots.XY">
+<span id="pydss-pyplots-plots-xy-module"></span><h2>PyDSS.pyPlots.Plots.XY module<a class="headerlink" href="#module-PyDSS.pyPlots.Plots.XY" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPlots.Plots.XY.</span></span><span class="sig-name descname"><span class="pre">XY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PlotProperties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssBuses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPlots.html#PyDSS.pyPlots.pyPlotAbstract.PlotAbstract" title="PyDSS.pyPlots.pyPlotAbstract.PlotAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPlots.pyPlotAbstract.PlotAbstract</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY.GetColorArray">
+<span class="sig-name descname"><span class="pre">GetColorArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DataSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pallete</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY.GetColorArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY.GetColorArray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY.GetSessionID">
+<span class="sig-name descname"><span class="pre">GetSessionID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY.GetSessionID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY.GetSessionID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY.UpdatePlot">
+<span class="sig-name descname"><span class="pre">UpdatePlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY.UpdatePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY.UpdatePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to update the dynamic plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY.getObject">
+<span class="sig-name descname"><span class="pre">getObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ObjName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY.getObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY.getObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPlots.Plots.XY.XY.getObjectValue">
+<span class="sig-name descname"><span class="pre">getObjectValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ObjPpty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Multiplier</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPlots/Plots/XY.html#XY.getObjectValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPlots.Plots.XY.XY.getObjectValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPlots.Plots">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-PyDSS.pyPlots.Plots" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="PyDSS.pyPostprocessor.html" class="btn btn-neutral float-right" title="PyDSS.pyPostprocessor package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="PyDSS.pyPlots.html" class="btn btn-neutral float-left" title="PyDSS.pyPlots package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

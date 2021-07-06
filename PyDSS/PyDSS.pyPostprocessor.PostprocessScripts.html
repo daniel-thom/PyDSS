@@ -1,0 +1,1421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPostprocessor.PostprocessScripts package &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyDSS.reports package" href="PyDSS.reports.html" />
+    <link rel="prev" title="PyDSS.pyPostprocessor package" href="PyDSS.pyPostprocessor.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../PyDSS.html">PyDSS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">PyDSS</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="PyDSS.html">PyDSS package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="PyDSS.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../PyDSS.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="modules.html">PyDSS</a> &raquo;</li>
+        
+          <li><a href="PyDSS.html">PyDSS package</a> &raquo;</li>
+        
+          <li><a href="PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a> &raquo;</li>
+        
+      <li>PyDSS.pyPostprocessor.PostprocessScripts package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pydss-pypostprocessor-postprocessscripts-package">
+<h1>PyDSS.pyPostprocessor.PostprocessScripts package<a class="headerlink" href="#pydss-pypostprocessor-postprocessscripts-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade">
+<span id="pydss-pypostprocessor-postprocessscripts-automatedthermalupgrade-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.</span></span><span class="sig-name descname"><span class="pre">AutomatedThermalUpgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<p>The class is used to determine thermal upgrades</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.REQUIRED_INPUT_FIELDS">
+<span class="sig-name descname"><span class="pre">REQUIRED_INPUT_FIELDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">('line_loading_limit',</span> <span class="pre">'dt_loading_limit',</span> <span class="pre">'line_safety_margin',</span> <span class="pre">'xfmr_safety_margin',</span> <span class="pre">'nominal_voltage',</span> <span class="pre">'max_iterations',</span> <span class="pre">'create_upgrade_plots',</span> <span class="pre">'tps_to_test',</span> <span class="pre">'create_upgrades_library',</span> <span class="pre">'upgrade_library_path')</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.REQUIRED_INPUT_FIELDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.check_voltage_violations_multi_tps">
+<span class="sig-name descname"><span class="pre">check_voltage_violations_multi_tps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.check_voltage_violations_multi_tps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.check_voltage_violations_multi_tps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_line_violations">
+<span class="sig-name descname"><span class="pre">correct_line_violations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.correct_line_violations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_line_violations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_node_coords">
+<span class="sig-name descname"><span class="pre">correct_node_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.correct_node_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_node_coords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_xfmr_violations">
+<span class="sig-name descname"><span class="pre">correct_xfmr_violations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.correct_xfmr_violations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.correct_xfmr_violations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_edge_node_dicts">
+<span class="sig-name descname"><span class="pre">create_edge_node_dicts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.create_edge_node_dicts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_edge_node_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_op_plots">
+<span class="sig-name descname"><span class="pre">create_op_plots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.create_op_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_op_plots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_result_comparison">
+<span class="sig-name descname"><span class="pre">create_result_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.create_result_comparison"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.create_result_comparison" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_available_line_upgrades">
+<span class="sig-name descname"><span class="pre">determine_available_line_upgrades</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_available_line_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_available_line_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_available_xfmr_upgrades">
+<span class="sig-name descname"><span class="pre">determine_available_xfmr_upgrades</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_available_xfmr_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_available_xfmr_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_line_ldgs">
+<span class="sig-name descname"><span class="pre">determine_line_ldgs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_line_ldgs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_line_ldgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs">
+<span class="sig-name descname"><span class="pre">determine_xfmr_ldgs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_xfmr_ldgs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps">
+<span class="sig-name descname"><span class="pre">determine_xfmr_ldgs_alltps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps_individual_object">
+<span class="sig-name descname"><span class="pre">determine_xfmr_ldgs_alltps_individual_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.determine_xfmr_ldgs_alltps_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.export_line_DT_parameters">
+<span class="sig-name descname"><span class="pre">export_line_DT_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.export_line_DT_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.export_line_DT_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to combine post processing results from all steps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.generate_edges">
+<span class="sig-name descname"><span class="pre">generate_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.generate_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.generate_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>All lines, switches, reclosers etc are modeled as lines, so calling lines takes care of all of them.
+However we also need to loop over transformers as they form the edge between primary and secondary nodes
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.generate_nodes">
+<span class="sig-name descname"><span class="pre">generate_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.generate_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.generate_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_line_info">
+<span class="sig-name descname"><span class="pre">get_line_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_line_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_line_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_load_mults">
+<span class="sig-name descname"><span class="pre">get_load_mults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_load_mults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_load_mults" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_load_pv_mults_individual_object">
+<span class="sig-name descname"><span class="pre">get_load_pv_mults_individual_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_load_pv_mults_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_load_pv_mults_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_min_max_load_mult">
+<span class="sig-name descname"><span class="pre">get_min_max_load_mult</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_min_max_load_mult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_min_max_load_mult" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_nodal_violations">
+<span class="sig-name descname"><span class="pre">get_nodal_violations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_nodal_violations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_nodal_violations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_nodal_violations_individual_object">
+<span class="sig-name descname"><span class="pre">get_nodal_violations_individual_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.get_nodal_violations_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.get_nodal_violations_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.linecode_lib_reformat">
+<span class="sig-name descname"><span class="pre">linecode_lib_reformat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.linecode_lib_reformat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.linecode_lib_reformat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.plot_feeder">
+<span class="sig-name descname"><span class="pre">plot_feeder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.plot_feeder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.plot_feeder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_available_upgrades">
+<span class="sig-name descname"><span class="pre">read_available_upgrades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.read_available_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_available_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_load_files">
+<span class="sig-name descname"><span class="pre">read_load_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.read_load_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_load_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_load_files_get_load_pv_mults_individual_object">
+<span class="sig-name descname"><span class="pre">read_load_files_get_load_pv_mults_individual_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.read_load_files_get_load_pv_mults_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_load_files_get_load_pv_mults_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_pv_files_get_load_pv_mults_individual_object">
+<span class="sig-name descname"><span class="pre">read_pv_files_get_load_pv_mults_individual_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.read_pv_files_get_load_pv_mults_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.read_pv_files_get_load_pv_mults_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to run a post processing script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>int</em>) – Current step</p></li>
+<li><p><strong>stepMax</strong> (<em>int</em>) – Last step of the simulation</p></li>
+<li><p><strong>simulation</strong> (<a class="reference internal" href="PyDSS.html#PyDSS.dssInstance.OpenDSS" title="PyDSS.dssInstance.OpenDSS"><em>OpenDSS</em></a>) – PyDSS simulation control class. Provided for access to control algorithms.
+Subclasses should not hold references to this instance after this method exits.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.solve_diff_tps_lines">
+<span class="sig-name descname"><span class="pre">solve_diff_tps_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.solve_diff_tps_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.solve_diff_tps_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.solve_diff_tps_lines_individual_object">
+<span class="sig-name descname"><span class="pre">solve_diff_tps_lines_individual_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.solve_diff_tps_lines_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.solve_diff_tps_lines_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.time_limit_exception">
+<span class="sig-name descname"><span class="pre">time_limit_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expire_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">limit</span> <span class="pre">exceeded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.time_limit_exception"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.time_limit_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_dat_file">
+<span class="sig-name descname"><span class="pre">write_dat_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.write_dat_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_dat_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_dss_file">
+<span class="sig-name descname"><span class="pre">write_dss_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.write_dss_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_dss_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_to_json">
+<span class="sig-name descname"><span class="pre">write_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#AutomatedThermalUpgrade.write_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.AutomatedThermalUpgrade.write_to_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.get_transformer_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.</span></span><span class="sig-name descname"><span class="pre">get_transformer_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade.html#get_transformer_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade.get_transformer_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper">
+<span id="pydss-pypostprocessor-postprocessscripts-automatedthermalupgrade-helper-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper.AutomatedThermalUpgrade_helper">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper.</span></span><span class="sig-name descname"><span class="pre">AutomatedThermalUpgrade_helper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade_helper.html#AutomatedThermalUpgrade_helper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper.AutomatedThermalUpgrade_helper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<p>The class is used to induce faults on bus for dynamic simulation studies. Subclass of the <a class="reference internal" href="PyDSS.pyControllers.html#PyDSS.pyControllers.pyControllerAbstract.ControllerAbstract" title="PyDSS.pyControllers.pyControllerAbstract.ControllerAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyControllers.pyControllerAbstract.ControllerAbstract</span></code></a> abstract class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FaultObj</strong> (class:<cite>PyDSS.dssElement.dssElement</cite>) – A <a class="reference internal" href="PyDSS.html#PyDSS.dssElement.dssElement" title="PyDSS.dssElement.dssElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.dssElement.dssElement</span></code></a> object that wraps around an OpenDSS ‘Fault’ element</p></li>
+<li><p><strong>Settings</strong> (<em>dict</em>) – A dictionary that defines the settings for the faul controller.</p></li>
+<li><p><strong>dssInstance</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">opendssdirect</span></code> instance) – An <code class="xref py py-class docutils literal notranslate"><span class="pre">opendssdirect</span></code> instance</p></li>
+<li><p><strong>ElmObjectList</strong> (<em>dict</em>) – Dictionary of all dssElement, dssBus and dssCircuit ojects</p></li>
+<li><p><strong>dssSolver</strong> (<a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode" title="PyDSS.SolveMode"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyDSS.SolveMode</span></code></a>) – An instance of one of the classes defined in <a class="reference internal" href="PyDSS.html#module-PyDSS.SolveMode" title="PyDSS.SolveMode"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyDSS.SolveMode</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>AssertionError  if ‘FaultObj’ is not a wrapped OpenDSS Fault element</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper.AutomatedThermalUpgrade_helper.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedThermalUpgrade_helper.html#AutomatedThermalUpgrade_helper.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedThermalUpgrade_helper.AutomatedThermalUpgrade_helper.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Induces and removes a fault as the simulation runs as per user defined settings.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade">
+<span id="pydss-pypostprocessor-postprocessscripts-automatedvoltageupgrade-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.</span></span><span class="sig-name descname"><span class="pre">AutomatedVoltageUpgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<p>This class is used to determine Voltage Upgrades</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.LTC_controls_sweep">
+<span class="sig-name descname"><span class="pre">LTC_controls_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.LTC_controls_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.LTC_controls_sweep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.REQUIRED_INPUT_FIELDS">
+<span class="sig-name descname"><span class="pre">REQUIRED_INPUT_FIELDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">('target_v',</span> <span class="pre">'initial_voltage_upper_limit',</span> <span class="pre">'initial_voltage_lower_limit',</span> <span class="pre">'final_voltage_upper_limit',</span> <span class="pre">'final_voltage_lower_limit',</span> <span class="pre">'nominal_voltage',</span> <span class="pre">'nominal_pu_voltage',</span> <span class="pre">'tps_to_test',</span> <span class="pre">'create_topology_plots',</span> <span class="pre">'cap_sweep_voltage_gap',</span> <span class="pre">'reg_control_bands',</span> <span class="pre">'reg_v_delta',</span> <span class="pre">'max_regulators',</span> <span class="pre">'use_ltc_placement',</span> <span class="pre">'thermal_scenario_name')</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.REQUIRED_INPUT_FIELDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_reg_common_nodes">
+<span class="sig-name descname"><span class="pre">add_new_reg_common_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.add_new_reg_common_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_reg_common_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_regctrl">
+<span class="sig-name descname"><span class="pre">add_new_regctrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.add_new_regctrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_regctrl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_xfmr">
+<span class="sig-name descname"><span class="pre">add_new_xfmr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.add_new_xfmr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_new_xfmr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_substation_LTC">
+<span class="sig-name descname"><span class="pre">add_substation_LTC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.add_substation_LTC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.add_substation_LTC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_LTCsetting">
+<span class="sig-name descname"><span class="pre">apply_best_LTCsetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_best_LTCsetting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_LTCsetting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_capsetting">
+<span class="sig-name descname"><span class="pre">apply_best_capsetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_best_capsetting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_capsetting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_regsetting">
+<span class="sig-name descname"><span class="pre">apply_best_regsetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_best_regsetting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_best_regsetting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_LTC_setting">
+<span class="sig-name descname"><span class="pre">apply_orig_LTC_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_orig_LTC_setting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_LTC_setting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_cap_setting">
+<span class="sig-name descname"><span class="pre">apply_orig_cap_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_orig_cap_setting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_cap_setting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_reg_setting">
+<span class="sig-name descname"><span class="pre">apply_orig_reg_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.apply_orig_reg_setting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.apply_orig_reg_setting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.cap_settings_sweep">
+<span class="sig-name descname"><span class="pre">cap_settings_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.cap_settings_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.cap_settings_sweep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.check_voltage_violations_multi_tps">
+<span class="sig-name descname"><span class="pre">check_voltage_violations_multi_tps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.check_voltage_violations_multi_tps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.check_voltage_violations_multi_tps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.check_voltage_violations_multi_tps_individual_object">
+<span class="sig-name descname"><span class="pre">check_voltage_violations_multi_tps_individual_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.check_voltage_violations_multi_tps_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.check_voltage_violations_multi_tps_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.cluster_square_array">
+<span class="sig-name descname"><span class="pre">cluster_square_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.cluster_square_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.cluster_square_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.compare_objective_function">
+<span class="sig-name descname"><span class="pre">compare_objective_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_cluster</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.compare_objective_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.compare_objective_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.correct_cap_bank_settings">
+<span class="sig-name descname"><span class="pre">correct_cap_bank_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.correct_cap_bank_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.correct_cap_bank_settings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.correct_node_coords">
+<span class="sig-name descname"><span class="pre">correct_node_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.correct_node_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.correct_node_coords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.create_final_comparison">
+<span class="sig-name descname"><span class="pre">create_final_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_dss_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.create_final_comparison"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.create_final_comparison" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.create_result_comparison_voltages">
+<span class="sig-name descname"><span class="pre">create_result_comparison_voltages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comparison_stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.create_result_comparison_voltages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.create_result_comparison_voltages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.disable_added_xfmr">
+<span class="sig-name descname"><span class="pre">disable_added_xfmr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.disable_added_xfmr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.disable_added_xfmr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.disable_regctrl_current_cluster">
+<span class="sig-name descname"><span class="pre">disable_regctrl_current_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.disable_regctrl_current_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.disable_regctrl_current_cluster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.edit_capacitor_settings_for_convergence">
+<span class="sig-name descname"><span class="pre">edit_capacitor_settings_for_convergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">control_command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.edit_capacitor_settings_for_convergence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.edit_capacitor_settings_for_convergence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to combine post processing results from all steps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_edges">
+<span class="sig-name descname"><span class="pre">generate_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.generate_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>All lines, switches, reclosers etc are modeled as lines, so calling lines takes care of all of them.
+However we also need to loop over transformers as they form the edge between primary and secondary nodes
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_nodes">
+<span class="sig-name descname"><span class="pre">generate_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.generate_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_nx_representation">
+<span class="sig-name descname"><span class="pre">generate_nx_representation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.generate_nx_representation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.generate_nx_representation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_capacitor_state">
+<span class="sig-name descname"><span class="pre">get_capacitor_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_capacitor_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_capacitor_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_existing_controller_info">
+<span class="sig-name descname"><span class="pre">get_existing_controller_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_existing_controller_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_existing_controller_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_full_distance_dict">
+<span class="sig-name descname"><span class="pre">get_full_distance_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_full_distance_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_full_distance_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_load_mults">
+<span class="sig-name descname"><span class="pre">get_load_mults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_load_mults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_load_mults" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_load_pv_mults_individual_object">
+<span class="sig-name descname"><span class="pre">get_load_pv_mults_individual_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_load_pv_mults_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_load_pv_mults_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_min_max_load_mult">
+<span class="sig-name descname"><span class="pre">get_min_max_load_mult</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_min_max_load_mult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_min_max_load_mult" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_shortest_path">
+<span class="sig-name descname"><span class="pre">get_shortest_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_shortest_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_viols_with_initial_cap_settings">
+<span class="sig-name descname"><span class="pre">get_viols_with_initial_cap_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.get_viols_with_initial_cap_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.get_viols_with_initial_cap_settings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.identify_correct_reg_node">
+<span class="sig-name descname"><span class="pre">identify_correct_reg_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.identify_correct_reg_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.identify_correct_reg_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_created_clusters">
+<span class="sig-name descname"><span class="pre">plot_created_clusters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.plot_created_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_created_clusters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_feeder">
+<span class="sig-name descname"><span class="pre">plot_feeder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.plot_feeder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_feeder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_heatmap_distmatrix">
+<span class="sig-name descname"><span class="pre">plot_heatmap_distmatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.plot_heatmap_distmatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_heatmap_distmatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_violations">
+<span class="sig-name descname"><span class="pre">plot_violations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.plot_violations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.plot_violations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_load_files">
+<span class="sig-name descname"><span class="pre">read_load_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.read_load_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_load_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_load_files_individual_object">
+<span class="sig-name descname"><span class="pre">read_load_files_individual_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.read_load_files_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_load_files_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_pv_files_individual_object">
+<span class="sig-name descname"><span class="pre">read_pv_files_individual_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dss_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.read_pv_files_individual_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.read_pv_files_individual_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.reg_controls_sweep">
+<span class="sig-name descname"><span class="pre">reg_controls_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.reg_controls_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.reg_controls_sweep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to run a post processing script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>int</em>) – Current step</p></li>
+<li><p><strong>stepMax</strong> (<em>int</em>) – Last step of the simulation</p></li>
+<li><p><strong>simulation</strong> (<a class="reference internal" href="PyDSS.html#PyDSS.dssInstance.OpenDSS" title="PyDSS.dssInstance.OpenDSS"><em>OpenDSS</em></a>) – PyDSS simulation control class. Provided for access to control algorithms.
+Subclasses should not hold references to this instance after this method exits.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_dss_file">
+<span class="sig-name descname"><span class="pre">write_dss_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.write_dss_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_dss_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_to_json">
+<span class="sig-name descname"><span class="pre">write_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.write_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_to_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_upgrades_to_file">
+<span class="sig-name descname"><span class="pre">write_upgrades_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#AutomatedVoltageUpgrade.write_upgrades_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.AutomatedVoltageUpgrade.write_upgrades_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_cap_controls_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.</span></span><span class="sig-name descname"><span class="pre">get_cap_controls_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#get_cap_controls_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_cap_controls_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_capacitor_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.</span></span><span class="sig-name descname"><span class="pre">get_capacitor_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#get_capacitor_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_capacitor_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_ckt_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.</span></span><span class="sig-name descname"><span class="pre">get_ckt_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#get_ckt_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_ckt_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_reg_control_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.</span></span><span class="sig-name descname"><span class="pre">get_reg_control_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/AutomatedVoltageUpgrade.html#get_reg_control_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.AutomatedVoltageUpgrade.get_reg_control_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer">
+<span id="pydss-pypostprocessor-postprocessscripts-dermsoptimizer-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.</span></span><span class="sig-name descname"><span class="pre">DERMSOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.ExtractImpednceMatrix">
+<span class="sig-name descname"><span class="pre">ExtractImpednceMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.ExtractImpednceMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.ExtractImpednceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.IMPLEMENTATION_MODES">
+<span class="sig-name descname"><span class="pre">IMPLEMENTATION_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['Continuous',</span> <span class="pre">'Voltage</span> <span class="pre">triggered',</span> <span class="pre">'Time</span> <span class="pre">triggered',</span> <span class="pre">'Off']</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.IMPLEMENTATION_MODES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.REQUIRED_INPUT_FIELDS_AND_DEFAULTS">
+<span class="sig-name descname"><span class="pre">REQUIRED_INPUT_FIELDS_AND_DEFAULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'Distributions':</span> <span class="pre">{'Imes':</span> <span class="pre">['norm',</span> <span class="pre">[0.0,</span> <span class="pre">0.01]],</span> <span class="pre">'Vmes':</span> <span class="pre">['norm',</span> <span class="pre">[0.0,</span> <span class="pre">0.01]]},</span> <span class="pre">'Vlower':</span> <span class="pre">0.955,</span> <span class="pre">'Vupper':</span> <span class="pre">1.038,</span> <span class="pre">'coeff_p':</span> <span class="pre">0.0005,</span> <span class="pre">'coeff_q':</span> <span class="pre">1e-06,</span> <span class="pre">'control_all_flag':</span> <span class="pre">True,</span> <span class="pre">'control_flag':</span> <span class="pre">True,</span> <span class="pre">'implementation_mode':</span> <span class="pre">'Voltage</span> <span class="pre">triggered',</span> <span class="pre">'max_iterations':</span> <span class="pre">50,</span> <span class="pre">'measurements_noises_flag':</span> <span class="pre">True,</span> <span class="pre">'num_DERMS':</span> <span class="pre">1,</span> <span class="pre">'opf_iteration':</span> <span class="pre">60,</span> <span class="pre">'stepsize_mu':</span> <span class="pre">10,</span> <span class="pre">'stepsize_xp':</span> <span class="pre">1,</span> <span class="pre">'stepsize_xq':</span> <span class="pre">5,</span> <span class="pre">'time_trigger_sec':</span> <span class="pre">900}</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.REQUIRED_INPUT_FIELDS_AND_DEFAULTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.buses">
+<span class="sig-name descname"><span class="pre">buses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.buses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.buses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.calc_node_PQ">
+<span class="sig-name descname"><span class="pre">calc_node_PQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.calc_node_PQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.calc_node_PQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.construct_Yprime">
+<span class="sig-name descname"><span class="pre">construct_Yprime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.construct_Yprime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.construct_Yprime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.convert_3phasePV_to_1phasePV">
+<span class="sig-name descname"><span class="pre">convert_3phasePV_to_1phasePV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PVSystems</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.convert_3phasePV_to_1phasePV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.convert_3phasePV_to_1phasePV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getBranchInfo">
+<span class="sig-name descname"><span class="pre">getBranchInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.getBranchInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getBranchInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getContolBuses">
+<span class="sig-name descname"><span class="pre">getContolBuses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classNames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.getContolBuses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getContolBuses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getDERdata">
+<span class="sig-name descname"><span class="pre">getDERdata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.getDERdata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getDERdata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getPreoptimizationResults">
+<span class="sig-name descname"><span class="pre">getPreoptimizationResults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.getPreoptimizationResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.getPreoptimizationResults" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_PQ_by_class">
+<span class="sig-name descname"><span class="pre">get_PQ_by_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">className</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.get_PQ_by_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_PQ_by_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_elem_data">
+<span class="sig-name descname"><span class="pre">get_elem_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ElementClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.get_elem_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_elem_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_incidence_matrix">
+<span class="sig-name descname"><span class="pre">get_incidence_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.get_incidence_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_incidence_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_voltage_Yorder">
+<span class="sig-name descname"><span class="pre">get_voltage_Yorder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.get_voltage_Yorder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.get_voltage_Yorder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.initialize_optimizer">
+<span class="sig-name descname"><span class="pre">initialize_optimizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.initialize_optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.initialize_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Induces and removes a fault as the simulation runs as per user defined settings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.to_complex">
+<span class="sig-name descname"><span class="pre">to_complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/DERMSOptimizer.html#DERMSOptimizer.to_complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer.DERMSOptimizer.to_complex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl">
+<span id="pydss-pypostprocessor-postprocessscripts-edlifocontrol-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">EdLiFoControl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<p>Electric distance last-in First-out curtailment based PV output control</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.REQUIRED_INPUT_FIELDS">
+<span class="sig-name descname"><span class="pre">REQUIRED_INPUT_FIELDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['curtailment_size',</span> <span class="pre">'electrical_distance_file_path',</span> <span class="pre">'zone_option',</span> <span class="pre">'zone_threshold',</span> <span class="pre">'fixed_pv_path',</span> <span class="pre">'lifo_pv_path',</span> <span class="pre">'lifo_min_pv_size',</span> <span class="pre">'user_lifo_pv_list']</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.REQUIRED_INPUT_FIELDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to combine post processing results from all steps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.get_curtailment_candidates">
+<span class="sig-name descname"><span class="pre">get_curtailment_candidates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.get_curtailment_candidates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.get_curtailment_candidates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds PV units that can be be candidates for curtailment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.get_lifo_ordered_list">
+<span class="sig-name descname"><span class="pre">get_lifo_ordered_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.get_lifo_ordered_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.get_lifo_ordered_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the last-in first-in ordered PV list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.poa_curtail">
+<span class="sig-name descname"><span class="pre">poa_curtail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.poa_curtail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.poa_curtail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes curtailment decisions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.record_curtailment">
+<span class="sig-name descname"><span class="pre">record_curtailment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pv_sys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.record_curtailment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.record_curtailment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Records PV curtailments</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs edLiFo</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.solve_overloads">
+<span class="sig-name descname"><span class="pre">solve_overloads</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#EdLiFoControl.solve_overloads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.EdLiFoControl.solve_overloads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the LiFo logic to solve line and transformer overloads</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.check_line_overloads">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">check_line_overloads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monitored_lines</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#check_line_overloads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.check_line_overloads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks line overloads</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.choose_zone_radius">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">choose_zone_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dismat_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#choose_zone_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.choose_zone_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a zone radius value that makes sense</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.compute_electric_distance">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">compute_electric_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bus_phases</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#compute_electric_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.compute_electric_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes electric distance matrix</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.form_pvzones">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">form_pvzones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">affected_buses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dismat_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zone_thr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#form_pvzones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.form_pvzones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds PV zones</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_g">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">get_g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#get_g"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get conductance values from resistance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_monitored_line_dataframe">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">get_monitored_line_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#get_monitored_line_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_monitored_line_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample syntax:
+monitored_lines = get_monitored_line_dataframe()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_transformer_info">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">get_transformer_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#get_transformer_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.get_transformer_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gather transformer information</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.parse_pv_scenario">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">parse_pv_scenario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_lifo_pv_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#parse_pv_scenario"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.parse_pv_scenario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts from a PV deployment scenario, parameter information into a dataframe.
+Sample syntax: PV_dict, PV_dataframe = parse_pv_scenario(deployment_path + deployment_name)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.string_attribute_parser">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.</span></span><span class="sig-name descname"><span class="pre">string_attribute_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">att</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/EdLiFoControl.html#string_attribute_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.EdLiFoControl.string_attribute_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses attribute value from a line string</p>
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface">
+<span id="pydss-pypostprocessor-postprocessscripts-utilidata-interface-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.</span></span><span class="sig-name descname"><span class="pre">NOAAData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.data_categories">
+<span class="sig-name descname"><span class="pre">data_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.data_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.data_categories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.data_types">
+<span class="sig-name descname"><span class="pre">data_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.data_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.data_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.dataset_spec">
+<span class="sig-name descname"><span class="pre">dataset_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_code</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.dataset_spec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.dataset_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.datasets">
+<span class="sig-name descname"><span class="pre">datasets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.datasets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.fetch_data">
+<span class="sig-name descname"><span class="pre">fetch_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.fetch_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.fetch_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.location_categories">
+<span class="sig-name descname"><span class="pre">location_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.location_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.location_categories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.locations">
+<span class="sig-name descname"><span class="pre">locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.locations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.poll_api">
+<span class="sig-name descname"><span class="pre">poll_api</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.poll_api"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.poll_api" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.stations">
+<span class="sig-name descname"><span class="pre">stations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#NOAAData.stations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.NOAAData.stations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.</span></span><span class="sig-name descname"><span class="pre">Utilidata_Interface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssInstance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssSolver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dssObjectsByClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulationSettings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="PyDSS.pyPostprocessor.html#PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess" title="PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyDSS.pyPostprocessor.pyPostprocessAbstract.AbstractPostprocess</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.IMPLEMENTATION_MODES">
+<span class="sig-name descname"><span class="pre">IMPLEMENTATION_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[]</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.IMPLEMENTATION_MODES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.REQUIRED_INPUT_FIELDS_AND_DEFAULTS">
+<span class="sig-name descname"><span class="pre">REQUIRED_INPUT_FIELDS_AND_DEFAULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.REQUIRED_INPUT_FIELDS_AND_DEFAULTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.create_optimization_model">
+<span class="sig-name descname"><span class="pre">create_optimization_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.create_optimization_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.create_optimization_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.define_constraints">
+<span class="sig-name descname"><span class="pre">define_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.define_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.define_constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.define_metadata">
+<span class="sig-name descname"><span class="pre">define_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.define_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.define_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.disable_control_elements">
+<span class="sig-name descname"><span class="pre">disable_control_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.disable_control_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.disable_control_elements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.find_filenames">
+<span class="sig-name descname"><span class="pre">find_filenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.find_filenames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.find_filenames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_constraint">
+<span class="sig-name descname"><span class="pre">get_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elm_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isControllable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.get_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_constraint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_feeder">
+<span class="sig-name descname"><span class="pre">get_feeder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elm_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.get_feeder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_feeder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurement">
+<span class="sig-name descname"><span class="pre">get_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ppty</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.get_measurement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurement_assets">
+<span class="sig-name descname"><span class="pre">get_measurement_assets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asset_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.get_measurement_assets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurement_assets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurements">
+<span class="sig-name descname"><span class="pre">get_measurements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.get_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.get_measurements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepMax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to run a post processing script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>int</em>) – Current step</p></li>
+<li><p><strong>stepMax</strong> (<em>int</em>) – Last step of the simulation</p></li>
+<li><p><strong>simulation</strong> (<a class="reference internal" href="PyDSS.html#PyDSS.dssInstance.OpenDSS" title="PyDSS.dssInstance.OpenDSS"><em>OpenDSS</em></a>) – PyDSS simulation control class. Provided for access to control algorithms.
+Subclasses should not hold references to this instance after this method exits.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.submit_operation_payload">
+<span class="sig-name descname"><span class="pre">submit_operation_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.submit_operation_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.submit_operation_payload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.update_system_states">
+<span class="sig-name descname"><span class="pre">update_system_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.update_system_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.update_system_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.update_training_payload">
+<span class="sig-name descname"><span class="pre">update_training_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/Utilidata_Interface.html#Utilidata_Interface.update_training_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.Utilidata_Interface.Utilidata_Interface.update_training_payload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades">
+<span id="pydss-pypostprocessor-postprocessscripts-postprocess-thermal-upgrades-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.</span></span><span class="sig-name descname"><span class="pre">postprocess_thermal_upgrades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.correct_node_coords">
+<span class="sig-name descname"><span class="pre">correct_node_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.correct_node_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.correct_node_coords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_edge_node_dicts">
+<span class="sig-name descname"><span class="pre">create_edge_node_dicts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.create_edge_node_dicts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_edge_node_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_op_plots">
+<span class="sig-name descname"><span class="pre">create_op_plots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.create_op_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.create_op_plots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_edges">
+<span class="sig-name descname"><span class="pre">generate_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.generate_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>All lines, switches, reclosers etc are modeled as lines, so calling lines takes care of all of them.
+However we also need to loop over transformers as they form the edge between primary and secondary nodes
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_nodes">
+<span class="sig-name descname"><span class="pre">generate_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.generate_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.generate_nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_all_parallel">
+<span class="sig-name descname"><span class="pre">get_all_parallel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.get_all_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_all_parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>processed_upgrade_file is the name of the json file written out from
+Akshay’s thermal upgrades code</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_line_upgrade_params">
+<span class="sig-name descname"><span class="pre">get_line_upgrade_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.get_line_upgrade_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_line_upgrade_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_orig_line_DT_params">
+<span class="sig-name descname"><span class="pre">get_orig_line_DT_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.get_orig_line_DT_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_orig_line_DT_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_xfmr_upgrade_params">
+<span class="sig-name descname"><span class="pre">get_xfmr_upgrade_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.get_xfmr_upgrade_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.get_xfmr_upgrade_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.parallel_upgrades">
+<span class="sig-name descname"><span class="pre">parallel_upgrades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equipment_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.parallel_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.parallel_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd><p>upgrade_df is a dataframe version of the processed_thermal_upgrades.json
+file produced by Akshay’s upgrade codeself.
+equipment_type is a string equal to either “Transformer” or “Line”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.plot_feeder">
+<span class="sig-name descname"><span class="pre">plot_feeder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.plot_feeder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.plot_feeder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.process_thermal_upgrades">
+<span class="sig-name descname"><span class="pre">process_thermal_upgrades</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.process_thermal_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.process_thermal_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.write_to_json">
+<span class="sig-name descname"><span class="pre">write_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_thermal_upgrades.html#postprocess_thermal_upgrades.write_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_thermal_upgrades.postprocess_thermal_upgrades.write_to_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades">
+<span id="pydss-pypostprocessor-postprocessscripts-postprocess-voltage-upgrades-module"></span><h2>PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades module<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.compare_dict">
+<span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.</span></span><span class="sig-name descname"><span class="pre">compare_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#compare_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.compare_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.</span></span><span class="sig-name descname"><span class="pre">postprocess_voltage_upgrades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#postprocess_voltage_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.check_substation_LTC">
+<span class="sig-name descname"><span class="pre">check_substation_LTC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#postprocess_voltage_upgrades.check_substation_LTC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.check_substation_LTC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.get_capacitor_upgrades">
+<span class="sig-name descname"><span class="pre">get_capacitor_upgrades</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#postprocess_voltage_upgrades.get_capacitor_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.get_capacitor_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.get_regulator_upgrades">
+<span class="sig-name descname"><span class="pre">get_regulator_upgrades</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#postprocess_voltage_upgrades.get_regulator_upgrades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.get_regulator_upgrades" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.write_to_json">
+<span class="sig-name descname"><span class="pre">write_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyDSS/pyPostprocessor/PostprocessScripts/postprocess_voltage_upgrades.html#postprocess_voltage_upgrades.write_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyDSS.pyPostprocessor.PostprocessScripts.postprocess_voltage_upgrades.postprocess_voltage_upgrades.write_to_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PyDSS.pyPostprocessor.PostprocessScripts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-PyDSS.pyPostprocessor.PostprocessScripts" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="PyDSS.reports.html" class="btn btn-neutral float-right" title="PyDSS.reports package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="PyDSS.pyPostprocessor.html" class="btn btn-neutral float-left" title="PyDSS.pyPostprocessor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

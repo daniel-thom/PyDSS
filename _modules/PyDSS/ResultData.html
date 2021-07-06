@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.ResultData &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.ResultData</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.ResultData</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">opendssdirect</span> <span class="k">as</span> <span class="nn">dss</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">opendssdirect</span> <span class="k">as</span> <span class="nn">dss</span>
+
+<span class="kn">from</span> <span class="nn">PyDSS.pyLogger</span> <span class="kn">import</span> <span class="n">getLoggerTag</span>
+<span class="kn">from</span> <span class="nn">PyDSS.unitDefinations</span> <span class="kn">import</span> <span class="n">unit_info</span>
+<span class="kn">from</span> <span class="nn">PyDSS.common</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PV_LOAD_SHAPE_FILENAME</span><span class="p">,</span>
+    <span class="n">PV_PROFILES_FILENAME</span><span class="p">,</span>
+    <span class="n">NODE_NAMES_BY_TYPE_FILENAME</span><span class="p">,</span>
+    <span class="n">DatasetPropertyType</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyDSS.dataset_buffer</span> <span class="kn">import</span> <span class="n">DatasetBuffer</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.dss_utils</span> <span class="kn">import</span> <span class="n">get_node_names_by_type</span>
+<span class="kn">from</span> <span class="nn">PyDSS.exceptions</span> <span class="kn">import</span> <span class="n">InvalidConfiguration</span><span class="p">,</span> <span class="n">InvalidParameter</span>
+<span class="kn">from</span> <span class="nn">PyDSS.export_list_reader</span> <span class="kn">import</span> <span class="n">ExportListReader</span><span class="p">,</span> <span class="n">StoreValuesType</span>
+<span class="kn">from</span> <span class="nn">PyDSS.reports.reports</span> <span class="kn">import</span> <span class="n">Reports</span><span class="p">,</span> <span class="n">ReportGranularity</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.dataframe_utils</span> <span class="kn">import</span> <span class="n">write_dataframe</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.utils</span> <span class="kn">import</span> <span class="n">dump_data</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.simulation_utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">create_datetime_index_from_settings</span><span class="p">,</span>
+    <span class="n">create_loadshape_pmult_dataframe_for_simulation</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.timing_utils</span> <span class="kn">import</span> <span class="n">Timer</span>
+<span class="kn">from</span> <span class="nn">PyDSS.value_storage</span> <span class="kn">import</span> <span class="n">ValueContainer</span><span class="p">,</span> <span class="n">ValueByNumber</span>
+<span class="kn">from</span> <span class="nn">PyDSS.metrics</span> <span class="kn">import</span> <span class="n">OpenDssPropertyMetric</span><span class="p">,</span> <span class="n">SummedElementsOpenDssPropertyMetric</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ResultData"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData">[docs]</a><span class="k">class</span> <span class="nc">ResultData</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Exports data to files.&quot;&quot;&quot;</span>
+
+    <span class="n">METADATA_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;metadata.json&quot;</span>
+    <span class="n">INDICES_BASENAME</span> <span class="o">=</span> <span class="s2">&quot;indices&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">system_paths</span><span class="p">,</span> <span class="n">dss_objects</span><span class="p">,</span>
+                 <span class="n">dss_objects_by_class</span><span class="p">,</span> <span class="n">dss_buses</span><span class="p">,</span> <span class="n">dss_solver</span><span class="p">,</span> <span class="n">dss_command</span><span class="p">,</span>
+                 <span class="n">dss_instance</span><span class="p">,</span> <span class="n">timer_stats</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dss_solver</span> <span class="o">=</span> <span class="n">dss_solver</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buses</span> <span class="o">=</span> <span class="n">dss_buses</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_element</span> <span class="o">=</span> <span class="n">dss_objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_class</span> <span class="o">=</span> <span class="n">dss_objects_by_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_paths</span> <span class="o">=</span> <span class="n">system_paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># (elem_class, prop_name) to OpenDssPropertyMetric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_summed_element_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cur_step</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stats</span> <span class="o">=</span> <span class="n">timer_stats</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dss_command</span> <span class="o">=</span> <span class="n">dss_command</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_day</span> <span class="o">=</span> <span class="n">dss_solver</span><span class="o">.</span><span class="n">StartDay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_day</span> <span class="o">=</span> <span class="n">dss_solver</span><span class="o">.</span><span class="n">EndDay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mode_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_mode</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_scenario</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_format</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Format&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_compression</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Compression&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;HDF Max Chunk Bytes&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_paths</span><span class="p">[</span><span class="s2">&quot;Export&quot;</span><span class="p">],</span>
+            <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="c1"># Use / because this is used in HDFStore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span> <span class="o">=</span> <span class="s2">&quot;Exports/&quot;</span> <span class="o">+</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_frequency</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_mode</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Simulation Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Dynamic&quot;</span> <span class="ow">or</span> \
+                 <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">][</span><span class="s2">&quot;Enable frequency sweep&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_store_frequency</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_store_mode</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Mode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;byElement&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span>
+                <span class="s2">&quot;Export Mode &#39;byElement&#39; is not supported by ResultData&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">export_list_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">system_paths</span><span class="p">[</span><span class="s2">&quot;ExportLists&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;Exports.toml&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">export_list_filename</span><span class="p">):</span>
+            <span class="n">export_list_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">system_paths</span><span class="p">[</span><span class="s2">&quot;ExportLists&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;ExportMode-byClass.toml&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_list</span> <span class="o">=</span> <span class="n">ExportListReader</span><span class="p">(</span><span class="n">export_list_filename</span><span class="p">)</span>
+        <span class="n">Reports</span><span class="o">.</span><span class="n">append_required_exports</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_list</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_list</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="s2">&quot;ExportsActual.toml&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_circuit_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_exports</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_create_exports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_list</span><span class="o">.</span><span class="n">list_element_classes</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Buses&quot;</span><span class="p">,</span> <span class="s2">&quot;Nodes&quot;</span><span class="p">):</span>
+                <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buses</span>
+            <span class="k">elif</span> <span class="n">elem_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_class</span><span class="p">:</span>
+                <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_class</span><span class="p">[</span><span class="n">elem_class</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">elem_class</span> <span class="o">!=</span> <span class="s2">&quot;CktElement&quot;</span><span class="p">:</span>  <span class="c1"># TODO</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_list</span><span class="o">.</span><span class="n">iter_export_properties</span><span class="p">(</span><span class="n">elem_class</span><span class="o">=</span><span class="n">elem_class</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">opendss_classes</span><span class="p">:</span>
+                    <span class="n">dss_objs</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">prop</span><span class="o">.</span><span class="n">opendss_classes</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_class</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">Enabled</span> <span class="ow">and</span> <span class="n">prop</span><span class="o">.</span><span class="n">should_store_name</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">FullName</span><span class="p">):</span>
+                                <span class="n">dss_objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dss_objs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">objs</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">Enabled</span> <span class="ow">and</span> <span class="n">prop</span><span class="o">.</span><span class="n">should_store_name</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">)]</span>
+                <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">custom_metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_opendss_metric</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_custom_metric</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_opendss_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">dss_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">obj</span><span class="o">.</span><span class="n">IsValidAttribute</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">obj</span><span class="o">.</span><span class="n">FullName</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> cannot be exported&quot;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">sum_elements</span><span class="p">:</span>
+            <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_element_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metric</span> <span class="o">=</span> <span class="n">SummedElementsOpenDssPropertyMetric</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_summed_element_metrics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">add_dss_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metric</span> <span class="o">=</span> <span class="n">OpenDssPropertyMetric</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">add_property</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_custom_metric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">):</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">custom_metric</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">is_circuit_wide</span><span class="p">():</span>
+            <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_circuit_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metric</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_circuit_metrics</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">add_property</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metric</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">add_property</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResultData.InitializeDataStore"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.InitializeDataStore">[docs]</a>    <span class="k">def</span> <span class="nf">InitializeDataStore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hdf_store</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">MC_scenario_number</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">MC_scenario_number</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_scenario</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;_MC</span><span class="si">{</span><span class="n">MC_scenario_number</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="n">hdf_store</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_dataset</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="p">(</span>
+            <span class="n">hdf_store</span><span class="o">=</span><span class="n">hdf_store</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exports/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span><span class="si">}</span><span class="s2">/Timestamp&quot;</span><span class="p">,</span>
+            <span class="n">max_size</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,),</span>
+            <span class="n">max_chunk_bytes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_dataset</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="p">(</span>
+            <span class="n">hdf_store</span><span class="o">=</span><span class="n">hdf_store</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exports/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span><span class="si">}</span><span class="s2">/Frequency&quot;</span><span class="p">,</span>
+            <span class="n">max_size</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">,),</span>
+            <span class="n">max_chunk_bytes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mode_dataset</span> <span class="o">=</span> <span class="n">DatasetBuffer</span><span class="p">(</span>
+            <span class="n">hdf_store</span><span class="o">=</span><span class="n">hdf_store</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exports/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span><span class="si">}</span><span class="s2">/Mode&quot;</span><span class="p">,</span>
+            <span class="n">max_size</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;S10&quot;</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Mode&quot;</span><span class="p">,),</span>
+            <span class="n">max_chunk_bytes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cur_step</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;Exports/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenario</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_metrics</span><span class="p">():</span>
+            <span class="n">metric</span><span class="o">.</span><span class="n">initialize_data_store</span><span class="p">(</span><span class="n">hdf_store</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_iter_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">metric</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summed_element_metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">metric</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_circuit_metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">metric</span>
+
+<div class="viewcode-block" id="ResultData.UpdateResults"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.UpdateResults">[docs]</a>    <span class="k">def</span> <span class="nf">UpdateResults</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">current_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Get the number of seconds since the Epoch without any timezone conversions.</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_solver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_dataset</span><span class="o">.</span><span class="n">write_value</span><span class="p">([</span><span class="n">timestamp</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_dataset</span><span class="o">.</span><span class="n">write_value</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_solver</span><span class="o">.</span><span class="n">getFrequency</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mode_dataset</span><span class="o">.</span><span class="n">write_value</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_solver</span><span class="o">.</span><span class="n">getMode</span><span class="p">()])</span>
+
+        <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stats</span><span class="p">,</span> <span class="s2">&quot;Total&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_metrics</span><span class="p">():</span>
+                <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stats</span><span class="p">,</span> <span class="n">metric</span><span class="o">.</span><span class="n">label</span><span class="p">()):</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">append_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cur_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="n">store_nan</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="c1"># TODO: reconsider</span>
+                    <span class="c1"># Something is only returned for OpenDSS properties</span>
+                    <span class="n">current_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cur_step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">current_results</span></div>
+
+<div class="viewcode-block" id="ResultData.ExportResults"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.ExportResults">[docs]</a>    <span class="k">def</span> <span class="nf">ExportResults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;event_log&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;element_info_files&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Event Log&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_event_log</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Elements&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_elements</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_feeder_head_info</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export PV Profiles&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_pv_profiles</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;Export Node Names By Type&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_export_node_names_by_type</span><span class="p">()</span>
+
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">METADATA_FILENAME</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported metadata to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ResultData.Close"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.Close">[docs]</a>    <span class="k">def</span> <span class="nf">Close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode_dataset</span><span class="p">):</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">flush_data</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_metrics</span><span class="p">():</span>
+            <span class="n">metric</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_export_event_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="n">event_log</span> <span class="o">=</span> <span class="s2">&quot;event_log.csv&quot;</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">event_log</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;Export EventLog </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event_log</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">out</span> <span class="o">!=</span> <span class="n">event_log</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to export EventLog:  </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported OpenDSS event log to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;event_log&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">event_log</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">basename</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">basename</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_format</span>
+        <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_compression</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_find_feeder_head_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">feeder_head_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Topology</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">flag</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;line&#39;</span> <span class="ow">in</span> <span class="n">dss</span><span class="o">.</span><span class="n">Topology</span><span class="o">.</span><span class="n">BranchName</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">feeder_head_line</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Topology</span><span class="o">.</span><span class="n">BranchName</span><span class="p">()</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Topology</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">feeder_head_line</span>
+
+    <span class="k">def</span> <span class="nf">_get_feeder_head_loading</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">head_line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_feeder_head_line</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">head_line</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveElement</span><span class="p">(</span><span class="n">head_line</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">flag</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">n_phases</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">NumPhases</span><span class="p">()</span>
+                <span class="n">max_amp</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">NormalAmps</span><span class="p">()</span>
+                <span class="n">Currents</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">CurrentsMagAng</span><span class="p">()[:</span><span class="mi">2</span><span class="o">*</span><span class="n">n_phases</span><span class="p">]</span>
+                <span class="n">Current_magnitude</span> <span class="o">=</span> <span class="n">Currents</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+
+                <span class="n">max_flow</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">Current_magnitude</span><span class="p">),</span> <span class="mf">1e-10</span><span class="p">)</span>
+                <span class="n">loading</span> <span class="o">=</span> <span class="n">max_flow</span><span class="o">/</span><span class="n">max_amp</span>
+
+                <span class="k">return</span> <span class="n">loading</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_reverse_powerflow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">reverse_pf</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">TotalPower</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># total substation power is an injection(-) or a consumption(+)</span>
+        <span class="k">return</span> <span class="n">reverse_pf</span>
+
+    <span class="k">def</span> <span class="nf">_export_feeder_head_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets feeder head information comprising:</span>
+<span class="sd">        1- The name of the feeder head line</span>
+<span class="sd">        2- The feeder head loading in per unit</span>
+<span class="sd">        3- The feeder head load in (kW, kVar). Negative in case of power injection</span>
+<span class="sd">        4- The reverse power flow flag. True if power is flowing back to the feeder head, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;feeder_head_info_files&quot;</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;feeder_head_info_files&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">total_power</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">TotalPower</span><span class="p">()</span>
+        <span class="n">df_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;FeederHeadLine&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_feeder_head_line</span><span class="p">(),</span>
+                   <span class="s2">&quot;FeederHeadLoading&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feeder_head_loading</span><span class="p">(),</span>
+                   <span class="s2">&quot;FeederHeadLoadKW&quot;</span><span class="p">:</span> <span class="n">total_power</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="s2">&quot;FeederHeadLoadKVar&quot;</span><span class="p">:</span> <span class="n">total_power</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                   <span class="s2">&quot;ReversePowerFlow&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reverse_powerflow</span><span class="p">()</span>
+                  <span class="p">}</span>
+
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;FeederHeadInfo&quot;</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span>
+        <span class="n">relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+
+        <span class="c1">#write_dataframe(df, filepath)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="n">df_dict</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;feeder_head_info_files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported </span><span class="si">%s</span><span class="s2"> information to </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="n">exports</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="c1"># TODO: opendssdirect does not provide a function to export Bus information.</span>
+            <span class="p">(</span><span class="s2">&quot;CapacitorsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">capacitors_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;FusesInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Fuses</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">fuses_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;GeneratorsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Generators</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">generators_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;IsourceInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Isource</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">isource_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;LinesInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">lines_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;LoadsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">loads_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;MetersInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Meters</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">meters_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;MonitorsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Monitors</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">monitors_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ReclosersInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Reclosers</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">reclosers_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;RegControlsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">regcontrols_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;RelaysInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Relays</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">relays_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;SensorsInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Sensors</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">sensors_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;TransformersInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Transformers</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">transformers_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;VsourcesInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">Vsources</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">vsources_to_dataframe</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;XYCurvesInfo&quot;</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">XYCurves</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">xycurves_to_dataframe</span><span class="p">),</span>
+            <span class="c1"># TODO This can be very large. Consider making it configurable.</span>
+            <span class="c1">#(&quot;LoadShapeInfo&quot;, dss.LoadShape.Count, dss.utils.loadshape_to_dataframe),</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">count_func</span><span class="p">,</span> <span class="n">get_func</span> <span class="ow">in</span> <span class="n">exports</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">count_func</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">get_func</span><span class="p">()</span>
+                <span class="c1"># Always record in CSV format for readability.</span>
+                <span class="c1"># There are also warning messages from PyTables because the</span>
+                <span class="c1"># data may contain strings.</span>
+                <span class="n">fname</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
+                <span class="n">relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+                <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+                <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;element_info_files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relpath</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported </span><span class="si">%s</span><span class="s2"> information to </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_pv_systems</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_export_transformers</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_pv_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">pvsystems_to_dataframe</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">dss</span><span class="o">.</span><span class="n">PVsystems</span><span class="o">.</span><span class="n">Count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+            <span class="n">pv_systems</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">PVsystems</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+            <span class="k">while</span> <span class="n">flag</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">pv_systems</span><span class="p">[</span><span class="n">dss</span><span class="o">.</span><span class="n">PVsystems</span><span class="o">.</span><span class="n">Name</span><span class="p">()]</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="s2">&quot;Pmpp&quot;</span><span class="p">)</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">PVsystems</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="n">record</span><span class="p">[</span><span class="s2">&quot;Pmpp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pv_systems</span><span class="p">[</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]]</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+
+        <span class="n">relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span><span class="p">,</span> <span class="s2">&quot;PVSystemsInfo.csv&quot;</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="s2">&quot;PVSystemsInfo.csv&quot;</span><span class="p">)</span>
+        <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;element_info_files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported PVSystem information to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_transformers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="n">df_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Transformer&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;HighSideConnection&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;NumPhases&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveClass</span><span class="p">(</span><span class="s2">&quot;Transformer&quot;</span><span class="p">)</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveClass</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">flag</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">Name</span><span class="p">()</span>
+            <span class="n">df_dict</span><span class="p">[</span><span class="s2">&quot;Transformer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">df_dict</span><span class="p">[</span><span class="s2">&quot;HighSideConnection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="s2">&quot;conns&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="n">df_dict</span><span class="p">[</span><span class="s2">&quot;NumPhases&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">CktElement</span><span class="o">.</span><span class="n">NumPhases</span><span class="p">())</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveClass</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">df_dict</span><span class="p">)</span>
+
+        <span class="n">relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_relative_dir</span><span class="p">,</span> <span class="s2">&quot;TransformersPhaseInfo.csv&quot;</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="s2">&quot;TransformersPhaseInfo.csv&quot;</span><span class="p">)</span>
+        <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;element_info_files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported transformer phase information to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_pv_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">granularity</span> <span class="o">=</span> <span class="n">ReportGranularity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Reports&quot;</span><span class="p">][</span><span class="s2">&quot;Granularity&quot;</span><span class="p">])</span>
+        <span class="n">pv_systems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PVSystems&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pv_systems</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No PVSystems are present&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">pv_infos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">full_name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">pv_systems</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">profile_name</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s2">&quot;yearly&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">profile_name</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">profiles</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">profile_name</span><span class="p">)</span>
+            <span class="n">pv_infos</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;irradiance&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s2">&quot;irradiance&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">full_name</span><span class="p">,</span>
+                <span class="s2">&quot;pmpp&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="s2">&quot;pmpp&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;load_shape_profile&quot;</span><span class="p">:</span> <span class="n">profile_name</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="n">pmult_sums</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">dss</span><span class="o">.</span><span class="n">LoadShape</span><span class="o">.</span><span class="n">First</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;There are no load shapes.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">sim_resolution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Step resolution (sec)&quot;</span><span class="p">]</span>
+        <span class="n">per_time_point</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">ReportGranularity</span><span class="o">.</span><span class="n">PER_ELEMENT_PER_TIME_POINT</span><span class="p">,</span>
+            <span class="n">ReportGranularity</span><span class="o">.</span><span class="n">ALL_ELEMENTS_PER_TIME_POINT</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">load_shape_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">LoadShape</span><span class="o">.</span><span class="n">Name</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">profiles</span><span class="p">:</span>
+                <span class="n">sinterval</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">LoadShape</span><span class="o">.</span><span class="n">SInterval</span><span class="p">()</span>
+                <span class="k">assert</span> <span class="n">sim_resolution</span> <span class="o">&gt;=</span> <span class="n">sinterval</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sim_resolution</span><span class="si">}</span><span class="s2"> &gt;= </span><span class="si">{</span><span class="n">sinterval</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">create_loadshape_pmult_dataframe_for_simulation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+                <span class="n">sum_values</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">granularity</span> <span class="ow">in</span> <span class="n">per_time_point</span><span class="p">:</span>
+                    <span class="n">load_shape_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+                    <span class="n">pmult_sums</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_values</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pmult_sums</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_values</span>
+            <span class="k">if</span> <span class="n">dss</span><span class="o">.</span><span class="n">LoadShape</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">load_shape_data</span> <span class="ow">and</span> <span class="n">granularity</span> <span class="ow">in</span> <span class="n">per_time_point</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">PV_LOAD_SHAPE_FILENAME</span><span class="p">)</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">create_datetime_index_from_settings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">load_shape_data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">write_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">pv_info</span> <span class="ow">in</span> <span class="n">pv_infos</span><span class="p">:</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="n">pv_info</span><span class="p">[</span><span class="s2">&quot;load_shape_profile&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">profile</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">pv_info</span><span class="p">[</span><span class="s2">&quot;load_shape_pmult_sum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pv_info</span><span class="p">[</span><span class="s2">&quot;load_shape_pmult_sum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmult_sums</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pv_systems&quot;</span><span class="p">:</span> <span class="n">pv_infos</span><span class="p">}</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">PV_PROFILES_FILENAME</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported PV profile information to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_export_node_names_by_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">get_node_names_by_type</span><span class="p">()</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_export_dir</span><span class="p">,</span> <span class="n">NODE_NAMES_BY_TYPE_FILENAME</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exported node names by type to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResultData.get_units"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.get_units">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_units</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">unit_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no units are stored for </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;index must be provided for </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">units</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">units</span><span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">]</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="s2">&quot;index must be 0 or 1&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">units</span></div>
+
+<div class="viewcode-block" id="ResultData.max_num_bytes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.ResultData.ResultData.max_num_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">max_num_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the maximum number of bytes the container could hold.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_metrics</span><span class="p">():</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">metric</span><span class="o">.</span><span class="n">max_num_bytes</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">total</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

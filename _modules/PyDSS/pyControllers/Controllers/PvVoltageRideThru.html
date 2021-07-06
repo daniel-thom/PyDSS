@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyControllers.Controllers.PvVoltageRideThru &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link href="../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pyControllers.Controllers.PvVoltageRideThru</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pyControllers.Controllers.PvVoltageRideThru</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span>  <span class="nn">PyDSS.pyControllers.pyControllerAbstract</span> <span class="kn">import</span> <span class="n">ControllerAbstract</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">MultiPoint</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">MultiPolygon</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">triangulate</span><span class="p">,</span> <span class="n">cascaded_union</span>
+<span class="kn">from</span> <span class="nn">descartes.patch</span> <span class="kn">import</span> <span class="n">PolygonPatch</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="PvVoltageRideThru"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru">[docs]</a><span class="k">class</span> <span class="nc">PvVoltageRideThru</span><span class="p">(</span><span class="n">ControllerAbstract</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of IEEE1547-2003 and IEEE1547-2018 voltage ride-through standards using the OpenDSS Generator model. Subclass of the :class:`PyDSS.pyControllers.pyControllerAbstract.ControllerAbstract` abstract class.</span>
+
+<span class="sd">            :param PvObj: A :class:`PyDSS.dssElement.dssElement` object that wraps around an OpenDSS &#39;Generator&#39; element</span>
+<span class="sd">            :type FaultObj: class:`PyDSS.dssElement.dssElement`</span>
+<span class="sd">            :param Settings: A dictionary that defines the settings for the PvController.</span>
+<span class="sd">            :type Settings: dict</span>
+<span class="sd">            :param dssInstance: An :class:`opendssdirect` instance</span>
+<span class="sd">            :type dssInstance: :class:`opendssdirect`</span>
+<span class="sd">            :param ElmObjectList: Dictionary of all dssElement, dssBus and dssCircuit objects</span>
+<span class="sd">            :type ElmObjectList: dict</span>
+<span class="sd">            :param dssSolver: An instance of one of the classed defined in :mod:`PyDSS.SolveMode`.</span>
+<span class="sd">            :type dssSolver: :mod:`PyDSS.SolveMode`</span>
+<span class="sd">            :raises: AssertionError if &#39;PvObj&#39; is not a wrapped OpenDSS Generator element</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PvObj</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dssInstance</span><span class="p">,</span> <span class="n">ElmObjectList</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PvVoltageRideThru</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">PvObj</span><span class="p">,</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">dssInstance</span><span class="p">,</span> <span class="n">ElmObjectList</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">TimeChange</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">oldPcalc</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oldQcalc</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Qpvpu</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span> <span class="n">__vDisconnected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pDisconnected</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ElmObjectList</span> <span class="o">=</span> <span class="n">ElmObjectList</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ControlDict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;None&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span> <span class="o">=</span> <span class="n">PvObj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ElmObjectList</span> <span class="o">=</span> <span class="n">ElmObjectList</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dssInstance</span> <span class="o">=</span> <span class="n">dssInstance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span> <span class="o">=</span> <span class="n">dssSolver</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span> <span class="o">=</span> <span class="n">Settings</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">GetInfo</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Class</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;generator&#39;</span><span class="p">),</span> <span class="s1">&#39;PvControllerGen works only with an OpenDSS Generator element&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span> <span class="o">=</span> <span class="s1">&#39;pyCont_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Class</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Name</span>
+        <span class="k">if</span> <span class="s1">&#39;_&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Name</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Phase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Phase</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Initializing the model</span>
+        <span class="n">PvObj</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;kvar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#self.__BaseKV = float(PvObj.SetParameter(&#39;kv&#39;,Settings[&#39;kV&#39;]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Srated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">PvObj</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;kva&#39;</span><span class="p">,</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;kVA&#39;</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">PvObj</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;kW&#39;</span><span class="p">,</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;maxKW&#39;</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__minQ</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">PvObj</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;minkvar&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;KvarLimit&#39;</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__maxQ</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">PvObj</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;maxkvar&#39;</span><span class="p">,</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;KvarLimit&#39;</span><span class="p">]))</span>
+
+        <span class="c1"># MISC settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cutin</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;%PCutin&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cutout</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;%PCutout&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__trip_deadtime_sec</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Reconnect deadtime - sec&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Time_to_Pmax_sec</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Reconnect Pmax time - sec&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__alpha</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__beta</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;maxKW&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__priority</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Priority&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__enablePFlimit</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Enable PF limit&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__minPF</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;pfMin&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__UcalcMode</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;UcalcMode&#39;</span><span class="p">]</span>
+        <span class="c1">#self.__VVtConst = Settings[&#39;VVtConst&#39;]</span>
+        <span class="c1">#self.__VWtConst = Settings[&#39;VWtConst&#39;]</span>
+        <span class="c1"># Settings for voltvar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMin&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uMax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMax&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uDbMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uDbMin&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uDbMax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uDbMax&#39;</span><span class="p">]</span>
+        <span class="c1"># Settings for voltwatt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uMinC</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMinC&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uMaxC</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;uMaxC&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Pmin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;PminVW&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__curtailmentMode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;CurtMode&#39;</span><span class="p">]</span>
+        <span class="c1"># Update function calls</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ControlDict</span><span class="p">[</span><span class="n">Settings</span><span class="p">[</span><span class="s1">&#39;Control&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+        <span class="c1"># initialize deadtimes and other variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__initializeRideThroughSettings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rVs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rTs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__CreateOperationRegions</span><span class="p">()</span>
+        <span class="c1"># For debugging only</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useAvgVoltage</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">cycleAvg</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">dssSolver</span><span class="o">.</span><span class="n">getFrequency</span><span class="p">()</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">dssSolver</span><span class="o">.</span><span class="n">GetStepSizeSec</span><span class="p">()</span>
+        <span class="n">hist_size</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">cycleAvg</span> <span class="o">/</span> <span class="p">(</span><span class="n">step</span> <span class="o">*</span> <span class="n">freq</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hist_size</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactive_power</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hist_size</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioM</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioP</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="PvVoltageRideThru.Name"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.Name">[docs]</a>    <span class="k">def</span> <span class="nf">Name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span></div>
+
+<div class="viewcode-block" id="PvVoltageRideThru.ControlledElement"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.ControlledElement">[docs]</a>    <span class="k">def</span> <span class="nf">ControlledElement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PvVoltageRideThru.debugInfo"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.debugInfo">[docs]</a>    <span class="k">def</span> <span class="nf">debugInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Control</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span></div>
+
+    <span class="k">def</span> <span class="nf">__initializeRideThroughSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Plimit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__CutoffTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ReconnStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span>
+            <span class="n">seconds</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Time_to_Pmax_sec</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedPmaxDelay</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__NormOper</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__NormOperStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uViolationtime</span> <span class="o">=</span> <span class="mi">999999</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedDeadtime</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__isinContioeousRegion</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__FaultwindowClearingStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__CreateOperationRegions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uMaxTheo</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="n">tMax</span> <span class="o">=</span> <span class="mf">1e10</span>
+
+        <span class="n">OVtripPoints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">uMaxTheo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV2 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV2 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV2 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV2 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV1 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV1 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV1 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;OV1 - p.u.&#39;</span><span class="p">],</span> <span class="n">tMax</span><span class="p">),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">uMaxTheo</span><span class="p">,</span> <span class="n">tMax</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">OVtripRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">OVtripPoints</span><span class="p">])</span>
+
+        <span class="n">UVtripPoints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV2 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV2 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV2 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV2 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV1 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV1 - p.u.&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV1 CT - sec&#39;</span><span class="p">]),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;UV1 - p.u.&#39;</span><span class="p">],</span> <span class="n">tMax</span><span class="p">),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tMax</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">UVtripRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">UVtripPoints</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Ride-through Category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Category I&#39;</span><span class="p">:</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.10</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.20</span><span class="p">,</span> <span class="mf">1.175</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterMax</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span> <span class="o">=</span> <span class="mi">20</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Ride-through Category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Category II&#39;</span><span class="p">:</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.10</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">1.20</span><span class="p">,</span> <span class="mf">1.175</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">]</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterMax</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Ride-through Category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Category III&#39;</span><span class="p">:</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.10</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterMax</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span> <span class="o">=</span> <span class="mi">5</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;Vmaxpu&#39;</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;Vminpu&#39;</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">ContineousPoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tMax</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tMax</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)]</span>
+        <span class="n">ContineousRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ContineousPoints</span><span class="p">])</span>
+
+        <span class="n">MandatoryPoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)]</span>
+        <span class="n">MandatoryRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">MandatoryPoints</span><span class="p">])</span>
+
+        <span class="n">PermissiveOVPoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+                              <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+                              <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)]</span>
+        <span class="n">PermissiveOVRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">PermissiveOVPoints</span><span class="p">])</span>
+
+        <span class="n">PermissiveUVPoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>
+                              <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span> <span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="mi">0</span><span class="p">)]</span>
+        <span class="n">PermissiveUVRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">PermissiveUVPoints</span><span class="p">])</span>
+
+        <span class="n">ActiveRegion</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">,</span> <span class="n">ContineousRegion</span><span class="p">,</span> <span class="n">MandatoryRegion</span><span class="p">,</span>
+                                     <span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">])</span>
+
+        <span class="n">TotalPoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">uMaxTheo</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">uMaxTheo</span><span class="p">,</span> <span class="n">tMax</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tMax</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+        <span class="n">TotalRegion</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">TotalPoints</span><span class="p">])</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="n">TotalRegion</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ActiveRegion</span><span class="p">)</span>
+        <span class="n">MayTripRegion</span> <span class="o">=</span> <span class="n">TotalRegion</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Ride-through Category&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Category I&#39;</span><span class="p">,</span> <span class="s1">&#39;Category II&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Permissive operation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Current limited&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;May trip operation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Permissive operation&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">(</span>
+                        <span class="p">[</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">,</span> <span class="n">MandatoryRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">,</span> <span class="n">MandatoryRegion</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;May trip operation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Permissive operation&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">MandatoryRegion</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">MandatoryRegion</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;May trip operation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Permissive operation&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">MandatoryRegion</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span> <span class="o">=</span> <span class="n">MandatoryRegion</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">PermissiveOVRegion</span><span class="p">,</span> <span class="n">PermissiveUVRegion</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span> <span class="o">=</span> <span class="n">cascaded_union</span><span class="p">([</span><span class="n">OVtripRegion</span><span class="p">,</span> <span class="n">UVtripRegion</span><span class="p">,</span> <span class="n">MayTripRegion</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NormalRegion</span> <span class="o">=</span> <span class="n">ContineousRegion</span>
+        <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">T</span>
+
+<div class="viewcode-block" id="PvVoltageRideThru.Update"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.Update">[docs]</a>    <span class="k">def</span> <span class="nf">Update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Priority</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Update</span><span class="p">):</span>
+
+        <span class="n">Error</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TimeChange</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">!=</span> <span class="p">(</span><span class="n">Priority</span><span class="p">,</span> <span class="n">Time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Time</span> <span class="o">=</span> <span class="n">Time</span>
+        <span class="k">if</span> <span class="n">Priority</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Connect</span><span class="p">()</span>
+        <span class="c1"># if self.__isConnected:</span>
+        <span class="c1">#     Error = self.update[Priority]()</span>
+        <span class="k">if</span> <span class="n">Priority</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">uIn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__UpdateViolatonTimers</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s2">&quot;Follow standard&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;1547-2018&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">VoltageRideThrough</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s2">&quot;Follow standard&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;1547-2003&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Trip</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Valid standard setting defined. Options are: 1547-2003, 1547-2018&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Error</span></div>
+
+<div class="viewcode-block" id="PvVoltageRideThru.Trip"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.Trip">[docs]</a>    <span class="k">def</span> <span class="nf">Trip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uIn</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of the IEEE1587-2003 voltage ride-through requirements for inverter systems</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">uIn</span> <span class="o">&lt;</span> <span class="mf">0.88</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__Trip</span><span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="PvVoltageRideThru.VoltageRideThrough"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyControllers.Controllers.html#PyDSS.pyControllers.Controllers.PvVoltageRideThru.PvVoltageRideThru.VoltageRideThrough">[docs]</a>    <span class="k">def</span> <span class="nf">VoltageRideThrough</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uIn</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Implementation of the IEEE1587-2018 voltage ride-through requirements for inverter systems</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">Pm</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__uViolationtime</span><span class="p">,</span> <span class="n">uIn</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Pm</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CurrLimRegion</span><span class="p">):</span>
+            <span class="n">isinContioeousRegion</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span> <span class="ow">and</span> <span class="n">Pm</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MomentarySucessionRegion</span><span class="p">):</span>
+            <span class="n">isinContioeousRegion</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__Trip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetStepSizeSec</span><span class="p">(),</span> <span class="mf">0.4</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">Pm</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TripRegion</span><span class="p">):</span>
+            <span class="n">isinContioeousRegion</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__Trip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__trip_deadtime_sec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Time_to_Pmax_sec</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">isinContioeousRegion</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">isinContioeousRegion</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isinContioeousRegion</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__FaultwindowClearingStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+        <span class="n">clearingTime</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__FaultwindowClearingStartTime</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isinContioeousRegion</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isinContioeousRegion</span><span class="p">:</span>
+            <span class="k">if</span>  <span class="n">clearingTime</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterMax</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Settings</span><span class="p">[</span><span class="s1">&#39;Multiple disturbances&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Trip&#39;</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__Trip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__trip_deadtime_sec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Time_to_Pmax_sec</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">pass</span>
+        <span class="k">if</span>  <span class="n">clearingTime</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounterClearingTimeSec</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__faultCounter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__isinContioeousRegion</span> <span class="o">=</span> <span class="n">isinContioeousRegion</span>
+        <span class="k">return</span></div>
+
+    <span class="k">def</span> <span class="nf">__Connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span><span class="p">:</span>
+            <span class="n">uIn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;VoltagesMagAng&#39;</span><span class="p">)[::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">uBase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">sBus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;kVBase&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+            <span class="n">uIn</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span> <span class="o">/</span> <span class="n">uBase</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__UcalcMode</span> <span class="o">==</span> <span class="s1">&#39;Max&#39;</span> <span class="k">else</span> <span class="nb">sum</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">uBase</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">uIn</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">useAvgVoltage</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">uIn</span>
+                <span class="n">uIn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span>
+            <span class="n">deadtime</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedStartTime</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">uIn</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rVs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">uIn</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rVs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">deadtime</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedDeadtime</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;kw&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__ReconnStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">conntime</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ReconnStartTime</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__Plimit</span> <span class="o">=</span> <span class="n">conntime</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedPmaxDelay</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span> <span class="k">if</span> <span class="n">conntime</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedPmaxDelay</span> \
+                <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Prated</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;kw&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Plimit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span>
+
+    <span class="k">def</span> <span class="nf">__Trip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Deadtime</span><span class="p">,</span> <span class="n">Time2Pmax</span><span class="p">,</span> <span class="n">forceTrip</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span> <span class="ow">or</span> <span class="n">forceTrip</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">SetParameter</span><span class="p">(</span><span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__isConnected</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedPmaxDelay</span> <span class="o">=</span> <span class="n">Time2Pmax</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__TrippedDeadtime</span> <span class="o">=</span> <span class="n">Deadtime</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__UpdateViolatonTimers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uIn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;VoltagesMagAng&#39;</span><span class="p">)[::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">uBase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ControlledElm</span><span class="o">.</span><span class="n">sBus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="s1">&#39;kVBase&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="n">uIn</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span> <span class="o">/</span> <span class="n">uBase</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__UcalcMode</span> <span class="o">==</span> <span class="s1">&#39;Max&#39;</span> <span class="k">else</span> <span class="nb">sum</span><span class="p">(</span><span class="n">uIn</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">uBase</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">uIn</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">useAvgVoltage</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">uIn</span>
+            <span class="n">uIn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">uIn</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rVs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">uIn</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rVs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__NormOper</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__NormOper</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__NormOperStartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__NormOperTime</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__NormOperTime</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__NormOperStartTime</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioM</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioP</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioM</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__VoltVioM</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__uViolationstartTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__uViolationtime</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__uViolationtime</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dssSolver</span><span class="o">.</span><span class="n">GetDateTime</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__uViolationstartTime</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">uIn</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

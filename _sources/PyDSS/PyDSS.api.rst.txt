@@ -1,0 +1,21 @@
+PyDSS.api package
+=================
+
+Submodules
+----------
+
+PyDSS.api.server module
+-----------------------
+
+.. automodule:: PyDSS.api.server
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.api
+   :members:
+   :undoc-members:
+   :show-inheritance:

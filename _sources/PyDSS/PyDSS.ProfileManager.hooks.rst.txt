@@ -1,0 +1,29 @@
+PyDSS.ProfileManager.hooks package
+==================================
+
+Submodules
+----------
+
+PyDSS.ProfileManager.hooks.HDF5 module
+--------------------------------------
+
+.. automodule:: PyDSS.ProfileManager.hooks.HDF5
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.ProfileManager.hooks.MongoDB module
+-----------------------------------------
+
+.. automodule:: PyDSS.ProfileManager.hooks.MongoDB
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.ProfileManager.hooks
+   :members:
+   :undoc-members:
+   :show-inheritance:

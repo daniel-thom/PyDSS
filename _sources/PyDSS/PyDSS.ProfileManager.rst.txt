@@ -1,0 +1,45 @@
+PyDSS.ProfileManager package
+============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   PyDSS.ProfileManager.hooks
+
+Submodules
+----------
+
+PyDSS.ProfileManager.ProfileInterface module
+--------------------------------------------
+
+.. automodule:: PyDSS.ProfileManager.ProfileInterface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.ProfileManager.base\_definitions module
+---------------------------------------------
+
+.. automodule:: PyDSS.ProfileManager.base_definitions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.ProfileManager.common module
+----------------------------------
+
+.. automodule:: PyDSS.ProfileManager.common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.ProfileManager
+   :members:
+   :undoc-members:
+   :show-inheritance:

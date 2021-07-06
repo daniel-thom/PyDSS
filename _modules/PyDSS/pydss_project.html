@@ -1,0 +1,1263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pydss_project &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pydss_project</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pydss_project</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Contains functionality to configure PyDSS simulations.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tarfile</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">PyDSS</span>
+<span class="kn">from</span> <span class="nn">PyDSS.common</span> <span class="kn">import</span> <span class="n">PROJECT_TAR</span><span class="p">,</span> <span class="n">PROJECT_ZIP</span><span class="p">,</span> <span class="n">CONTROLLER_TYPES</span><span class="p">,</span> \
+    <span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">,</span> <span class="n">DEFAULT_SIMULATION_SETTINGS_FILE</span><span class="p">,</span> \
+    <span class="n">ControllerType</span><span class="p">,</span> <span class="n">ExportMode</span><span class="p">,</span> <span class="n">MONTE_CARLO_SETTINGS_FILENAME</span><span class="p">,</span>\
+    <span class="n">filename_from_enum</span><span class="p">,</span> <span class="n">VisualizationType</span><span class="p">,</span> <span class="n">DEFAULT_MONTE_CARLO_SETTINGS_FILE</span><span class="p">,</span>\
+    <span class="n">SUBSCRIPTIONS_FILENAME</span><span class="p">,</span> <span class="n">DEFAULT_SUBSCRIPTIONS_FILE</span><span class="p">,</span> <span class="n">OPENDSS_MASTER_FILENAME</span>
+<span class="kn">from</span> <span class="nn">PyDSS.exceptions</span> <span class="kn">import</span> <span class="n">InvalidParameter</span><span class="p">,</span> <span class="n">InvalidConfiguration</span>
+<span class="kn">from</span> <span class="nn">PyDSS.loggers</span> <span class="kn">import</span> <span class="n">setup_logging</span>
+<span class="kn">from</span> <span class="nn">PyDSS.pyDSS</span> <span class="kn">import</span> <span class="n">instance</span>
+<span class="kn">from</span> <span class="nn">PyDSS.pydss_fs_interface</span> <span class="kn">import</span> <span class="n">PyDssDirectoryInterface</span><span class="p">,</span> \
+    <span class="n">PyDssArchiveFileInterfaceBase</span><span class="p">,</span> <span class="n">PyDssTarFileInterface</span><span class="p">,</span> \
+    <span class="n">PyDssZipFileInterface</span><span class="p">,</span> <span class="n">PROJECT_DIRECTORIES</span><span class="p">,</span> \
+    <span class="n">SCENARIOS</span><span class="p">,</span> <span class="n">STORE_FILENAME</span>
+<span class="kn">from</span> <span class="nn">PyDSS.reports.reports</span> <span class="kn">import</span> <span class="n">REPORTS_DIR</span>
+<span class="kn">from</span> <span class="nn">PyDSS.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.dss_utils</span> <span class="kn">import</span> <span class="n">read_pv_systems_from_dss_file</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.utils</span> <span class="kn">import</span> <span class="n">dump_data</span><span class="p">,</span> <span class="n">load_data</span>
+
+<span class="kn">from</span> <span class="nn">distutils.dir_util</span> <span class="kn">import</span> <span class="n">copy_tree</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">DATA_FORMAT_VERSION</span> <span class="o">=</span> <span class="s2">&quot;1.0.2&quot;</span>
+<span class="n">RUN_SIMULATION_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;simulation-run.toml&quot;</span>
+
+<span class="n">READ_CONTROLLER_FUNCTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">ControllerType</span><span class="o">.</span><span class="n">PV_CONTROLLER</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">read_pv_systems_from_dss_file</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="PyDssProject"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject">[docs]</a><span class="k">class</span> <span class="nc">PyDssProject</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represents the project options for a PyDSS simulation.&quot;&quot;&quot;</span>
+
+    <span class="n">_SKIP_ARCHIVE</span> <span class="o">=</span> <span class="p">(</span><span class="n">PROJECT_ZIP</span><span class="p">,</span> <span class="n">PROJECT_TAR</span><span class="p">,</span> <span class="n">STORE_FILENAME</span><span class="p">,</span> <span class="n">REPORTS_DIR</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">scenarios</span><span class="p">,</span> <span class="n">simulation_config</span><span class="p">,</span> <span class="n">fs_intf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">simulation_file</span><span class="o">=</span><span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span> <span class="o">=</span> <span class="n">scenarios</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span> <span class="o">=</span> <span class="n">simulation_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">simulation_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_file</span> <span class="o">=</span> <span class="n">simulation_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">SCENARIOS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span> <span class="o">=</span> <span class="n">fs_intf</span>  <span class="c1"># Only needed for reading a project that was</span>
+                                 <span class="c1"># already executed.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_space</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dss_files_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path containing OpenDSS files.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="s2">&quot;DSSfiles&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssProject.export_path"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.export_path">[docs]</a>    <span class="k">def</span> <span class="nf">export_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scenario</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path containing export data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scenario : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="s2">&quot;Exports&quot;</span><span class="p">,</span> <span class="n">scenario</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hdf_store</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the HDFStore</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.HDFStore</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="s2">&quot;hdf_store is not defined&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fs_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the interface object used to read files.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PyDssFileSystemInterface</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="s2">&quot;fs interface is not defined&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span>
+
+<div class="viewcode-block" id="PyDssProject.get_hdf_store_filename"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.get_hdf_store_filename">[docs]</a>    <span class="k">def</span> <span class="nf">get_hdf_store_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the HDFStore filename.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Path to the HDFStore.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidConfiguration</span>
+<span class="sd">            Raised if no store exists.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">STORE_FILENAME</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HDFStore does not exist&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">filename</span></div>
+
+<div class="viewcode-block" id="PyDssProject.get_post_process_directory"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.get_post_process_directory">[docs]</a>    <span class="k">def</span> <span class="nf">get_post_process_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scenario_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the post-process output directory for scenario_name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scenario_name : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Make sure the scenario exists. This will throw if not.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_scenario</span><span class="p">(</span><span class="n">scenario_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="s2">&quot;Scenarios&quot;</span><span class="p">,</span> <span class="n">scenario_name</span><span class="p">,</span> <span class="s2">&quot;PostProcess&quot;</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssProject.get_scenario"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.get_scenario">[docs]</a>    <span class="k">def</span> <span class="nf">get_scenario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the scenario with name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PyDssScenario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">scenario</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">scenario</span>
+
+        <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is not a valid scenario&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the project name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">project_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the project.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scenarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the project scenarios.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            list of PyDssScenario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">simulation_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the simulation configuration</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">estimated_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the estimated space in bytes.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_space</span>
+
+<div class="viewcode-block" id="PyDssProject.serialize"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opendss_project_folder</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the project on the filesystem.&quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">PROJECT_DIRECTORIES</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">opendss_project_folder</span><span class="p">:</span>
+            <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">PROJECT_DIRECTORIES</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">copy_tree</span><span class="p">(</span><span class="n">opendss_project_folder</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_serialize_scenarios</span><span class="p">()</span>
+        <span class="n">dump_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">,</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_file</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialized directories in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssProject.create_project"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.create_project">[docs]</a>    <span class="nd">@classmethod</span>
+
+    <span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">scenarios</span><span class="p">,</span> <span class="n">simulation_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">simulation_file</span><span class="o">=</span><span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">,</span> <span class="n">opendss_project_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">master_dss_file</span><span class="o">=</span><span class="n">OPENDSS_MASTER_FILENAME</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new PyDssProject on the filesystem.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            path in which to create directories</span>
+<span class="sd">        name : str</span>
+<span class="sd">            project name</span>
+<span class="sd">        scenarios : list</span>
+<span class="sd">            list of PyDssScenario objects</span>
+<span class="sd">        simulation_config : str</span>
+<span class="sd">            simulation config file; if None, use default</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">simulation_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">simulation_config</span> <span class="o">=</span> <span class="n">DEFAULT_SIMULATION_SETTINGS_FILE</span>
+        <span class="n">simulation_config</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">simulation_config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">simulation_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">master_dss_file</span><span class="p">:</span>
+            <span class="n">simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;DSS File&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">master_dss_file</span>
+        <span class="n">simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Project Path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Project&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">scenarios</span><span class="o">=</span><span class="n">scenarios</span><span class="p">,</span>
+            <span class="n">simulation_config</span><span class="o">=</span><span class="n">simulation_config</span><span class="p">,</span>
+            <span class="n">simulation_file</span><span class="o">=</span><span class="n">simulation_file</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">project</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">opendss_project_folder</span><span class="o">=</span><span class="n">opendss_project_folder</span><span class="p">)</span>
+        <span class="n">sc_names</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">list_scenario_names</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created project=</span><span class="si">%s</span><span class="s2"> with scenarios=</span><span class="si">%s</span><span class="s2"> at </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="n">sc_names</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">project</span></div>
+
+<div class="viewcode-block" id="PyDssProject.read_scenario_export_metadata"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.read_scenario_export_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">read_scenario_export_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scenario_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the metadata for a scenario&#39;s exported data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scenario_name : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="s2">&quot;pydss fs interface is not defined&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">scenario_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_scenario_names</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;invalid scenario: </span><span class="si">{</span><span class="n">scenario_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="o">.</span><span class="n">read_scenario_export_metadata</span><span class="p">(</span><span class="n">scenario_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssProject.list_scenario_names"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.list_scenario_names">[docs]</a>    <span class="k">def</span> <span class="nf">list_scenario_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenarios</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyDssProject.run"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logging_configured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tar_project</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zip_project</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run all scenarios in the project.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fs_intf</span><span class="p">,</span> <span class="n">PyDssArchiveFileInterfaceBase</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="s2">&quot;cannot run from an archived project&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tar_project</span> <span class="ow">and</span> <span class="n">zip_project</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="s2">&quot;tar_project and zip_project cannot both be True&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s1">&#39;Project&#39;</span><span class="p">][</span><span class="s1">&#39;DSS File&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="s2">&quot;a valid opendss file needs to be passed&quot;</span><span class="p">)</span>
+
+        <span class="n">inst</span> <span class="o">=</span> <span class="n">instance</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">logging_configured</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Logging&quot;</span><span class="p">][</span><span class="s2">&quot;Display on screen&quot;</span><span class="p">]:</span>
+                <span class="n">console_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">console_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Logging&quot;</span><span class="p">][</span><span class="s2">&quot;Log to external file&quot;</span><span class="p">]:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="s2">&quot;Logs&quot;</span><span class="p">,</span> <span class="s2">&quot;pydss.log&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">file_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+            <span class="n">setup_logging</span><span class="p">(</span>
+                <span class="s2">&quot;PyDSS&quot;</span><span class="p">,</span>
+                <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                <span class="n">console_level</span><span class="o">=</span><span class="n">console_level</span><span class="p">,</span>
+                <span class="n">file_level</span><span class="o">=</span><span class="n">file_level</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
+            <span class="n">store_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="n">STORE_FILENAME</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">store_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">STORE_FILENAME</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dump_simulation_settings</span><span class="p">()</span>
+
+        <span class="n">driver</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Export Data In Memory&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;core&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">store_filename</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">store_filename</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># This ensures that all datasets are flushed and closed after each</span>
+            <span class="c1"># scenario. If there is an unexpected crash in a later scenario then</span>
+            <span class="c1"># the file will still be valid for completed scenarios.</span>
+            <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">store_filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdf_store</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="n">hdf_store</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATA_FORMAT_VERSION</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scenario</span><span class="o">.</span><span class="n">name</span>
+                    <span class="n">inst</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">scenario</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_space</span><span class="p">[</span><span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">get_estimated_space</span><span class="p">()</span>
+
+            <span class="n">export_tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;Export Data Tables&quot;</span><span class="p">,</span> <span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">generate_reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Reports&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span> <span class="ow">and</span> <span class="p">(</span><span class="n">export_tables</span> <span class="ow">or</span> <span class="n">generate_reports</span><span class="p">):</span>
+                <span class="c1"># Hack. Have to import here. Need to re-organize to fix.</span>
+                <span class="kn">from</span> <span class="nn">PyDSS.pydss_results</span> <span class="kn">import</span> <span class="n">PyDssResults</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">PyDssResults</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">export_tables</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">scenarios</span><span class="p">:</span>
+                        <span class="n">scenario</span><span class="o">.</span><span class="n">export_data</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">generate_reports</span><span class="p">:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">generate_reports</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Simulation failed&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">tar_project</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tar_project_files</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">zip_project</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_zip_project_files</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">dry_run</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">store_filename</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">store_filename</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_dump_simulation_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Various settings may have been updated. Write the actual settings to a file.</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">RUN_SIMULATION_FILENAME</span><span class="p">)</span>
+        <span class="n">dump_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_serialize_scenarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scenarios</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;post_process_infos&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">pp_info</span> <span class="ow">in</span> <span class="n">scenario</span><span class="o">.</span><span class="n">post_process_infos</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;post_process_infos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;script&quot;</span><span class="p">:</span> <span class="n">pp_info</span><span class="p">[</span><span class="s2">&quot;script&quot;</span><span class="p">],</span>
+                        <span class="s2">&quot;config_file&quot;</span><span class="p">:</span> <span class="n">pp_info</span><span class="p">[</span><span class="s2">&quot;config_file&quot;</span><span class="p">],</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">scenario</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scenarios_dir</span><span class="p">,</span> <span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_tar_project_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">)</span>
+        <span class="n">skip_names</span> <span class="o">=</span> <span class="p">(</span><span class="n">PROJECT_ZIP</span><span class="p">,</span> <span class="n">STORE_FILENAME</span><span class="p">,</span> <span class="n">REPORTS_DIR</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">PROJECT_TAR</span>
+            <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SKIP_ARCHIVE</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">delete</span><span class="p">:</span>
+                        <span class="n">to_delete</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">to_delete</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_zip_project_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">PROJECT_ZIP</span>
+            <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipf</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">delete</span> <span class="ow">and</span> <span class="n">root</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span><span class="p">:</span>
+                        <span class="n">to_delete</span> <span class="o">+=</span> <span class="n">dirs</span>
+                    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span> <span class="ow">and</span> <span class="n">filename</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SKIP_ARCHIVE</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+                        <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                        <span class="c1"># We delete files and directories at the root only.</span>
+                        <span class="k">if</span> <span class="n">delete</span> <span class="ow">and</span> <span class="n">root</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span><span class="p">:</span>
+                            <span class="n">to_delete</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">to_delete</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssProject.load_simulation_config"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.load_simulation_config">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_simulation_config</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">simulations_file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the simulation settings for a project, using defaults if the</span>
+<span class="sd">        file is not defined.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        project_path : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">simulations_file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">project_path</span><span class="p">,</span>
+                <span class="n">DEFAULT_SIMULATION_SETTINGS_FILE</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssProject.load_project"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.load_project">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_project</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simulation_file</span><span class="o">=</span><span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a PyDssProject from directory.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            full path to existing project</span>
+<span class="sd">        options : dict</span>
+<span class="sd">            options that override the config file</span>
+<span class="sd">        in_memory : bool</span>
+<span class="sd">            If True, load all exported data into memory.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="c1">#if simulation_file is None:</span>
+            <span class="c1">#simulation_file = SIMULATION_SETTINGS_FILENAME</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">PROJECT_TAR</span><span class="p">)):</span>
+            <span class="n">fs_intf</span> <span class="o">=</span> <span class="n">PyDssTarFileInterface</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">PROJECT_ZIP</span><span class="p">)):</span>
+            <span class="n">fs_intf</span> <span class="o">=</span> <span class="n">PyDssZipFileInterface</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fs_intf</span> <span class="o">=</span> <span class="n">PyDssDirectoryInterface</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">simulation_file</span><span class="p">)</span>
+
+        <span class="n">simulation_config</span> <span class="o">=</span> <span class="n">fs_intf</span><span class="o">.</span><span class="n">simulation_config</span>
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">simulation_config</span><span class="p">:</span>
+                    <span class="n">simulation_config</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">simulation_config</span><span class="p">[</span><span class="n">category</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Overrode config options: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+        <span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">PyDssScenario</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span>
+                <span class="n">fs_intf</span><span class="p">,</span>
+                <span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="n">post_process_infos</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;post_process_infos&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">simulation_config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">PyDssProject</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">),</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">scenarios</span><span class="p">,</span>
+            <span class="n">simulation_config</span><span class="p">,</span>
+            <span class="n">fs_intf</span><span class="o">=</span><span class="n">fs_intf</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssProject.run_project"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssProject.run_project">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">run_project</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tar_project</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zip_project</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simulation_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Load a PyDssProject from directory and run all scenarios.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            full path to existing project</span>
+<span class="sd">        options : dict</span>
+<span class="sd">            options that override the config file</span>
+<span class="sd">        tar_project : bool</span>
+<span class="sd">            tar project files after successful execution</span>
+<span class="sd">        zip_project : bool</span>
+<span class="sd">            zip project files after successful execution</span>
+<span class="sd">        dry_run: bool</span>
+<span class="sd">            dry run for getting estimated space.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">load_project</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">simulation_file</span><span class="o">=</span><span class="n">simulation_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">project</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tar_project</span><span class="o">=</span><span class="n">tar_project</span><span class="p">,</span> <span class="n">zip_project</span><span class="o">=</span><span class="n">zip_project</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="PyDssScenario"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario">[docs]</a><span class="k">class</span> <span class="nc">PyDssScenario</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represents a PyDSS Scenario.&quot;&quot;&quot;</span>
+
+    <span class="n">DEFAULT_CONTROLLER_TYPES</span> <span class="o">=</span> <span class="p">(</span><span class="n">ControllerType</span><span class="o">.</span><span class="n">PV_CONTROLLER</span><span class="p">,)</span>
+    <span class="n">DEFAULT_VISUALIZATION_TYPES</span> <span class="o">=</span> <span class="p">(</span><span class="n">VisualizationType</span><span class="o">.</span><span class="n">FREQUENCY_PLOT</span><span class="p">,</span> <span class="n">VisualizationType</span><span class="o">.</span><span class="n">HISTOGRAM_PLOT</span><span class="p">,</span>
+                                   <span class="n">VisualizationType</span><span class="o">.</span><span class="n">TABLE_PLOT</span><span class="p">,</span> <span class="n">VisualizationType</span><span class="o">.</span><span class="n">THREEDIM_PLOT</span><span class="p">,</span>
+                                   <span class="n">VisualizationType</span><span class="o">.</span><span class="n">TIMESERIES_PLOT</span><span class="p">,</span> <span class="n">VisualizationType</span><span class="o">.</span><span class="n">TOPOLOGY_PLOT</span><span class="p">,</span>
+                                   <span class="n">VisualizationType</span><span class="o">.</span><span class="n">VOLTDIST_PLOT</span><span class="p">,</span> <span class="n">VisualizationType</span><span class="o">.</span><span class="n">XY_PLOT</span><span class="p">,)</span>
+    <span class="n">DEFAULT_EXPORT_MODE</span> <span class="o">=</span> <span class="n">ExportMode</span><span class="o">.</span><span class="n">EXPORTS</span>
+    <span class="n">_SCENARIO_DIRECTORIES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;ExportLists&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pyControllerList&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pyPlotList&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PostProcess&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;Monte_Carlo&#39;</span>
+    <span class="p">)</span>
+    <span class="n">REQUIRED_POST_PROCESS_FIELDS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">,</span> <span class="s2">&quot;config_file&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">controller_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">controllers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">export_modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">visualizations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">post_process_infos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">visualization_types</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_process_infos</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">visualization_types</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">visualizations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_visualization_config_from_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">PyDssScenario</span><span class="o">.</span><span class="n">DEFAULT_VISUALIZATION_TYPES</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="n">visualization_types</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_visualization_config_from_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">visualization_types</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">visualizations</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">visualizations</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">visualization_type</span> <span class="o">=</span> <span class="n">VisualizationType</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span> <span class="o">=</span> <span class="p">{</span><span class="n">visualization_type</span><span class="p">:</span> <span class="n">load_data</span><span class="p">(</span><span class="n">controllers</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">visualizations</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span> <span class="o">=</span> <span class="n">visualizations</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">controller_types</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">controllers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">elif</span> <span class="n">controller_types</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_controller_config_from_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">controller_types</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controllers</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">controllers</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">controller_type</span> <span class="o">=</span> <span class="n">ControllerType</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span> <span class="o">=</span> <span class="p">{</span><span class="n">controller_type</span><span class="p">:</span> <span class="n">load_data</span><span class="p">(</span><span class="n">controllers</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controllers</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span> <span class="o">=</span> <span class="n">controllers</span>
+
+        <span class="k">if</span> <span class="n">export_modes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">exports</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span>
+                <span class="s2">&quot;export_modes and exports cannot both be set&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">export_modes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">exports</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="n">PyDssScenario</span><span class="o">.</span><span class="n">DEFAULT_EXPORT_MODE</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span><span class="n">mode</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_export_config_from_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">)}</span>
+        <span class="k">elif</span> <span class="n">export_modes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_export_config_from_mode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">export_modes</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exports</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="n">ExportMode</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">exports</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span><span class="n">mode</span><span class="p">:</span> <span class="n">load_data</span><span class="p">(</span><span class="n">exports</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exports</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">exports</span>
+
+        <span class="k">if</span> <span class="n">post_process_infos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">pp_info</span> <span class="ow">in</span> <span class="n">post_process_infos</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_post_process</span><span class="p">(</span><span class="n">pp_info</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyDssScenario.deserialize"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.deserialize">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fs_intf</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">post_process_infos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deserialize a PyDssScenario from a path.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fs_intf : PyDssFileSystemInterface</span>
+<span class="sd">            object to read on-disk information</span>
+<span class="sd">        name : str</span>
+<span class="sd">            scenario name</span>
+<span class="sd">        post_process_infos : list</span>
+<span class="sd">            list of post_process_info dictionaries</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PyDssScenario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">controllers</span> <span class="o">=</span> <span class="n">fs_intf</span><span class="o">.</span><span class="n">read_controller_config</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">exports</span> <span class="o">=</span> <span class="n">fs_intf</span><span class="o">.</span><span class="n">read_export_config</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">visualizations</span> <span class="o">=</span> <span class="n">fs_intf</span><span class="o">.</span><span class="n">read_visualization_config</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">controllers</span><span class="o">=</span><span class="n">controllers</span><span class="p">,</span>
+            <span class="n">exports</span><span class="o">=</span><span class="n">exports</span><span class="p">,</span>
+            <span class="n">visualizations</span><span class="o">=</span><span class="n">visualizations</span><span class="p">,</span>
+            <span class="n">post_process_infos</span><span class="o">=</span><span class="n">post_process_infos</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenario.serialize"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Serialize a PyDssScenario to a directory.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            full path to scenario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SCENARIO_DIRECTORIES</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">controller_type</span><span class="p">,</span> <span class="n">controllers</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span> <span class="s2">&quot;pyControllerList&quot;</span><span class="p">,</span> <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">controller_type</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">dump_data</span><span class="p">(</span><span class="n">controllers</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">mode</span><span class="p">,</span> <span class="n">exports</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exports</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">dump_data</span><span class="p">(</span>
+                <span class="n">exports</span><span class="p">,</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;ExportLists&quot;</span><span class="p">,</span> <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">mode</span><span class="p">))</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">visualization_type</span><span class="p">,</span> <span class="n">visualizations</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span> <span class="s2">&quot;pyPlotList&quot;</span><span class="p">,</span> <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">visualization_type</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">dump_data</span><span class="p">(</span><span class="n">visualizations</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="n">dump_data</span><span class="p">(</span>
+            <span class="n">load_data</span><span class="p">(</span><span class="n">DEFAULT_MONTE_CARLO_SETTINGS_FILE</span><span class="p">),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;Monte_Carlo&quot;</span><span class="p">,</span> <span class="n">MONTE_CARLO_SETTINGS_FILENAME</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">dump_data</span><span class="p">(</span>
+            <span class="n">load_data</span><span class="p">(</span><span class="n">DEFAULT_SUBSCRIPTIONS_FILE</span><span class="p">),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;ExportLists&quot;</span><span class="p">,</span> <span class="n">SUBSCRIPTIONS_FILENAME</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenario.load_visualization_config_from_type"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.load_visualization_config_from_type">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_visualization_config_from_type</span><span class="p">(</span><span class="n">visualization_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a default visualization config from a type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        visualization_type : VisualizationType</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">PyDSS</span><span class="p">,</span> <span class="s2">&quot;__path__&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s2">&quot;PyDSS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;defaults&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pyPlotList&quot;</span><span class="p">,</span>
+            <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">visualization_type</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenario.load_controller_config_from_type"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.load_controller_config_from_type">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_controller_config_from_type</span><span class="p">(</span><span class="n">controller_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a default controller config from a type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        controller_type : ControllerType</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">PyDSS</span><span class="p">,</span> <span class="s2">&quot;__path__&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s2">&quot;PyDSS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;defaults&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pyControllerList&quot;</span><span class="p">,</span>
+            <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">controller_type</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenario.load_export_config_from_mode"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.load_export_config_from_mode">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_export_config_from_mode</span><span class="p">(</span><span class="n">export_mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a default export config from a type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        export_mode : ExportMode</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">PyDSS</span><span class="p">,</span> <span class="s2">&quot;__path__&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s2">&quot;PyDSS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;defaults&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ExportLists&quot;</span><span class="p">,</span>
+            <span class="n">filename_from_enum</span><span class="p">(</span><span class="n">export_mode</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyDssScenario.add_post_process"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.PyDssScenario.add_post_process">[docs]</a>    <span class="k">def</span> <span class="nf">add_post_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">post_process_info</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a post-process script to a scenario.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        post_process_info : dict</span>
+<span class="sd">            Must define all fields in PyDssScenario.REQUIRED_POST_PROCESS_FIELDS</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">REQUIRED_POST_PROCESS_FIELDS</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">post_process_info</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;missing post-process field=</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+        <span class="n">config_file</span> <span class="o">=</span> <span class="n">post_process_info</span><span class="p">[</span><span class="s2">&quot;config_file&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">config_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2"> does not exist&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_process_infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">post_process_info</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="load_config"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.load_config">[docs]</a><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a configuration from files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path : str</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> \
+             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.toml&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;only 1 .toml file is currently supported&quot;</span>
+    <span class="k">return</span> <span class="n">load_data</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="update_pydss_controllers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.pydss_project.update_pydss_controllers">[docs]</a><span class="k">def</span> <span class="nf">update_pydss_controllers</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">scenario</span><span class="p">,</span> <span class="n">controller_type</span><span class="p">,</span> 
+                             <span class="n">controller</span><span class="p">,</span> <span class="n">dss_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update a scenario&#39;s controllers from an OpenDSS file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    project_path : str</span>
+<span class="sd">        PyDSS project path.</span>
+<span class="sd">    scenario : str</span>
+<span class="sd">        PyDSS scenario name in project.</span>
+<span class="sd">    controller_type : str</span>
+<span class="sd">        A type of PyDSS controler</span>
+<span class="sd">    controller : str</span>
+<span class="sd">        The controller name</span>
+<span class="sd">    dss_file : str</span>
+<span class="sd">        A DSS file path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">controller_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">READ_CONTROLLER_FUNCTIONS</span><span class="p">:</span>
+        <span class="n">supported_types</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">READ_CONTROLLER_FUNCTIONS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid controller_type=</span><span class="si">{</span><span class="n">controller_type</span><span class="si">}</span><span class="s2">, supported: </span><span class="si">{</span><span class="n">supported_types</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">sim_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">SIMULATION_SETTINGS_FILENAME</span><span class="p">)</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">sim_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Use Controller Registry&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;Use Controller Registry&#39; must be set to true in </span><span class="si">{</span><span class="n">sim_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">registry</span><span class="o">.</span><span class="n">is_controller_registered</span><span class="p">(</span><span class="n">controller_type</span><span class="p">,</span> <span class="n">controller</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">controller_type</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> is not registered&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/Scenarios/</span><span class="si">{</span><span class="n">scenario</span><span class="si">}</span><span class="s2">/pyControllerList/</span><span class="si">{</span><span class="n">controller_type</span><span class="si">}</span><span class="s2">.toml&quot;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> has an invalid format&quot;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">element_names</span> <span class="o">=</span> <span class="n">READ_CONTROLLER_FUNCTIONS</span><span class="p">[</span><span class="n">controller_type</span><span class="p">](</span><span class="n">dss_file</span><span class="p">)</span>
+    <span class="n">num_added</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">controller</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">existing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">controller</span><span class="p">])</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">existing</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">element_names</span><span class="p">)))</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">controller</span><span class="p">]</span> <span class="o">=</span> <span class="n">final</span>
+        <span class="n">num_added</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">final</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">existing</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">controller</span><span class="p">]</span> <span class="o">=</span> <span class="n">element_names</span>
+        <span class="n">num_added</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">element_names</span><span class="p">)</span>
+
+    <span class="c1"># Remove element_names from any other controllers.</span>
+    <span class="n">set_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">element_names</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_controller</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">_controller</span> <span class="o">!=</span> <span class="n">controller</span><span class="p">:</span>
+            <span class="n">final</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">difference_update</span><span class="p">(</span><span class="n">set_names</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">final</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">final_list</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">final_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">_controller</span><span class="p">]</span> <span class="o">=</span> <span class="n">final_list</span>
+
+    <span class="n">dump_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added </span><span class="si">{</span><span class="n">num_added</span><span class="si">}</span><span class="s2"> names to </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

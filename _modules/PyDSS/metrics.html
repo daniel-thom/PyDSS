@@ -1,0 +1,1363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.metrics &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.metrics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.metrics</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">opendssdirect</span> <span class="k">as</span> <span class="nn">dss</span>
+
+<span class="kn">from</span> <span class="nn">PyDSS.common</span> <span class="kn">import</span> <span class="n">DataConversion</span><span class="p">,</span> <span class="n">DatasetPropertyType</span><span class="p">,</span> <span class="n">StoreValuesType</span>
+<span class="kn">from</span> <span class="nn">PyDSS.dataset_buffer</span> <span class="kn">import</span> <span class="n">DatasetBuffer</span>
+<span class="kn">from</span> <span class="nn">PyDSS.exceptions</span> <span class="kn">import</span> <span class="n">InvalidConfiguration</span><span class="p">,</span> <span class="n">InvalidParameter</span>
+<span class="kn">from</span> <span class="nn">PyDSS.reports.reports</span> <span class="kn">import</span> <span class="n">ReportBase</span>
+<span class="kn">from</span> <span class="nn">PyDSS.storage_filters</span> <span class="kn">import</span> <span class="n">STORAGE_TYPE_MAP</span><span class="p">,</span> <span class="n">StorageFilterBase</span>
+<span class="kn">from</span> <span class="nn">PyDSS.value_storage</span> <span class="kn">import</span> <span class="n">ValueByNumber</span>
+<span class="kn">from</span> <span class="nn">PyDSS.node_voltage_metrics</span> <span class="kn">import</span> <span class="n">NodeVoltageMetrics</span>
+<span class="kn">from</span> <span class="nn">PyDSS.thermal_metrics</span> <span class="kn">import</span> <span class="n">ThermalMetrics</span>
+<span class="kn">from</span> <span class="nn">PyDSS.utils.simulation_utils</span> <span class="kn">import</span> <span class="n">get_start_time</span><span class="p">,</span> <span class="n">get_simulation_resolution</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MetricBase"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase">[docs]</a><span class="k">class</span> <span class="nc">MetricBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all metrics&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;Exports&quot;</span><span class="p">][</span><span class="s2">&quot;HDF Max Chunk Bytes&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># StoreValuesType to ExportListProperty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span> <span class="o">=</span> <span class="n">dss_objs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name_to_dss_obj</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">Name</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dss_objs</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span> <span class="o">=</span> <span class="n">_OPEN_DSS_CLASS_FOR_ITERATION</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dss_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_Class</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_are_names_filtered</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">are_names_filtered</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_property</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MetricBase.add_property"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.add_property">[docs]</a>    <span class="k">def</span> <span class="nf">add_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add an instance of ExportListProperty for tracking.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">are_names_filtered</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_are_names_filtered</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;All properties for shared elements must have the same filters: &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="n">existing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">existing</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span>
+        <span class="k">elif</span> <span class="n">prop</span> <span class="o">!=</span> <span class="n">existing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="si">}</span><span class="s2"> is already stored&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MetricBase.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.append_values">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the values for all elements at the current time step.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="MetricBase.close"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform any final writes to the container.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_containers</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">container</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c1"># Write an empty dataset to the .h5 file if no data was collected.</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_empty_containers</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">SummedElementsOpenDssPropertyMetric</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_empty_storage_container</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MetricBase.flush_data"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.flush_data">[docs]</a>    <span class="k">def</span> <span class="nf">flush_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Flush any data in memory to storage.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_containers</span><span class="p">():</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">flush_data</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MetricBase.initialize_data_store"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.initialize_data_store">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_data_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hdf_store</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize data store values.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span> <span class="o">=</span> <span class="n">hdf_store</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="n">base_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span> <span class="o">=</span> <span class="n">num_steps</span></div>
+
+<div class="viewcode-block" id="MetricBase.is_circuit_wide"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.is_circuit_wide">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_circuit_wide</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return True if this metric should be used once for a circuit.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="MetricBase.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.iter_containers">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an iterator over the StorageFilterBase containers.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="MetricBase.iter_empty_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.iter_empty_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_empty_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an iterator over empty containers.&quot;&quot;&quot;</span>
+        <span class="k">return</span>
+        <span class="k">yield</span></div>
+
+<div class="viewcode-block" id="MetricBase.label"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.label">[docs]</a>    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a label for the metric.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prop</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_elem_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">]</span>
+
+<div class="viewcode-block" id="MetricBase.make_empty_storage_container"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.make_empty_storage_container">[docs]</a>    <span class="k">def</span> <span class="nf">make_empty_storage_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make an empty storage container.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STORAGE_TYPE_MAP</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unsupported </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">elem_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_elem_names</span><span class="p">()</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">STORAGE_TYPE_MAP</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">ValueByNumber</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">]</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">elem_names</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">container</span></div>
+
+<div class="viewcode-block" id="MetricBase.make_storage_container"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.make_storage_container">[docs]</a>    <span class="k">def</span> <span class="nf">make_storage_container</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">max_chunk_bytes</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a storage container.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        StorageFilterBase</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STORAGE_TYPE_MAP</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unsupported </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">elem_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_elem_names</span><span class="p">()</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">STORAGE_TYPE_MAP</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">,</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">prop</span><span class="p">,</span>
+            <span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">max_chunk_bytes</span><span class="p">,</span>
+            <span class="n">values</span><span class="p">,</span>
+            <span class="n">elem_names</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">container</span></div>
+
+<div class="viewcode-block" id="MetricBase.max_num_bytes"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MetricBase.max_num_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">max_num_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the maximum number of bytes the containers could hold.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_containers</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">container</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="n">container</span><span class="o">.</span><span class="n">max_num_bytes</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">total</span></div>
+
+    <span class="k">def</span> <span class="nf">_can_use_native_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_are_names_filtered</span></div>
+
+
+<div class="viewcode-block" id="ChangeCountMetricBase"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ChangeCountMetricBase">[docs]</a><span class="k">class</span> <span class="nc">ChangeCountMetricBase</span><span class="p">(</span><span class="n">MetricBase</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for any metric that only tracks number of changes.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_values</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dss_objs</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_change_counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dss_objs</span><span class="p">}</span>
+
+<div class="viewcode-block" id="ChangeCountMetricBase.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ChangeCountMetricBase.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="ChangeCountMetricBase.close"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ChangeCountMetricBase.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">prop</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ValueByNumber</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="c1"># This class creates an instance of ValueContainer directly because</span>
+        <span class="c1"># these metrics can only store one type, and so don&#39;t need an instance</span>
+        <span class="c1"># of StorageFilterBase.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">StorageFilterBase</span><span class="o">.</span><span class="n">make_container</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hdf_store</span><span class="p">,</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">prop</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span>
+            <span class="n">values</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">flush_data</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ChangeCountMetricBase.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ChangeCountMetricBase.iter_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span></div></div>
+
+
+<div class="viewcode-block" id="MultiValueTypeMetricBase"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MultiValueTypeMetricBase">[docs]</a><span class="k">class</span> <span class="nc">MultiValueTypeMetricBase</span><span class="p">(</span><span class="n">MetricBase</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores a property with multiple values of StoreValueType.</span>
+
+<span class="sd">    For example, a user might want to store a moving average as well as the</span>
+<span class="sd">    max of all instantaneous values.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># StoreValuesType to StorageFilterBase</span>
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dss_obj</span><span class="p">,</span> <span class="n">time_step</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a value at the current time step.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dss_obj : dssObjBase</span>
+<span class="sd">        time_step : int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_initialize_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="n">prop_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">prop_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">prop_name</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">prop_name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">data_conversion</span> <span class="o">!=</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">NONE</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">convert_data</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">data_conversion</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">values</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_storage_container</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span>
+                <span class="n">prop</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span>
+                <span class="n">vals</span><span class="p">,</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="MultiValueTypeMetricBase.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MultiValueTypeMetricBase.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_can_use_native_iteration</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Count</span><span class="p">()):</span>
+                <span class="n">dss_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_to_dss_obj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Name</span><span class="p">()]</span>
+                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">dss_obj</span><span class="p">,</span> <span class="n">time_step</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">time_step</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_containers</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                <span class="n">val</span><span class="o">.</span><span class="n">set_nan</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">value_type</span><span class="p">,</span> <span class="n">container</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">value_type</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">data_conversion</span> <span class="o">!=</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">NONE</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">convert_data</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">FullName</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">prop</span><span class="o">.</span><span class="n">data_conversion</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">values</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">append_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">time_step</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">vals</span></div>
+
+<div class="viewcode-block" id="MultiValueTypeMetricBase.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MultiValueTypeMetricBase.iter_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MultiValueTypeMetricBase.iter_empty_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.MultiValueTypeMetricBase.iter_empty_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_empty_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">prop</span></div></div>
+
+
+<div class="viewcode-block" id="OpenDssPropertyMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssPropertyMetric">[docs]</a><span class="k">class</span> <span class="nc">OpenDssPropertyMetric</span><span class="p">(</span><span class="n">MultiValueTypeMetricBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores metrics for any OpenDSS element property.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dss_obj</span><span class="p">,</span> <span class="n">_time_step</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dss_obj</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OpenDssPropertyMetric.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssPropertyMetric.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">curr_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">append_values</span><span class="p">(</span><span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="n">store_nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">make_columns</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">make_columns</span><span class="p">(),</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+                    <span class="n">curr_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">curr_data</span><span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">make_columns</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">curr_data</span></div></div>
+
+
+<span class="c1"># These next two might work but are untested.</span>
+
+<span class="c1">#class LineLoadingPercent(MultiValueTypeMetricBase):</span>
+<span class="c1">#    &quot;&quot;&quot;Calculates line loading percent at every time point.&quot;&quot;&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#    def __init__(self, prop, dss_objs, options):</span>
+<span class="c1">#        super().__init__(prop, dss_objs, options)</span>
+<span class="c1">#        self._normal_amps = {}  # Name to normal_amps value</span>
+<span class="c1">#</span>
+<span class="c1">#    def _get_value(self, dss_obj, _time_step):</span>
+<span class="c1">#        line = dss_obj</span>
+<span class="c1">#        normal_amps = self._normal_amps.get(line.Name)</span>
+<span class="c1">#        if normal_amps is None:</span>
+<span class="c1">#            normal_amps = line.GetValue(&quot;NormalAmps&quot;, convert=True).value</span>
+<span class="c1">#            self._normal_amps[line.Name] = normal_amps</span>
+<span class="c1">#</span>
+<span class="c1">#        currents = line.UpdateValue(&quot;Currents&quot;).value</span>
+<span class="c1">#        current = max([abs(x) for x in currents])</span>
+<span class="c1">#        loading = current / normal_amps * 100</span>
+<span class="c1">#        return ValueByNumber(line.Name, &quot;LineLoading&quot;, loading)</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#class TransformerLoadingPercent(MultiValueTypeMetricBase):</span>
+<span class="c1">#    &quot;&quot;&quot;Calculates transformer loading percent at every time point.&quot;&quot;&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#    def __init__(self, prop, dss_objs, options):</span>
+<span class="c1">#        super().__init__(prop, dss_objs, options)</span>
+<span class="c1">#        self._normal_amps = {}  # Name to normal_amps value</span>
+<span class="c1">#</span>
+<span class="c1">#    def _get_value(self, dss_obj, _time_step):</span>
+<span class="c1">#        transformer = dss_obj</span>
+<span class="c1">#        normal_amps = self._normal_amps.get(transformer.Name)</span>
+<span class="c1">#        if normal_amps is None:</span>
+<span class="c1">#            normal_amps = transformer.GetValue(&quot;NormalAmps&quot;, convert=True).value</span>
+<span class="c1">#            self._normal_amps[transformer.Name] = normal_amps</span>
+<span class="c1">#</span>
+<span class="c1">#        currents = transformer.UpdateValue(&quot;Currents&quot;).value</span>
+<span class="c1">#        current = max([abs(x) for x in currents])</span>
+<span class="c1">#        loading = current / normal_amps * 100</span>
+<span class="c1">#        return ValueByNumber(transformer.Name, &quot;TransformerLoading&quot;, loading)</span>
+
+
+<div class="viewcode-block" id="SummedElementsOpenDssPropertyMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.SummedElementsOpenDssPropertyMetric">[docs]</a><span class="k">class</span> <span class="nc">SummedElementsOpenDssPropertyMetric</span><span class="p">(</span><span class="n">MetricBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sums all elements&#39; values for a given property at each time point.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_conversion</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">data_conversion</span>
+
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_conversion</span> <span class="o">!=</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">NONE</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">convert_data</span><span class="p">(</span>
+                <span class="s2">&quot;Total&quot;</span><span class="p">,</span>
+                <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">value</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data_conversion</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="SummedElementsOpenDssPropertyMetric.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.SummedElementsOpenDssPropertyMetric.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_can_use_native_iteration</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">total</span><span class="o">.</span><span class="n">set_nan</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_can_use_native_iteration</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Count</span><span class="p">()):</span>
+                    <span class="n">dss_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_to_dss_obj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Name</span><span class="p">()]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">dss_obj</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">total</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_elem_class</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">dss_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dss_objs</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">dss_obj</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">total</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+            <span class="k">assert</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">StoreValuesType</span><span class="o">.</span><span class="n">ALL</span><span class="p">,</span> <span class="n">StoreValuesType</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+            <span class="n">total</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="s2">&quot;Total&quot;</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/SummedElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_storage_container</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span>
+                <span class="n">prop</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">total</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">append_values</span><span class="p">([</span><span class="n">total</span><span class="p">],</span> <span class="n">time_step</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SummedElementsOpenDssPropertyMetric.is_circuit_wide"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.SummedElementsOpenDssPropertyMetric.is_circuit_wide">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_circuit_wide</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="SummedElementsOpenDssPropertyMetric.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.SummedElementsOpenDssPropertyMetric.iter_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span></div></div>
+
+
+<div class="viewcode-block" id="NodeVoltageMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.NodeVoltageMetric">[docs]</a><span class="k">class</span> <span class="nc">NodeVoltageMetric</span><span class="p">(</span><span class="n">MetricBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores metrics for node voltages.&quot;&quot;&quot;</span>
+
+    <span class="n">PRIMARY_BUS_THRESHOLD_KV</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_obj</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_obj</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prop</span> <span class="o">=</span> <span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Indices for node names are tied to indices for node voltages.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_voltages</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">get_start_time</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">sim_resolution</span> <span class="o">=</span> <span class="n">get_simulation_resolution</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">ReportBase</span><span class="o">.</span><span class="n">get_inputs_from_defaults</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="s2">&quot;Voltage Metrics&quot;</span><span class="p">)</span>
+        <span class="n">window_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+            <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;window_size_minutes&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">sim_resolution</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_voltage_metrics</span> <span class="o">=</span> <span class="n">NodeVoltageMetrics</span><span class="p">(</span>
+            <span class="n">prop</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">sim_resolution</span><span class="p">,</span> <span class="n">window_size</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_primary_node_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_primary_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_node_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">_make_elem_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_names</span>
+
+    <span class="k">def</span> <span class="nf">_identify_primary_v_secondary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_names</span><span class="p">):</span>
+            <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">SetActiveBus</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">kv_base</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Bus</span><span class="o">.</span><span class="n">kVBase</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">kv_base</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">PRIMARY_BUS_THRESHOLD_KV</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_primary_node_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_primary_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_node_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NodeVoltageMetric.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.NodeVoltageMetric.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">voltages</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">AllBusMagPu</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_voltages</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># TODO: limit to objects that have been added</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_node_names</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Circuit</span><span class="o">.</span><span class="n">AllNodeNames</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_identify_primary_v_secondary</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_voltages</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">ValueByNumber</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;Voltage&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_names</span><span class="p">,</span> <span class="n">voltages</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_voltage_metrics</span><span class="o">.</span><span class="n">set_node_info</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_primary_node_names</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_primary_indices</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_node_names</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_secondary_indices</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">voltage</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">voltages</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_voltages</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_value_from_raw</span><span class="p">(</span><span class="n">voltage</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_voltage_metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">time_step</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_voltages</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_voltage_metrics</span><span class="o">.</span><span class="n">increment_steps</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="NodeVoltageMetric.close"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.NodeVoltageMetric.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Project Path&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Project&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;Exports&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_voltage_metrics</span><span class="o">.</span><span class="n">generate_report</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NodeVoltageMetric.is_circuit_wide"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.NodeVoltageMetric.is_circuit_wide">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_circuit_wide</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="NodeVoltageMetric.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.NodeVoltageMetric.iter_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span>
+        <span class="k">yield</span></div></div>
+
+
+<div class="viewcode-block" id="TrackCapacitorChangeCounts"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.TrackCapacitorChangeCounts">[docs]</a><span class="k">class</span> <span class="nc">TrackCapacitorChangeCounts</span><span class="p">(</span><span class="n">ChangeCountMetricBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Store the number of changes for a capacitor.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TrackCapacitorChangeCounts.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.TrackCapacitorChangeCounts.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">Count</span><span class="p">()):</span>
+            <span class="n">capacitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_to_dss_obj</span><span class="p">[</span><span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">Name</span><span class="p">()]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_counts</span><span class="p">(</span><span class="n">capacitor</span><span class="p">)</span>
+            <span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_update_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacitor</span><span class="p">):</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">States</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">states</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;failed to get Capacitors.States() for </span><span class="si">{</span><span class="n">capacitor</span><span class="o">.</span><span class="n">Name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">cur_value</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+        <span class="n">last_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_values</span><span class="p">[</span><span class="n">capacitor</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">last_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cur_value</span> <span class="o">!=</span> <span class="n">last_value</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> changed state old=</span><span class="si">%s</span><span class="s2"> new=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">capacitor</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">last_value</span><span class="p">,</span> <span class="n">cur_value</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_change_counts</span><span class="p">[</span><span class="n">capacitor</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_values</span><span class="p">[</span><span class="n">capacitor</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_value</span></div>
+
+
+<div class="viewcode-block" id="TrackRegControlTapNumberChanges"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.TrackRegControlTapNumberChanges">[docs]</a><span class="k">class</span> <span class="nc">TrackRegControlTapNumberChanges</span><span class="p">(</span><span class="n">ChangeCountMetricBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Store the number of tap number changes for a RegControl.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TrackRegControlTapNumberChanges.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.TrackRegControlTapNumberChanges.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">Count</span><span class="p">()):</span>
+            <span class="n">reg_control</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_to_dss_obj</span><span class="p">[</span><span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">Name</span><span class="p">()]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_counts</span><span class="p">(</span><span class="n">reg_control</span><span class="p">)</span>
+            <span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_update_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg_control</span><span class="p">):</span>
+        <span class="n">tap_number</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="o">.</span><span class="n">TapNumber</span><span class="p">()</span>
+        <span class="n">last_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_values</span><span class="p">[</span><span class="n">reg_control</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">last_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_change_counts</span><span class="p">[</span><span class="n">reg_control</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">tap_number</span> <span class="o">-</span> <span class="n">last_value</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> changed count from </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2"> count=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">reg_control</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span>
+                <span class="n">last_value</span><span class="p">,</span>
+                <span class="n">tap_number</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_change_counts</span><span class="p">[</span><span class="n">reg_control</span><span class="o">.</span><span class="n">FullName</span><span class="p">],</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_values</span><span class="p">[</span><span class="n">reg_control</span><span class="o">.</span><span class="n">FullName</span><span class="p">]</span> <span class="o">=</span> <span class="n">tap_number</span></div>
+
+
+<div class="viewcode-block" id="OpenDssExportMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric">[docs]</a><span class="k">class</span> <span class="nc">OpenDssExportMetric</span><span class="p">(</span><span class="n">MetricBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sum_elements</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">sum_elements</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sum_elements</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_append_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_append_summed_values</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_append_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_append_values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_output</span><span class="p">()</span>
+
+        <span class="c1"># Some OpenDSS files upper-case the name.</span>
+        <span class="c1"># Make a mapping for fast matching and lookup.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_names</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dss_obj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dss_objs</span><span class="p">):</span>
+            <span class="n">elem_type</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">dss_obj</span><span class="o">.</span><span class="n">FullName</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_upper_case</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elem_type</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elem_type</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sum_elements</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ValueByNumber</span><span class="p">(</span><span class="s2">&quot;Total&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">))</span>
+                <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ValueByNumber</span><span class="p">(</span><span class="n">dss_obj</span><span class="o">.</span><span class="n">FullName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_dir</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_run_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_command</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="OpenDssExportMetric.append_values"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.append_values">[docs]</a>    <span class="k">def</span> <span class="nf">append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_command</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_append_func</span><span class="p">(</span><span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="n">store_nan</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">window_sizes</span> <span class="ow">and</span> <span class="n">prop</span><span class="o">.</span><span class="n">is_moving_average</span><span class="p">():</span>
+                    <span class="c1"># This is somewhat ugly code to allow different</span>
+                    <span class="c1"># sizes for different element types collected in the same</span>
+                    <span class="c1"># OpenDSS report.</span>
+                    <span class="n">window_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_window_size_by_name_index</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">window_sizes</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">element_class</span><span class="p">()</span><span class="si">}</span><span class="s2">/ElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_storage_container</span><span class="p">(</span>
+                    <span class="n">path</span><span class="p">,</span>
+                    <span class="n">prop</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span>
+                    <span class="n">window_sizes</span><span class="o">=</span><span class="n">window_sizes</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_nan</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">sv_type</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">sv_type</span><span class="p">]</span><span class="o">.</span><span class="n">append_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span> <span class="n">time_step</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_append_summed_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">]))</span>
+
+        <span class="n">prop</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span>
+                    <span class="s2">&quot;summing elements only supports one Property&quot;</span>
+                <span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="k">assert</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">StoreValuesType</span><span class="o">.</span><span class="n">ALL</span><span class="p">,</span> <span class="n">StoreValuesType</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">elem_class</span><span class="si">}</span><span class="s2">/SummedElementProperties/</span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">storage_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_storage_container</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span>
+                <span class="n">prop</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_num_steps</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_chunk_bytes</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span><span class="p">]</span><span class="o">.</span><span class="n">append_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span> <span class="n">time_step</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_command</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_column_headers</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="n">val</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Unexpected format in export file file: </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_get_window_size_by_name_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of window sizes per element name corresponding to self._names.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">prop</span><span class="o">.</span><span class="n">opendss_classes</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;window_sizes requires opendss_classes: </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">window_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">opendss_class</span><span class="p">,</span> <span class="n">window_size</span> <span class="ow">in</span> <span class="n">prop</span><span class="o">.</span><span class="n">window_sizes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">opendss_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prop</span><span class="o">.</span><span class="n">opendss_classes</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">opendss_class</span><span class="si">}</span><span class="s2"> is not defined in opendss_classes: </span><span class="si">{</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Note: names have singluar class names, such as Line.line1.</span>
+        <span class="c1"># opendss_classes are plural, such as Lines</span>
+        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">):</span>
+            <span class="n">opendss_class_singular</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opendss_class_singular</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">opendss_class</span> <span class="ow">in</span> <span class="n">prop</span><span class="o">.</span><span class="n">opendss_classes</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">opendss_class</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">opendss_class_singular</span><span class="p">):</span>
+                        <span class="n">size</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">window_sizes</span><span class="p">[</span><span class="n">opendss_class</span><span class="p">]</span>
+                        <span class="n">mapping</span><span class="p">[</span><span class="n">opendss_class_singular</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to find window_size for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">window_sizes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+
+        <span class="k">return</span> <span class="n">window_sizes</span>
+
+<div class="viewcode-block" id="OpenDssExportMetric.element_class"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.element_class">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">element_class</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return the element class.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.expected_column_headers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.expected_column_headers">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">expected_column_headers</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return the expected column headers in the CSV file.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.export_command"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.export_command">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">export_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the command to run in OpenDSS.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.label"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.label">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return the label to use in dataframe columns.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.is_circuit_wide"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.is_circuit_wide">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_circuit_wide</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.iter_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.iter_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">sv_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sv_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">[</span><span class="n">sv_type</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.iter_empty_containers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.iter_empty_containers">[docs]</a>    <span class="k">def</span> <span class="nf">iter_empty_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">store_values_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_containers</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">prop</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.parse_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.parse_file">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse data in filename.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="OpenDssExportMetric.requires_upper_case"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OpenDssExportMetric.requires_upper_case">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">requires_upper_case</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return True if the names are upper case.&quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="ExportLoadingsMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric">[docs]</a><span class="k">class</span> <span class="nc">ExportLoadingsMetric</span><span class="p">(</span><span class="n">OpenDssExportMetric</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores line and transformer loading percentages in HDF5.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ExportLoadingsMetric.element_class"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.element_class">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">element_class</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;CktElement&quot;</span></div>
+
+<div class="viewcode-block" id="ExportLoadingsMetric.expected_column_headers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.expected_column_headers">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">expected_column_headers</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;%normal&quot;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="ExportLoadingsMetric.export_command"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.export_command">[docs]</a>    <span class="k">def</span> <span class="nf">export_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;opendss_loading.csv&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;export capacity </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="ExportLoadingsMetric.label"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.label">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Overloads&quot;</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ExportLoadingsMetric.parse_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.parse_file">[docs]</a>    <span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+            <span class="c1"># Skip the header.</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">f_in</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">:</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">set_value_from_raw</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="n">line</span></div>
+
+<div class="viewcode-block" id="ExportLoadingsMetric.requires_upper_case"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportLoadingsMetric.requires_upper_case">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">requires_upper_case</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="ExportPowersMetric"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric">[docs]</a><span class="k">class</span> <span class="nc">ExportPowersMetric</span><span class="p">(</span><span class="n">OpenDssExportMetric</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores power values in HDF5.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ExportPowersMetric.element_class"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.element_class">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">element_class</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;CktElement&quot;</span></div>
+
+<div class="viewcode-block" id="ExportPowersMetric.export_command"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.export_command">[docs]</a>    <span class="k">def</span> <span class="nf">export_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;opendss_powers.csv&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;export powers </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="ExportPowersMetric.expected_column_headers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.expected_column_headers">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">expected_column_headers</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Terminal&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;P(kW)&quot;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="ExportPowersMetric.label"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.label">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Powers&quot;</span></div>
+
+<div class="viewcode-block" id="ExportPowersMetric.parse_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.parse_file">[docs]</a>    <span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+            <span class="c1"># Skip the header.</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">f_in</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">:</span>
+                    <span class="n">terminal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">terminal</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">set_value_from_raw</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExportPowersMetric.requires_upper_case"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.ExportPowersMetric.requires_upper_case">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">requires_upper_case</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="OverloadsMetricInMemory"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory">[docs]</a><span class="k">class</span> <span class="nc">OverloadsMetricInMemory</span><span class="p">(</span><span class="n">OpenDssExportMetric</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stores line and transformer loading percentages in memory.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">dss_objs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="c1"># Indices for node names are tied to indices for node voltages.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">get_start_time</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">sim_resolution</span> <span class="o">=</span> <span class="n">get_simulation_resolution</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">ReportBase</span><span class="o">.</span><span class="n">get_inputs_from_defaults</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="s2">&quot;Thermal Metrics&quot;</span><span class="p">)</span>
+        <span class="n">line_window_size</span><span class="p">,</span> <span class="n">transformer_window_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_window_sizes</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">sim_resolution</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span> <span class="o">=</span> <span class="n">ThermalMetrics</span><span class="p">(</span>
+            <span class="n">prop</span><span class="p">,</span>
+            <span class="n">start_time</span><span class="p">,</span>
+            <span class="n">sim_resolution</span><span class="p">,</span>
+            <span class="n">line_window_size_hours</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;line_window_size_hours&quot;</span><span class="p">],</span>
+            <span class="n">line_window_size</span><span class="o">=</span><span class="n">line_window_size</span><span class="p">,</span>
+            <span class="n">transformer_window_size_hours</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;transformer_window_size_hours&quot;</span><span class="p">],</span>
+            <span class="n">transformer_window_size</span><span class="o">=</span><span class="n">transformer_window_size</span><span class="p">,</span>
+            <span class="n">line_loading_percent_threshold</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;line_loading_percent_threshold&quot;</span><span class="p">],</span>
+            <span class="n">line_loading_percent_moving_average_threshold</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;line_loading_percent_moving_average_threshold&quot;</span><span class="p">],</span>
+            <span class="n">transformer_loading_percent_threshold</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;transformer_loading_percent_threshold&quot;</span><span class="p">],</span>
+            <span class="n">transformer_loading_percent_moving_average_threshold</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;transformer_loading_percent_moving_average_threshold&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_append_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">store_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">line_names</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">transformer_names</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Line&quot;</span><span class="p">):</span>
+                    <span class="n">line_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">val</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Transformer&quot;</span><span class="p">):</span>
+                    <span class="k">assert</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span>
+                    <span class="n">transformer_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span><span class="o">.</span><span class="n">line_names</span> <span class="o">=</span> <span class="n">line_names</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span><span class="o">.</span><span class="n">transformer_names</span> <span class="o">=</span> <span class="n">transformer_names</span>
+
+        <span class="n">line_loadings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span><span class="p">]</span>
+        <span class="n">transformer_loadings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer_index</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">store_nan</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">time_step</span><span class="p">,</span> <span class="n">line_loadings</span><span class="p">,</span> <span class="n">transformer_loadings</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span><span class="o">.</span><span class="n">increment_steps</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_window_sizes</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">resolution</span><span class="p">):</span>
+        <span class="n">line_window_size</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;line_window_size_hours&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">line_window_size</span> <span class="o">%</span> <span class="n">resolution</span> <span class="o">!=</span> <span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;line_window_size=</span><span class="si">{</span><span class="n">line_window_size</span><span class="si">}</span><span class="s2"> must be a multiple of </span><span class="si">{</span><span class="n">resolution</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">transformer_window_size</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;transformer_window_size_hours&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">transformer_window_size</span> <span class="o">%</span> <span class="n">resolution</span> <span class="o">!=</span> <span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidConfiguration</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;transformer_window_size=</span><span class="si">{</span><span class="n">transformer_window_size</span><span class="si">}</span><span class="s2"> must be a multiple of </span><span class="si">{</span><span class="n">resolution</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">line_window_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line_window_size</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span>
+        <span class="n">transformer_window_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">transformer_window_size</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">line_window_size</span><span class="p">,</span> <span class="n">transformer_window_size</span>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.close"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Project Path&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Project&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;Exports&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;Project&quot;</span><span class="p">][</span><span class="s2">&quot;Active Scenario&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thermal_metrics</span><span class="o">.</span><span class="n">generate_report</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.element_class"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.element_class">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">element_class</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;CktElement&quot;</span></div>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.expected_column_headers"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.expected_column_headers">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">expected_column_headers</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;%normal&quot;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.export_command"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.export_command">[docs]</a>    <span class="k">def</span> <span class="nf">export_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;opendss_capacity.csv&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;export capacity </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.label"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.label">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Overloads&quot;</span></div>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.parse_file"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.parse_file">[docs]</a>    <span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+            <span class="c1"># Skip the header.</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">f_in</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_name_from_line</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">:</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">set_value_from_raw</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="OverloadsMetricInMemory.requires_upper_case"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.OverloadsMetricInMemory.requires_upper_case">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">requires_upper_case</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="convert_data"><a class="viewcode-back" href="../../PyDSS/PyDSS.html#PyDSS.metrics.convert_data">[docs]</a><span class="k">def</span> <span class="nf">convert_data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">conversion</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">conversion</span> <span class="o">==</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">ABS</span><span class="p">:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">converted</span><span class="o">.</span><span class="n">set_value</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">converted</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">conversion</span> <span class="o">==</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">SUM</span><span class="p">:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">ValueByNumber</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">conversion</span> <span class="o">==</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">ABS_SUM</span><span class="p">:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">ValueByNumber</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">)))</span>
+    <span class="k">elif</span> <span class="n">conversion</span> <span class="o">==</span> <span class="n">DataConversion</span><span class="o">.</span><span class="n">SUM_ABS_REAL</span><span class="p">:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">ValueByNumber</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="nb">sum</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">converted</span></div>
+
+
+<span class="c1"># Bus and Circuit are excluded.</span>
+<span class="n">_OPEN_DSS_CLASS_FOR_ITERATION</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Capacitor&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Capacitors</span><span class="p">,</span>
+    <span class="s2">&quot;Fuse&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Fuses</span><span class="p">,</span>
+    <span class="s2">&quot;Fuse&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Fuses</span><span class="p">,</span>
+    <span class="s2">&quot;Generator&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Generators</span><span class="p">,</span>
+    <span class="s2">&quot;Generator&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Generators</span><span class="p">,</span>
+    <span class="s2">&quot;Isource&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Isource</span><span class="p">,</span>
+    <span class="s2">&quot;Line&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Lines</span><span class="p">,</span>
+    <span class="s2">&quot;Load&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Loads</span><span class="p">,</span>
+    <span class="s2">&quot;Meter&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Meters</span><span class="p">,</span>
+    <span class="s2">&quot;Monitor&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Monitors</span><span class="p">,</span>
+    <span class="s2">&quot;PVSystem&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">PVsystems</span><span class="p">,</span>
+    <span class="s2">&quot;Recloser&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Reclosers</span><span class="p">,</span>
+    <span class="s2">&quot;RegControl&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">RegControls</span><span class="p">,</span>
+    <span class="s2">&quot;Relay&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Relays</span><span class="p">,</span>
+    <span class="s2">&quot;Sensor&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Sensors</span><span class="p">,</span>
+    <span class="s2">&quot;Transformer&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Transformers</span><span class="p">,</span>
+    <span class="s2">&quot;Vsource&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">Vsources</span><span class="p">,</span>
+    <span class="s2">&quot;XYCurve&quot;</span><span class="p">:</span> <span class="n">dss</span><span class="o">.</span><span class="n">XYCurves</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

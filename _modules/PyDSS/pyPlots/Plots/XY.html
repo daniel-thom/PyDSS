@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPlots.Plots.XY &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link href="../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pyPlots.Plots.XY</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pyPlots.Plots.XY</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span>  <span class="nn">PyDSS.pyPlots.pyPlotAbstract</span> <span class="kn">import</span> <span class="n">PlotAbstract</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">curdoc</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">ColorBar</span><span class="p">,</span> \
+    <span class="n">LinearColorMapper</span><span class="p">,</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">BoxSelectTool</span><span class="p">,</span> <span class="n">BoxZoomTool</span><span class="p">,</span> \
+    <span class="n">PanTool</span><span class="p">,</span> <span class="n">WheelZoomTool</span><span class="p">,</span> <span class="n">ResetTool</span><span class="p">,</span> <span class="n">SaveTool</span><span class="p">,</span> <span class="n">Label</span>
+<span class="kn">from</span> <span class="nn">bokeh.palettes</span> <span class="kn">import</span> <span class="n">Plasma</span>
+<span class="kn">from</span> <span class="nn">bokeh.client</span> <span class="kn">import</span> <span class="n">push_session</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+
+<div class="viewcode-block" id="XY"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY">[docs]</a><span class="k">class</span> <span class="nc">XY</span><span class="p">(</span><span class="n">PlotAbstract</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">PlotProperties</span><span class="p">,</span> <span class="n">dssBuses</span><span class="p">,</span> <span class="n">dssObjects</span><span class="p">,</span> <span class="n">dssCircuit</span><span class="p">,</span> <span class="n">dssSolver</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">XY</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dssBuses</span> <span class="o">=</span> <span class="n">dssBuses</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dssObjs</span> <span class="o">=</span> <span class="n">dssObjects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dssCircuit</span> <span class="o">=</span> <span class="n">dssCircuit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span> <span class="o">=</span> <span class="n">PlotProperties</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">xMul</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xScaler&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yMul</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yScaler&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cMul</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cScaler&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">xInd</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xindex&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yInd</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yindex&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cInd</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cindex&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">xObj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObject</span><span class="p">(</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xObjName&#39;</span><span class="p">],</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xObjectType&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yObj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObject</span><span class="p">(</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yObjName&#39;</span><span class="p">],</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yObjectType&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cObj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObject</span><span class="p">(</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cObjName&#39;</span><span class="p">],</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cObjectType&#39;</span><span class="p">])</span>
+
+        <span class="n">output_file</span><span class="p">(</span><span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;FileName&#39;</span><span class="p">])</span>
+
+        <span class="n">xVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xObj</span><span class="p">,</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xObjectType&#39;</span><span class="p">],</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">xInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xMul</span><span class="p">)</span>
+        <span class="n">yVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yObj</span><span class="p">,</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yObjectType&#39;</span><span class="p">],</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">yInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yMul</span><span class="p">)</span>
+        <span class="n">cVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cObj</span><span class="p">,</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cObjectType&#39;</span><span class="p">],</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">cInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cMul</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">xVals</span> <span class="o">=</span> <span class="p">[</span><span class="n">xVal</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yVals</span> <span class="o">=</span> <span class="p">[</span><span class="n">yVal</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cVals</span> <span class="o">=</span> <span class="p">[</span><span class="n">cVal</span><span class="p">]</span>
+
+        <span class="n">Data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">xVals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yVals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cVals</span><span class="p">]),</span>
+                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+        <span class="n">ColorArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">GetColorArray</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">Plasma</span><span class="p">[</span><span class="mi">256</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Figure</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;Width&#39;</span><span class="p">],</span>
+                        <span class="n">plot_height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span>
+                        <span class="n">title</span><span class="o">=</span> <span class="s1">&#39;XY Plot: Color - &#39;</span> <span class="o">+</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cObjName&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;cProperty&#39;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ScatterPlot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Figure</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">Plasma</span><span class="p">[</span><span class="mi">256</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                                                 <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Figure</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yObjName&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;yProperty&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Figure</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xObjName&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="n">PlotProperties</span><span class="p">[</span><span class="s1">&#39;xProperty&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">curdoc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Figure</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PyDSS&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">push_session</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="p">)</span>
+        <span class="c1">#self.session.show(self.__Figure)  # open the document in a browser</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="XY.GetSessionID"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY.GetSessionID">[docs]</a>    <span class="k">def</span> <span class="nf">GetSessionID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="XY.GetColorArray"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY.GetColorArray">[docs]</a>    <span class="k">def</span> <span class="nf">GetColorArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">DataSeries</span><span class="p">,</span> <span class="n">Pallete</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">DataSeries</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">nBins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Pallete</span><span class="p">)</span>
+            <span class="n">minVal</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">DataSeries</span><span class="p">)</span>
+            <span class="n">maxVal</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">DataSeries</span><span class="p">)</span>
+            <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">minVal</span><span class="p">,</span> <span class="n">maxVal</span><span class="p">,</span> <span class="p">(</span><span class="n">maxVal</span><span class="o">-</span><span class="n">minVal</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nBins</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+            <span class="n">nBinEdges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nBinEdges</span> <span class="o">-</span> <span class="n">nBins</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">bins</span> <span class="o">=</span> <span class="n">bins</span><span class="p">[:</span><span class="n">nBins</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">ColorArray</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">DataSeries</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">Pallete</span><span class="p">)</span>
+            <span class="n">ColorArray</span> <span class="o">=</span> <span class="n">ColorArray</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">Pallete</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">ColorArray</span> <span class="o">=</span> <span class="n">ColorArray</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ColorArray</span> <span class="o">=</span> <span class="n">Pallete</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ColorArray</span></div>
+
+<div class="viewcode-block" id="XY.getObjectValue"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY.getObjectValue">[docs]</a>    <span class="k">def</span> <span class="nf">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Obj</span><span class="p">,</span> <span class="n">ObjType</span><span class="p">,</span> <span class="n">ObjPpty</span><span class="p">,</span> <span class="n">Index</span><span class="p">,</span> <span class="n">Multiplier</span><span class="p">):</span>
+        <span class="n">pptyType</span><span class="p">,</span> <span class="n">Property</span> <span class="o">=</span> <span class="n">ObjPpty</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pptyType</span> <span class="o">==</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span>
+            <span class="n">pptyValue</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Obj</span><span class="o">.</span><span class="n">GetParameter</span><span class="p">(</span><span class="n">Property</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">pptyType</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span> <span class="ow">and</span> <span class="n">ObjType</span> <span class="o">!=</span> <span class="s1">&#39;Circuit&#39;</span><span class="p">:</span>
+            <span class="n">pptyValue</span> <span class="o">=</span> <span class="n">Obj</span><span class="o">.</span><span class="n">GetVariable</span><span class="p">(</span><span class="n">Property</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pptyType</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span> <span class="ow">and</span> <span class="n">ObjType</span> <span class="o">==</span> <span class="s1">&#39;Circuit&#39;</span><span class="p">:</span>
+            <span class="n">pptyValue</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">Obj</span><span class="p">,</span> <span class="n">Property</span><span class="p">)()</span>
+
+        <span class="k">if</span> <span class="n">pptyValue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pptyValue</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">Index</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;sumeven&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">Multiplier</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pptyValue</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">Index</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;sumodd&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">Multiplier</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pptyValue</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">Index</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;even&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Multiplier</span> <span class="o">*</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pptyValue</span><span class="p">[::</span><span class="mi">2</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="n">Index</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;odd&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Multiplier</span> <span class="o">*</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pptyValue</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="s1">&#39;Index=&#39;</span> <span class="ow">in</span> <span class="n">Index</span><span class="p">:</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Index</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Index=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">Multiplier</span> <span class="o">*</span> <span class="n">pptyValue</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">Multiplier</span> <span class="o">*</span> <span class="n">pptyValue</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="XY.getObject"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY.getObject">[docs]</a>    <span class="k">def</span> <span class="nf">getObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ObjName</span><span class="p">,</span> <span class="n">ObjType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ObjType</span> <span class="o">==</span> <span class="s1">&#39;Element&#39;</span><span class="p">:</span>
+            <span class="n">Obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssObjs</span><span class="p">[</span><span class="n">ObjName</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">ObjType</span> <span class="o">==</span> <span class="s1">&#39;Bus&#39;</span><span class="p">:</span>
+            <span class="n">Obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssBuses</span><span class="p">[</span><span class="n">ObjName</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">ObjType</span> <span class="o">==</span> <span class="s1">&#39;Circuit&#39;</span><span class="p">:</span>
+            <span class="n">Obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dssCircuit</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Obj</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">Obj</span></div>
+
+
+<div class="viewcode-block" id="XY.UpdatePlot"><a class="viewcode-back" href="../../../../PyDSS/PyDSS.pyPlots.Plots.html#PyDSS.pyPlots.Plots.XY.XY.UpdatePlot">[docs]</a>    <span class="k">def</span> <span class="nf">UpdatePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">xVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xObj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;xObjectType&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;xProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">xInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xMul</span><span class="p">)</span>
+        <span class="n">yVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yObj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;yObjectType&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;yProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">yInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yMul</span><span class="p">)</span>
+        <span class="n">cVal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObjectValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cObj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;cObjectType&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">__PlotProperties</span><span class="p">[</span><span class="s1">&#39;cProperty&#39;</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">cInd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cMul</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">xVals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xVal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yVals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yVal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cVals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cVal</span><span class="p">)</span>
+
+        <span class="n">Data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">xVals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yVals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cVals</span><span class="p">]),</span>
+                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+        <span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+        <span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="c1">#ColorArray = self.GetColorArray(Data[&#39;X&#39;].astype(float), Plasma[256])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ScatterPlot</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ScatterPlot</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span></div></div>
+        <span class="c1">#self.ScatterPlot</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
